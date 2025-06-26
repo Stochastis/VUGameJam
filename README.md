@@ -9,6 +9,7 @@ Sup, guys! Here's a quick guide to keep us moving fast **without breaking `main`
   1. Open a **pull request** to `main`
   2. Do a quick review and approval (kinda like a last-minute self-check)
   3. Use **Squash and Merge** when merging to keep history clean
+  4. Consider deleting your branch after you've tested your changes in main and verified that you're new code is working and didn't break something else. Not necessary, but it might be good to keep things clean.
 
 ## Main Branch Rules
 
