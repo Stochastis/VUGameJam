@@ -1,3 +1,15 @@
-[gd_scene format=3 uid="uid://bef8rrxlbfg1k"]
+[gd_scene load_steps=2 format=3 uid="uid://bef8rrxlbfg1k"]
+
+[ext_resource type="Script" uid="uid://bj4rn700v2pk5" path="res://repairableobject.gd" id="1_ig7tw"]
 
 [node name="Main" type="Node2D"]
+
+[node name="TileMap" type="TileMap" parent="."]
+format = 2
+
+[node name="CharacterBody2D" type="CharacterBody2D" parent="."]
+
+[node name="Repairable Object" type="Node2D" parent="."]
+script = ExtResource("1_ig7tw")
+
+[node name="Zombe2D" type="Node2D" parent="."]
