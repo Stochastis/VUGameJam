@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=4 uid="uid://bef8rrxlbfg1k"]
+[gd_scene load_steps=8 format=4 uid="uid://bef8rrxlbfg1k"]
 
 [ext_resource type="Texture2D" uid="uid://bvscik1nfrvci" path="res://Assets/Floor.png" id="1_0xm2m"]
 [ext_resource type="Texture2D" uid="uid://cog142k52u6mn" path="res://Assets/Wall.png" id="2_h2yge"]
@@ -20,9 +20,6 @@ texture = ExtResource("2_h2yge")
 physics_layer_0/collision_layer = 1
 sources/0 = SubResource("TileSetAtlasSource_7mycd")
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_5vw27"]
-size = Vector2(16, 16)
-
 [node name="Main" type="Node"]
 
 [node name="TileMapLayers" type="Node2D" parent="."]
@@ -43,55 +40,3 @@ metadata/_edit_group_ = true
 
 [node name="Camera2D" type="Camera2D" parent="engineer"]
 zoom = Vector2(4, 4)
-
-[node name="TestCube0" type="Node2D" parent="."]
-position = Vector2(770, 216)
-metadata/_edit_group_ = true
-
-[node name="RigidBody2D" type="RigidBody2D" parent="TestCube0"]
-linear_velocity = Vector2(-104.15, 0)
-
-[node name="Sprite2D" type="Sprite2D" parent="TestCube0/RigidBody2D"]
-texture = ExtResource("2_h2yge")
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="TestCube0/RigidBody2D"]
-shape = SubResource("RectangleShape2D_5vw27")
-
-[node name="TestCube1" type="Node2D" parent="."]
-position = Vector2(706, 202)
-metadata/_edit_group_ = true
-
-[node name="RigidBody2D" type="RigidBody2D" parent="TestCube1"]
-linear_velocity = Vector2(-104.15, 0)
-
-[node name="Sprite2D" type="Sprite2D" parent="TestCube1/RigidBody2D"]
-texture = ExtResource("2_h2yge")
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="TestCube1/RigidBody2D"]
-shape = SubResource("RectangleShape2D_5vw27")
-
-[node name="TestCube2" type="Node2D" parent="."]
-position = Vector2(599, 200)
-metadata/_edit_group_ = true
-
-[node name="RigidBody2D" type="RigidBody2D" parent="TestCube2"]
-linear_velocity = Vector2(100, 10)
-
-[node name="Sprite2D" type="Sprite2D" parent="TestCube2/RigidBody2D"]
-texture = ExtResource("2_h2yge")
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="TestCube2/RigidBody2D"]
-shape = SubResource("RectangleShape2D_5vw27")
-
-[node name="TestCube3" type="Node2D" parent="."]
-position = Vector2(851, 231)
-metadata/_edit_group_ = true
-
-[node name="RigidBody2D" type="RigidBody2D" parent="TestCube3"]
-linear_velocity = Vector2(-104.15, 0)
-
-[node name="Sprite2D" type="Sprite2D" parent="TestCube3/RigidBody2D"]
-texture = ExtResource("2_h2yge")
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="TestCube3/RigidBody2D"]
-shape = SubResource("RectangleShape2D_5vw27")
