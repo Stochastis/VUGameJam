@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=4 uid="uid://bef8rrxlbfg1k"]
+[gd_scene load_steps=18 format=4 uid="uid://bef8rrxlbfg1k"]
 
 [ext_resource type="Texture2D" uid="uid://bvscik1nfrvci" path="res://Assets/Floor.png" id="1_0xm2m"]
 [ext_resource type="Script" uid="uid://ctwuwe024uqeq" path="res://main.gd" id="1_272bh"]
@@ -8,6 +8,7 @@
 [ext_resource type="Texture2D" uid="uid://bo7ox3gj6s777" path="res://Assets/ClosedDoor.png" id="3_lquwl"]
 [ext_resource type="Texture2D" uid="uid://dkdts5jkkrqo6" path="res://Assets/OpenDoorUpDown.png" id="4_7mycd"]
 [ext_resource type="Texture2D" uid="uid://dv6fllihs0ai2" path="res://Assets/OpenDoorLeftRight.png" id="5_272bh"]
+[ext_resource type="Script" uid="uid://b4wmtfqvvrxfa" path="res://camera_2d.gd" id="9_kek77"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_1bvp3"]
 texture = ExtResource("1_0xm2m")
@@ -85,3 +86,4 @@ metadata/_edit_group_ = true
 
 [node name="Camera2D" type="Camera2D" parent="engineer"]
 zoom = Vector2(4, 4)
+script = ExtResource("9_kek77")
