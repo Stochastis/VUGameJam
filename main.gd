@@ -35,3 +35,4 @@ func spawn_doors():
 				door.open = tile_data.get_custom_data("open")
 
 			add_child(door)
+			tileMapLayer.set_cell(cell_pos, -1)
