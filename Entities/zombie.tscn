@@ -1,0 +1,18 @@
+[gd_scene load_steps=4 format=3 uid="uid://cj54yshcx1ohj"]
+
+[ext_resource type="Script" uid="uid://c4edw2jhsjl73" path="res://Entities/zombie.gd" id="1_2votk"]
+[ext_resource type="Texture2D" uid="uid://dp8nmqytlyhrd" path="res://Assets/Zombie.png" id="1_nj2pk"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_2votk"]
+size = Vector2(36, 44)
+
+[node name="Zombie" type="CharacterBody2D"]
+script = ExtResource("1_2votk")
+
+[node name="PivotPoint" type="Node2D" parent="."]
+
+[node name="Sprite2D" type="Sprite2D" parent="PivotPoint"]
+texture = ExtResource("1_nj2pk")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_2votk")

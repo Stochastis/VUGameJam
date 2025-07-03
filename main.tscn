@@ -1,8 +1,9 @@
-[gd_scene load_steps=8 format=4 uid="uid://bef8rrxlbfg1k"]
+[gd_scene load_steps=9 format=4 uid="uid://bef8rrxlbfg1k"]
 
 [ext_resource type="Texture2D" uid="uid://bvscik1nfrvci" path="res://Assets/Floor.png" id="1_0xm2m"]
 [ext_resource type="Texture2D" uid="uid://cog142k52u6mn" path="res://Assets/Wall.png" id="2_h2yge"]
 [ext_resource type="PackedScene" uid="uid://ck6sugtlhcpdi" path="res://Entities/engineer.tscn" id="3_h2yge"]
+[ext_resource type="PackedScene" uid="uid://cj54yshcx1ohj" path="res://Entities/zombie.tscn" id="4_1bvp3"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_1bvp3"]
 texture = ExtResource("1_0xm2m")
@@ -34,9 +35,14 @@ tile_map_data = PackedByteArray("AAAIAAMAAAAAAAAAAAAIAAQAAAAAAAAAAAAIAAUAAAAAAAA
 tile_set = SubResource("TileSet_272bh")
 
 [node name="engineer" parent="." instance=ExtResource("3_h2yge")]
+unique_name_in_owner = true
 position = Vector2(641, 249)
 scale = Vector2(0.3, 0.3)
 metadata/_edit_group_ = true
 
 [node name="Camera2D" type="Camera2D" parent="engineer"]
 zoom = Vector2(4, 4)
+
+[node name="Zombie" parent="." instance=ExtResource("4_1bvp3")]
+position = Vector2(540, 176)
+scale = Vector2(0.3, 0.3)
