@@ -2,8 +2,9 @@ extends CharacterBody2D
 
 @export var move_speed: float = 150
 @export var max_health: int = 100
+@export var is_enemy: bool = false
 
-var current_health: int = max_health
+@onready var current_health: int = max_health
 
 func _physics_process(_delta):
 	var input_direction =  Input.get_vector("left", "right", "up", "down")

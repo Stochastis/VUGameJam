@@ -44,5 +44,9 @@ metadata/_edit_group_ = true
 zoom = Vector2(4, 4)
 
 [node name="Zombie" parent="." instance=ExtResource("4_1bvp3")]
-position = Vector2(540, 176)
+position = Vector2(499, 154)
+scale = Vector2(0.3, 0.3)
+
+[node name="Zombie2" parent="." instance=ExtResource("4_1bvp3")]
+position = Vector2(815, 177)
 scale = Vector2(0.3, 0.3)
