@@ -6,11 +6,18 @@
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_fau05"]
 size = Vector2(38, 42)
 
-[node name="engineer" type="CharacterBody2D"]
+[node name="engineer" type="CharacterBody2D" node_paths=PackedStringArray("playerInteractionArea")]
 top_level = true
+scale = Vector2(0.25, 0.25)
 script = ExtResource("1_fau05")
+playerInteractionArea = NodePath("pivotPoint/PlayerInteractionArea")
 
 [node name="pivotPoint" type="Node2D" parent="."]
+
+[node name="PlayerInteractionArea" type="Area2D" parent="pivotPoint"]
+
+[node name="CollisionShape2D" type="CollisionPolygon2D" parent="pivotPoint/PlayerInteractionArea"]
+polygon = PackedVector2Array(150, -100, 150, 100, 20, 20, 20, -20)
 
 [node name="Sprite2D" type="Sprite2D" parent="pivotPoint"]
 texture = ExtResource("1_nniac")

@@ -1,11 +1,10 @@
-[gd_scene load_steps=7 format=3 uid="uid://bg5skfd20wcbw"]
+[gd_scene load_steps=9 format=3 uid="uid://bg5skfd20wcbw"]
 
 [ext_resource type="Texture2D" uid="uid://bo7ox3gj6s777" path="res://Assets/ClosedDoor.png" id="1_ba8gm"]
 [ext_resource type="Script" uid="uid://cpm6twph3auq8" path="res://door.gd" id="1_v6xrn"]
 [ext_resource type="Texture2D" uid="uid://dkdts5jkkrqo6" path="res://Assets/OpenDoorUpDown.png" id="2_v6xrn"]
 [ext_resource type="Texture2D" uid="uid://dv6fllihs0ai2" path="res://Assets/OpenDoorLeftRight.png" id="3_50cdl"]
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_hun61"]
+[ext_resource type="PackedScene" uid="uid://dw63555i0b121" path="res://interaction_area.tscn" id="5_4xadh"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_t4u4y"]
 animations = [{
@@ -24,9 +23,16 @@ animations = [{
 "speed": 5.0
 }]
 
-[node name="ClosedDoor" type="Node2D"]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_hun61"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_y5njw"]
+
+[node name="Door" type="Node2D"]
 script = ExtResource("1_v6xrn")
 metadata/_edit_group_ = true
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_t4u4y")
 
 [node name="StaticBody2D" type="StaticBody2D" parent="."]
 scale = Vector2(0.8, 0.8)
@@ -40,5 +46,9 @@ scale = Vector2(0.8, 0.8)
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
 shape = SubResource("RectangleShape2D_hun61")
 
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
-sprite_frames = SubResource("SpriteFrames_t4u4y")
+[node name="InteractionArea" parent="." node_paths=PackedStringArray("interactableObject") instance=ExtResource("5_4xadh")]
+scale = Vector2(0.8, 0.8)
+interactableObject = NodePath("..")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="InteractionArea"]
+shape = SubResource("RectangleShape2D_y5njw")

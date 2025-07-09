@@ -10,13 +10,14 @@ func _ready() -> void:
 		openDoor()
 
 func _process(delta: float) -> void:
-	if Input.is_action_just_pressed("interact"):
-		if open:
-			closeDoor()
-			return
-		else:
-			print("OpeningDoor")
-			openDoor()
+	pass
+
+func interact() -> void:
+	if open:
+		closeDoor()
+		return
+	else:
+		openDoor()
 
 func openDoor() -> void:
 	open = true
