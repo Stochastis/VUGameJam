@@ -46,8 +46,9 @@ scale = Vector2(0.8, 0.8)
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
 shape = SubResource("RectangleShape2D_hun61")
 
-[node name="InteractionArea" parent="." instance=ExtResource("5_4xadh")]
+[node name="InteractionArea" parent="." node_paths=PackedStringArray("interactableObject") instance=ExtResource("5_4xadh")]
 scale = Vector2(0.8, 0.8)
+interactableObject = NodePath("..")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="InteractionArea"]
 shape = SubResource("RectangleShape2D_y5njw")

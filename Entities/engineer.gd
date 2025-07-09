@@ -24,14 +24,16 @@ func interact() -> void:
 	var overlappingAreas = $PlayerInteractionArea.get_overlapping_areas()
 
 	var closestArea: Area2D = closestInteractableArea(overlappingAreas)
-	if closestArea.has_method("interact"):
-		closestArea.interact()
+	if closestArea != null:
+		if closestArea.has_method("interact"):
+			closestArea.interact()
+		else:
+			printerr("InteractableArea has no method with the 'interact' name")
 	else:
-		print("No method with the 'interact' name")
-	print("\n")
+		print("No interactable area found in range")
 
 func closestInteractableArea(areas: Array[Area2D]) -> Area2D:
-	var closestOverlappingArea: Area2D = Area2D.new()
+	var closestOverlappingArea: Area2D = null
 	var distanceToClosest: float = MAXFLOAT
 
 	for area in areas:
