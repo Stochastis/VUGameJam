@@ -2,6 +2,7 @@ extends CharacterBody2D
 
 @export var move_speed: float = 150
 @export var max_health: int = 100
+@export var playerInteractionArea: Area2D
 
 var current_health: int = max_health
 
@@ -21,7 +22,7 @@ func _physics_process(_delta):
 	get_node("pivotPoint").look_at(get_global_mouse_position())
 
 func interact() -> void:
-	var overlappingAreas = $PlayerInteractionArea.get_overlapping_areas()
+	var overlappingAreas = playerInteractionArea.get_overlapping_areas()
 
 	var closestArea: Area2D = closestInteractableArea(overlappingAreas)
 	if closestArea != null:
