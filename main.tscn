@@ -81,7 +81,6 @@ tile_set = SubResource("TileSet_272bh")
 
 [node name="engineer" parent="." instance=ExtResource("3_h2yge")]
 position = Vector2(641, 249)
-scale = Vector2(0.3, 0.3)
 metadata/_edit_group_ = true
 
 [node name="Camera2D" type="Camera2D" parent="engineer"]

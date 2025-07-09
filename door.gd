@@ -15,7 +15,6 @@ func _process(delta: float) -> void:
 			closeDoor()
 			return
 		else:
-			print("OpeningDoor")
 			openDoor()
 
 func openDoor() -> void:
