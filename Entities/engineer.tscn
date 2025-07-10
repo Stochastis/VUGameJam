@@ -12,7 +12,6 @@ top_level = true
 script = ExtResource("1_fau05")
 
 [node name="HealthBar" parent="." instance=ExtResource("2_0e7np")]
-anchor_left = -0.000520833
 offset_left = -33.0
 offset_top = -32.0
 offset_right = 32.0

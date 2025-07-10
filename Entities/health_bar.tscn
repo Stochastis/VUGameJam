@@ -21,7 +21,7 @@ bg_color = Color(0.5732, 0.0163182, 0.0882021, 1)
 [node name="HealthBar" type="ProgressBar"]
 z_index = 1
 anchors_preset = -1
-anchor_left = 0.003125
+anchor_left = -0.000520833
 anchor_right = -0.000520833
 offset_left = -6.0
 offset_top = 1.0

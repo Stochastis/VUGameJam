@@ -4,7 +4,7 @@
 [ext_resource type="Texture2D" uid="uid://dp8nmqytlyhrd" path="res://Assets/Zombie.png" id="1_nj2pk"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_2votk"]
-size = Vector2(36, 44)
+size = Vector2(23, 40)
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_2votk"]
 radius = 270.224
@@ -15,12 +15,17 @@ radius = 453.052
 [node name="Zombie" type="CharacterBody2D"]
 script = ExtResource("1_2votk")
 
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(-1.5, 1)
+shape = SubResource("RectangleShape2D_2votk")
+
 [node name="Pivot_Point" type="Node2D" parent="."]
 
 [node name="Sprite2D" type="Sprite2D" parent="Pivot_Point"]
 texture = ExtResource("1_nj2pk")
 
 [node name="Attack_Proximity" type="Area2D" parent="."]
+visible = false
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Attack_Proximity"]
 shape = SubResource("RectangleShape2D_2votk")
@@ -38,6 +43,9 @@ visible = false
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Chase_Proximity"]
 shape = SubResource("CircleShape2D_r0odx")
 debug_color = Color(0.90265, 0.294429, 0.243426, 0.42)
+
+[node name="NavigationAgent2D" type="NavigationAgent2D" parent="."]
+avoidance_enabled = true
 
 [connection signal="body_shape_entered" from="Attack_Proximity" to="." method="_on_attack_proximity_body_shape_entered"]
 [connection signal="body_entered" from="Focus_Proximity" to="." method="_on_proximity_body_entered"]
