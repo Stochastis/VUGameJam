@@ -1,9 +1,10 @@
-[gd_scene load_steps=8 format=3 uid="uid://ce22jwvxoan48"]
+[gd_scene load_steps=9 format=3 uid="uid://ce22jwvxoan48"]
 
 [ext_resource type="PackedScene" uid="uid://bvhx82eau62u8" path="res://Components/health_system.tscn" id="1_pd1d8"]
 [ext_resource type="Script" uid="uid://dbsu2wgaqddwy" path="res://Entities/allied_soldier.gd" id="1_qcgow"]
 [ext_resource type="Texture2D" uid="uid://bckqv8uthcs8n" path="res://Assets/survivor1_reload.png" id="2_lqr21"]
 [ext_resource type="Texture2D" uid="uid://bi4btcg8yjocb" path="res://Assets/survivor1_machine.png" id="3_qcgow"]
+[ext_resource type="PackedScene" uid="uid://bivqglsx6xa3m" path="res://Components/line_of_sight.tscn" id="5_2q06j"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_2q06j"]
 animations = [{
@@ -40,9 +41,14 @@ shape = SubResource("RectangleShape2D_lqr21")
 
 [node name="ObservationArea" type="Area2D" parent="."]
 
-[node name="ListeningShape" type="CollisionShape2D" parent="ObservationArea"]
+[node name="ListeningBubble" type="CollisionShape2D" parent="ObservationArea"]
 scale = Vector2(16, 16)
 shape = SubResource("CircleShape2D_qcgow")
 
 [node name="ViewCone" type="CollisionPolygon2D" parent="ObservationArea"]
 polygon = PackedVector2Array(1024, -1024, 1024, 1024, 20, 320, 20, -320)
+
+[node name="LineOfSight" parent="." node_paths=PackedStringArray("parent", "observationArea") instance=ExtResource("5_2q06j")]
+parent = NodePath("..")
+observationArea = NodePath("../ObservationArea")
+trackedEntityName = "Engineer"
