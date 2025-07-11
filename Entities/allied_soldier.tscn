@@ -25,9 +25,10 @@ size = Vector2(32, 32)
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_qcgow"]
 
-[node name="AlliedSoldier" type="CharacterBody2D"]
+[node name="AlliedSoldier" type="CharacterBody2D" node_paths=PackedStringArray("lineOfSight")]
 scale = Vector2(0.25, 0.25)
 script = ExtResource("1_qcgow")
+lineOfSight = NodePath("LineOfSight")
 metadata/_edit_group_ = true
 
 [node name="HealthSystem" parent="." instance=ExtResource("1_pd1d8")]

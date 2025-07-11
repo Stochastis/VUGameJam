@@ -32,9 +32,9 @@ func _process(delta: float) -> void:
 	else:
 		observingEntity = false
 	
-	var to_target = (targetPosition - position).normalized()
+	var to_target = (targetPosition - parent.position).normalized()
 	var desired_angle = to_target.angle()
-	rotation = lerp_angle(rotation, desired_angle, ROTATIONSPEED * delta)
+	parent.rotation = lerp_angle(parent.rotation, desired_angle, ROTATIONSPEED * delta)
 	
 	queue_redraw()
 
@@ -43,7 +43,7 @@ func closestNode(nodes: Array[Node2D]) -> Node2D:
 	var distanceToClosest: float = MAXFLOAT
 	
 	for node in nodes:
-		var distanceToNode: float = self.position.distance_to(node.position)
+		var distanceToNode: float = parent.position.distance_to(node.position)
 		if distanceToNode < distanceToClosest:
 			currClosestNode = node
 			distanceToClosest = distanceToNode
@@ -51,9 +51,9 @@ func closestNode(nodes: Array[Node2D]) -> Node2D:
 	return currClosestNode
 
 func has_line_of_sight(target: Node2D) -> bool:
-	startPoint = to_local(global_position)
+	startPoint = to_local(parent.global_position)
 	endPoint = to_local(targetPosition)
-	var query = PhysicsRayQueryParameters2D.create(global_position, target.global_position, 2, [self, target])
+	var query = PhysicsRayQueryParameters2D.create(parent.global_position, target.global_position, 2, [parent, target])
 	var collision := get_world_2d().direct_space_state.intersect_ray(query)
 	
 	return collision.size() == 0
