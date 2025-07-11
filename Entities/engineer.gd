@@ -16,7 +16,7 @@ func _physics_process(_delta):
 	
 	move_and_slide()
 	
-	get_node("pivotPoint").look_at(get_global_mouse_position())
+	get_node("PivotPoint").look_at(get_global_mouse_position())
 
 func interact() -> void:
 	var overlappingAreas = playerInteractionArea.get_overlapping_areas()

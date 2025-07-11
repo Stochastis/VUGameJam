@@ -5,25 +5,25 @@
 [ext_resource type="PackedScene" uid="uid://bvhx82eau62u8" path="res://Components/health_system.tscn" id="2_0e7np"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_fau05"]
-size = Vector2(38, 42)
+size = Vector2(32, 32)
 
-[node name="engineer" type="CharacterBody2D" node_paths=PackedStringArray("playerInteractionArea")]
+[node name="Engineer" type="CharacterBody2D" node_paths=PackedStringArray("playerInteractionArea")]
 top_level = true
 scale = Vector2(0.25, 0.25)
 script = ExtResource("1_fau05")
-playerInteractionArea = NodePath("pivotPoint/PlayerInteractionArea")
+playerInteractionArea = NodePath("PivotPoint/PlayerInteractionArea")
 
 [node name="HealthSystem" parent="." instance=ExtResource("2_0e7np")]
 maxHealth = 100
 
-[node name="pivotPoint" type="Node2D" parent="."]
+[node name="PivotPoint" type="Node2D" parent="."]
 
-[node name="PlayerInteractionArea" type="Area2D" parent="pivotPoint"]
+[node name="PlayerInteractionArea" type="Area2D" parent="PivotPoint"]
 
-[node name="CollisionShape2D" type="CollisionPolygon2D" parent="pivotPoint/PlayerInteractionArea"]
+[node name="CollisionShape2D" type="CollisionPolygon2D" parent="PivotPoint/PlayerInteractionArea"]
 polygon = PackedVector2Array(150, -100, 150, 100, 20, 20, 20, -20)
 
-[node name="Sprite2D" type="Sprite2D" parent="pivotPoint"]
+[node name="Sprite2D" type="Sprite2D" parent="PivotPoint"]
 texture = ExtResource("1_nniac")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]

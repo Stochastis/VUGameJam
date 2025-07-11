@@ -1,8 +1,22 @@
 extends CharacterBody2D
 
-const SPEED = 300.0
+const MAXFLOAT: float = 10000000000000000
 
 func _process(delta: float) -> void:
-	var overlappingAreas: Array[Area2D] = $ObservationArea.get_overlapping_areas()
-	var zombies: Array[Area2D] = overlappingAreas.filter(func(area): return area.name == "Zombie")
-	# TODO: Finish this method so that the allied soldier turns and points at the closest zombie
+	var overlappingBodies: Array[Node2D] = $ObservationArea.get_overlapping_bodies()
+	# TODO: Change this method after merging in zombie changes so that it detects zombies instead of the enineer
+	var zombies: Array[Node2D] = overlappingBodies.filter(func(node): return node.name == "Engineer")
+	if zombies.size() > 0:
+		look_at(closestNode(zombies).position)
+
+func closestNode(nodes: Array[Node2D]) -> Node2D:
+	var currClosestNode: Node2D = null
+	var distanceToClosest: float = MAXFLOAT
+	
+	for node in nodes:
+		var distanceToNode: float = self.position.distance_to(node.position)
+		if distanceToNode < distanceToClosest:
+			currClosestNode = node
+			distanceToClosest = distanceToNode
+	
+	return currClosestNode

@@ -21,7 +21,7 @@ animations = [{
 }]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_lqr21"]
-size = Vector2(38, 42)
+size = Vector2(32, 32)
 
 [node name="AlliedSoldier" type="CharacterBody2D"]
 scale = Vector2(0.25, 0.25)
