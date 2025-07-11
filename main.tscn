@@ -90,4 +90,3 @@ script = ExtResource("9_kek77")
 
 [node name="AlliedSoldier" parent="." instance=ExtResource("10_4c57u")]
 position = Vector2(741, 208)
-rotation = 2.40341
