@@ -9,9 +9,6 @@ func _ready() -> void:
 	if open:
 		openDoor()
 
-func _process(delta: float) -> void:
-	pass
-
 func interact() -> void:
 	if open:
 		closeDoor()

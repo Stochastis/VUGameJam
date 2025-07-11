@@ -5,8 +5,8 @@ extends CharacterBody2D
 
 const MAXFLOAT: float = 10000000000000000
 
-func _process(delta: float) -> void:
-	if Input.is_action_just_pressed("interact"):
+func _input(event: InputEvent) -> void:
+	if event.is_action_pressed("interact"):
 		interact()
 
 func _physics_process(_delta):
@@ -37,10 +37,10 @@ func closestInteractableArea(areas: Array[Area2D]) -> Area2D:
 	for area in areas:
 		if area.name != "InteractionArea":
 			continue
-
+		
 		var distanceToArea: float = self.position.distance_to(area.position)
 		if distanceToArea < distanceToClosest:
 			closestOverlappingArea = area
 			distanceToClosest = distanceToArea
-
+	
 	return closestOverlappingArea

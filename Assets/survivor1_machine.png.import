@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dv6fllihs0ai2"
-path="res://.godot/imported/OpenDoorLeftRight.png-a1dd093fde1d20187be94eea3cafa2ee.ctex"
+uid="uid://bi4btcg8yjocb"
+path="res://.godot/imported/survivor1_machine.png-a95b5f6a0bd29b0136548bda9b790258.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/OpenDoorLeftRight.png"
-dest_files=["res://.godot/imported/OpenDoorLeftRight.png-a1dd093fde1d20187be94eea3cafa2ee.ctex"]
+source_file="res://Assets/survivor1_machine.png"
+dest_files=["res://.godot/imported/survivor1_machine.png-a95b5f6a0bd29b0136548bda9b790258.ctex"]
 
 [params]
 

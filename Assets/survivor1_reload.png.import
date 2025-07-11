@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bo7ox3gj6s777"
-path="res://.godot/imported/ClosedDoor.png-8488e9af4dff04bfc1557530a73eb4b3.ctex"
+uid="uid://bckqv8uthcs8n"
+path="res://.godot/imported/survivor1_reload.png-9186f01b8eb39d85bca2ec1e053209ae.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/ClosedDoor.png"
-dest_files=["res://.godot/imported/ClosedDoor.png-8488e9af4dff04bfc1557530a73eb4b3.ctex"]
+source_file="res://Assets/survivor1_reload.png"
+dest_files=["res://.godot/imported/survivor1_reload.png-9186f01b8eb39d85bca2ec1e053209ae.ctex"]
 
 [params]
 

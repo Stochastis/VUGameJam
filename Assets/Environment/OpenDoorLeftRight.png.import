@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bckqv8uthcs8n"
-path="res://.godot/imported/survivor1_reload.png-b755109936508c57e7c688af580bfee0.ctex"
+uid="uid://dv6fllihs0ai2"
+path="res://.godot/imported/OpenDoorLeftRight.png-45f2205043ae02f894efff8c4ceff4a9.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/AssetDump/top down shooter/PNG/Survivor 1/survivor1_reload.png"
-dest_files=["res://.godot/imported/survivor1_reload.png-b755109936508c57e7c688af580bfee0.ctex"]
+source_file="res://Assets/Environment/OpenDoorLeftRight.png"
+dest_files=["res://.godot/imported/OpenDoorLeftRight.png-45f2205043ae02f894efff8c4ceff4a9.ctex"]
 
 [params]
 
