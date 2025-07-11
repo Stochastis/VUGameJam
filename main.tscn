@@ -88,5 +88,30 @@ metadata/_edit_group_ = true
 zoom = Vector2(4, 4)
 script = ExtResource("9_kek77")
 
-[node name="AlliedSoldier" parent="." instance=ExtResource("10_4c57u")]
-position = Vector2(741, 208)
+[node name="AlliedSoldiers" type="Node" parent="."]
+
+[node name="AlliedSoldier" parent="AlliedSoldiers" instance=ExtResource("10_4c57u")]
+position = Vector2(1029, 30)
+
+[node name="AlliedSoldier2" parent="AlliedSoldiers" instance=ExtResource("10_4c57u")]
+position = Vector2(190, 601)
+rotation = 1.73807
+
+[node name="AlliedSoldier3" parent="AlliedSoldiers" instance=ExtResource("10_4c57u")]
+position = Vector2(71, 118)
+rotation = 3.09789
+
+[node name="AlliedSoldier4" parent="AlliedSoldiers" instance=ExtResource("10_4c57u")]
+position = Vector2(1037, 406)
+rotation = 0.00183697
+
+[node name="AlliedSoldier5" parent="AlliedSoldiers" instance=ExtResource("10_4c57u")]
+position = Vector2(247, 497)
+
+[node name="AlliedSoldier6" parent="AlliedSoldiers" instance=ExtResource("10_4c57u")]
+position = Vector2(824, 316)
+rotation = -3.13544
+
+[node name="AlliedSoldier7" parent="AlliedSoldiers" instance=ExtResource("10_4c57u")]
+position = Vector2(552, 391)
+rotation = -1.5682

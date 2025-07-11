@@ -4,7 +4,6 @@
 [ext_resource type="Script" uid="uid://dbsu2wgaqddwy" path="res://Entities/allied_soldier.gd" id="1_qcgow"]
 [ext_resource type="Texture2D" uid="uid://bckqv8uthcs8n" path="res://Assets/survivor1_reload.png" id="2_lqr21"]
 [ext_resource type="Texture2D" uid="uid://bi4btcg8yjocb" path="res://Assets/survivor1_machine.png" id="3_qcgow"]
-[ext_resource type="PackedScene" uid="uid://dhe4qqkitfj8c" path="res://Components/observation_area.tscn" id="5_2q06j"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_2q06j"]
 animations = [{
@@ -23,6 +22,8 @@ animations = [{
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_lqr21"]
 size = Vector2(32, 32)
 
+[sub_resource type="CircleShape2D" id="CircleShape2D_qcgow"]
+
 [node name="AlliedSoldier" type="CharacterBody2D"]
 scale = Vector2(0.25, 0.25)
 script = ExtResource("1_qcgow")
@@ -37,4 +38,11 @@ sprite_frames = SubResource("SpriteFrames_2q06j")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("RectangleShape2D_lqr21")
 
-[node name="ObservationArea" parent="." instance=ExtResource("5_2q06j")]
+[node name="ObservationArea" type="Area2D" parent="."]
+
+[node name="ListeningShape" type="CollisionShape2D" parent="ObservationArea"]
+scale = Vector2(16, 16)
+shape = SubResource("CircleShape2D_qcgow")
+
+[node name="ViewCone" type="CollisionPolygon2D" parent="ObservationArea"]
+polygon = PackedVector2Array(512, -512, 512, 512, 20, 80, 20, -80)

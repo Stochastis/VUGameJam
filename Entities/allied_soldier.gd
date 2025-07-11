@@ -5,7 +5,7 @@ var ROTATIONSPEED: float = 8
 var zombiePosition: Vector2
 
 func _ready() -> void:
-	zombiePosition = position
+	zombiePosition = position + position.from_angle(rotation)
 
 func _process(delta: float) -> void:
 	var overlappingBodies: Array[Node2D] = $ObservationArea.get_overlapping_bodies()
@@ -21,7 +21,6 @@ func _process(delta: float) -> void:
 	var to_zombie = (zombiePosition - position).normalized()
 	var desired_angle = to_zombie.angle()
 	rotation = lerp_angle(rotation, desired_angle, ROTATIONSPEED * delta)
-	print(zombiePosition)
 
 func closestNode(nodes: Array[Node2D]) -> Node2D:
 	var currClosestNode: Node2D = null
