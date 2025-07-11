@@ -10,6 +10,7 @@ size = Vector2(32, 32)
 [node name="Engineer" type="CharacterBody2D" node_paths=PackedStringArray("playerInteractionArea")]
 top_level = true
 scale = Vector2(0.25, 0.25)
+collision_mask = 3
 script = ExtResource("1_fau05")
 playerInteractionArea = NodePath("PivotPoint/PlayerInteractionArea")
 

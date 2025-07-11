@@ -45,4 +45,4 @@ scale = Vector2(16, 16)
 shape = SubResource("CircleShape2D_qcgow")
 
 [node name="ViewCone" type="CollisionPolygon2D" parent="ObservationArea"]
-polygon = PackedVector2Array(512, -512, 512, 512, 20, 80, 20, -80)
+polygon = PackedVector2Array(1024, -1024, 1024, 1024, 20, 320, 20, -320)
