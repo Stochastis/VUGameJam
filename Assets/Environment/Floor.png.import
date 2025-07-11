@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dkdts5jkkrqo6"
-path="res://.godot/imported/OpenDoorUpDown.png-70b4b9f6fa5f7d353ac7f6f49a568629.ctex"
+uid="uid://bvscik1nfrvci"
+path="res://.godot/imported/Floor.png-cdf33caab327f6f2418e1dd6a3b74744.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/OpenDoorUpDown.png"
-dest_files=["res://.godot/imported/OpenDoorUpDown.png-70b4b9f6fa5f7d353ac7f6f49a568629.ctex"]
+source_file="res://Assets/Environment/Floor.png"
+dest_files=["res://.godot/imported/Floor.png-cdf33caab327f6f2418e1dd6a3b74744.ctex"]
 
 [params]
 
