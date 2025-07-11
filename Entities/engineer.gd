@@ -1,10 +1,7 @@
 extends CharacterBody2D
 
 @export var move_speed: float = 150
-@export var max_health: int = 100
 @export var playerInteractionArea: Area2D
-
-var current_health: int = max_health
 
 const MAXFLOAT: float = 10000000000000000
 

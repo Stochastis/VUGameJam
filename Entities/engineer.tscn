@@ -1,7 +1,8 @@
-[gd_scene load_steps=4 format=3 uid="uid://ck6sugtlhcpdi"]
+[gd_scene load_steps=5 format=3 uid="uid://ck6sugtlhcpdi"]
 
 [ext_resource type="Script" uid="uid://cjmwhvds667ma" path="res://Entities/engineer.gd" id="1_fau05"]
 [ext_resource type="Texture2D" uid="uid://bwod6ufyfj828" path="res://Assets/engineer.png" id="1_nniac"]
+[ext_resource type="PackedScene" uid="uid://bvhx82eau62u8" path="res://Components/health_system.tscn" id="2_0e7np"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_fau05"]
 size = Vector2(38, 42)
@@ -11,6 +12,9 @@ top_level = true
 scale = Vector2(0.25, 0.25)
 script = ExtResource("1_fau05")
 playerInteractionArea = NodePath("pivotPoint/PlayerInteractionArea")
+
+[node name="HealthSystem" parent="." instance=ExtResource("2_0e7np")]
+maxHealth = 100
 
 [node name="pivotPoint" type="Node2D" parent="."]
 
