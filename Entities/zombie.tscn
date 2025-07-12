@@ -1,7 +1,8 @@
-[gd_scene load_steps=6 format=3 uid="uid://cj54yshcx1ohj"]
+[gd_scene load_steps=7 format=3 uid="uid://cj54yshcx1ohj"]
 
 [ext_resource type="Script" uid="uid://c4edw2jhsjl73" path="res://Entities/zombie.gd" id="1_2votk"]
 [ext_resource type="Texture2D" uid="uid://dp8nmqytlyhrd" path="res://Assets/Zombie.png" id="1_nj2pk"]
+[ext_resource type="PackedScene" uid="uid://2oqgcjxs2mvl" path="res://Components/health_bar.tscn" id="2_r0odx"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_2votk"]
 size = Vector2(23, 40)
@@ -12,8 +13,14 @@ radius = 270.224
 [sub_resource type="CircleShape2D" id="CircleShape2D_r0odx"]
 radius = 453.052
 
-[node name="Zombie" type="CharacterBody2D"]
+[node name="Zombie" type="CharacterBody2D" groups=["Enemies"]]
 script = ExtResource("1_2votk")
+
+[node name="HealthBar" parent="." instance=ExtResource("2_r0odx")]
+offset_left = -13.0
+offset_top = -29.0
+offset_right = 12.0
+offset_bottom = -24.0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(-1.5, 1)
@@ -44,7 +51,7 @@ visible = false
 shape = SubResource("CircleShape2D_r0odx")
 debug_color = Color(0.90265, 0.294429, 0.243426, 0.42)
 
-[node name="NavigationAgent2D" type="NavigationAgent2D" parent="."]
+[node name="NavigationAgent2D" type="NavigationAgent2D" parent="." groups=["Enemies"]]
 avoidance_enabled = true
 
 [connection signal="body_shape_entered" from="Attack_Proximity" to="." method="_on_attack_proximity_body_shape_entered"]

@@ -2,7 +2,6 @@ extends CharacterBody2D
 
 @export var move_speed: float = 75
 @export var max_health: int = 100
-@export var is_enemy: bool = true
 @export var cooldown: = 1.0
 
 @onready var target = null
@@ -11,7 +10,7 @@ extends CharacterBody2D
 var can_attack = true
 
 func _enemy_check(entity):
-	return entity.get("is_enemy")
+	return entity.is_in_group("Enemies")
 
 func _take_damage(amount: int) -> void:
 	current_health -= amount

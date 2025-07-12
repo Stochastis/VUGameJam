@@ -6,7 +6,7 @@ extends CharacterBody2D
 @export var playerInteractionArea: Area2D
 
 @onready var current_health: float = max_health
-@onready var health_bar = $HealthBar
+@onready var health_bar = %HealthBar
 
 func _ready():
 	health_bar.init_health(max_health)
