@@ -1,10 +1,13 @@
-[gd_scene load_steps=9 format=3 uid="uid://ce22jwvxoan48"]
+[gd_scene load_steps=12 format=3 uid="uid://ce22jwvxoan48"]
 
 [ext_resource type="PackedScene" uid="uid://bvhx82eau62u8" path="res://Components/health_system.tscn" id="1_pd1d8"]
 [ext_resource type="Script" uid="uid://dbsu2wgaqddwy" path="res://Entities/allied_soldier.gd" id="1_qcgow"]
 [ext_resource type="Texture2D" uid="uid://bckqv8uthcs8n" path="res://Assets/survivor1_reload.png" id="2_lqr21"]
 [ext_resource type="Texture2D" uid="uid://bi4btcg8yjocb" path="res://Assets/survivor1_machine.png" id="3_qcgow"]
 [ext_resource type="PackedScene" uid="uid://bivqglsx6xa3m" path="res://Components/line_of_sight.tscn" id="5_2q06j"]
+[ext_resource type="PackedScene" uid="uid://bhwn8uo4g627j" path="res://States/state_machine.tscn" id="6_mx1sb"]
+[ext_resource type="PackedScene" uid="uid://dl2o8qjiic7t0" path="res://States/npc_idle.tscn" id="7_8ydr2"]
+[ext_resource type="Script" uid="uid://bfeis8rdcnydk" path="res://States/state_machine.gd" id="7_ilfrq"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_2q06j"]
 animations = [{
@@ -53,3 +56,10 @@ polygon = PackedVector2Array(1024, -1024, 1024, 1024, 20, 320, 20, -320)
 parent = NodePath("..")
 observationArea = NodePath("../ObservationArea")
 trackedEntityName = "Engineer"
+
+[node name="StateMachine" parent="." node_paths=PackedStringArray("initial_state") instance=ExtResource("6_mx1sb")]
+script = ExtResource("7_ilfrq")
+initial_state = NodePath("NpcIdle")
+
+[node name="NpcIdle" parent="StateMachine" node_paths=PackedStringArray("entity") instance=ExtResource("7_8ydr2")]
+entity = NodePath("../..")
