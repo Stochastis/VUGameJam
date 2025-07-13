@@ -1,17 +1,16 @@
 extends Node
 class_name State
 
+signal Transitioned
+
 func enter() -> void:
 	pass
 
 func exit() -> void:
 	pass
 	
-func proccess_input(InputEvent) -> State:
-	return null
+func update(_delta: float) -> void:
+	pass
 
-func proccess_frame(InputEvent) -> State:
-	return null
-	
-func proccess_physics(InputEvent) -> State:
-	return null
+func physics_update(_delta: float) -> void:
+	pass
