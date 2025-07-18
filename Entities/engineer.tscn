@@ -11,6 +11,7 @@ size = Vector2(32, 32)
 top_level = true
 scale = Vector2(0.25, 0.25)
 collision_mask = 3
+motion_mode = 1
 script = ExtResource("1_fau05")
 playerInteractionArea = NodePath("PivotPoint/PlayerInteractionArea")
 

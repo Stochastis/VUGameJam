@@ -1,4 +1,8 @@
-[gd_scene load_steps=3 format=3 uid="uid://bmf4sondbmis1"]
+[gd_scene load_steps=4 format=3 uid="uid://bmf4sondbmis1"]
+
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_jqssq"]
+friction = 0.0
+bounce = 1.0
 
 [sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_jqssq"]
 
@@ -7,11 +11,15 @@ size = Vector2(6, 6)
 
 [node name="TempZombie" type="Node2D"]
 
-[node name="Sprite2D" type="Sprite2D" parent="."]
+[node name="RigidBody2D" type="RigidBody2D" parent="."]
+collision_mask = 3
+physics_material_override = SubResource("PhysicsMaterial_jqssq")
+gravity_scale = 0.0
+constant_torque = 5.0
+
+[node name="Sprite2D" type="Sprite2D" parent="RigidBody2D"]
 scale = Vector2(6, 6)
 texture = SubResource("PlaceholderTexture2D_jqssq")
-
-[node name="RigidBody2D" type="RigidBody2D" parent="."]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="RigidBody2D"]
 shape = SubResource("RectangleShape2D_jqssq")

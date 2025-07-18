@@ -11,7 +11,7 @@
 [ext_resource type="Script" uid="uid://b4wmtfqvvrxfa" path="res://camera_2d.gd" id="9_kek77"]
 [ext_resource type="PackedScene" uid="uid://ce22jwvxoan48" path="res://Entities/allied_soldier.tscn" id="10_4c57u"]
 [ext_resource type="Script" uid="uid://c7on6l54cj36u" path="res://wave_manager.gd" id="11_efxa6"]
-[ext_resource type="PackedScene" uid="uid://bmf4sondbmis1" path="res://tempZombie.tscn" id="12_dg77c"]
+[ext_resource type="PackedScene" uid="uid://bmf4sondbmis1" path="res://Entities/tempZombie.tscn" id="12_dg77c"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_1bvp3"]
 texture = ExtResource("1_0xm2m")

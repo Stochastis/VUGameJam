@@ -10,7 +10,7 @@ func _on_timer_timeout() -> void:
 	spawn_zombie()
 	print("Spawned zombie")
 	#restart timer
-	$Timer.start(2)
+	$Timer.start()
 
 func spawn_zombie() -> void:
 	var zombieInstance = zombie.instantiate()
