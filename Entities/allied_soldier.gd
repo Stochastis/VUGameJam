@@ -1,5 +1,6 @@
 extends CharacterBody2D
 
+@export var move_speed: float = 100
 @export var lineOfSight: Node2D
 
 func _process(delta: float) -> void:
