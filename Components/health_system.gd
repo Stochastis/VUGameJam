@@ -2,6 +2,7 @@ extends Node
 
 @export var maxHealth: int
 var currHealth: int
+signal healthChanged
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -9,6 +10,8 @@ func _ready() -> void:
 
 func damage(damageAmount: int) -> void:
 	currHealth -= damageAmount
+	healthChanged.emit()
 	
 func heal(healAmount: int) -> void:
 	currHealth += healAmount
+	healthChanged.emit()

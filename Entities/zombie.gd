@@ -15,7 +15,7 @@ func _enemy_check(entity):
 func _take_damage(amount: int) -> void:
 	current_health -= amount
 
-func _physics_process(delta):
+func _physics_process(_delta):
 	if target != null:
 		var target_direction = global_position.direction_to(target.global_position)
 		velocity = target_direction * move_speed
@@ -33,9 +33,8 @@ func _on_area_2d_body_exited(body: Node2D) -> void:
 		target = overlapping_bodies.filter(_enemy_check(body) == false).front()
 	else:
 		target = null
-
-
-func _on_attack_proximity_body_shape_entered(body_rid: RID, body: Node2D, body_shape_index: int, local_shape_index: int) -> void:
+#
+func _on_attack_proximity_body_shape_entered(_body_rid: RID, body: Node2D, _body_shape_index: int, _local_shape_index: int) -> void:
 	if body == target:
 		if can_attack:
 			body._take_damage(10)

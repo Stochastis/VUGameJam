@@ -54,8 +54,7 @@ polygon = PackedVector2Array(1024, -1024, 1024, 1024, 20, 320, 20, -320)
 [node name="LineOfSight" parent="." node_paths=PackedStringArray("parent", "observationArea") instance=ExtResource("5_2q06j")]
 parent = NodePath("..")
 observationArea = NodePath("../ObservationArea")
-trackedEntityName = "Engineer"
+trackedEntityName = "Zombie"
 
-[node name="StateMachine" parent="." node_paths=PackedStringArray("initial_state") instance=ExtResource("6_mx1sb")]
+[node name="StateMachine" parent="." instance=ExtResource("6_mx1sb")]
 script = ExtResource("7_ilfrq")
-initial_state = NodePath("")
