@@ -8,10 +8,6 @@ extends Node
 func _ready() -> void:
 	spawn_doors()
 
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta: float) -> void:
-	pass
-
 func spawn_doors():
 	for cell_pos in tileMapLayer.get_used_cells():
 			var tile_data = tileMapLayer.get_cell_tile_data(cell_pos)
