@@ -29,7 +29,6 @@ offset_right = 121.0
 offset_bottom = 6.0
 theme_override_styles/background = SubResource("StyleBoxEmpty_r3w0u")
 theme_override_styles/fill = SubResource("StyleBoxFlat_74g6n")
-value = 80.0
 show_percentage = false
 script = ExtResource("1_74g6n")
 
@@ -45,9 +44,3 @@ theme_override_styles/background = SubResource("StyleBoxFlat_r3w0u")
 theme_override_styles/fill = SubResource("StyleBoxFlat_er1vn")
 value = 100.0
 show_percentage = false
-
-[node name="Timer" type="Timer" parent="."]
-wait_time = 0.4
-one_shot = true
-
-[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
