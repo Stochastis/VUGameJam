@@ -1,4 +1,4 @@
-[gd_scene load_steps=21 format=4 uid="uid://bef8rrxlbfg1k"]
+[gd_scene load_steps=22 format=4 uid="uid://bef8rrxlbfg1k"]
 
 [ext_resource type="Texture2D" uid="uid://bvscik1nfrvci" path="res://Assets/Environment/Floor.png" id="1_0xm2m"]
 [ext_resource type="Script" uid="uid://ctwuwe024uqeq" path="res://main.gd" id="1_272bh"]
@@ -68,6 +68,9 @@ sources/5 = SubResource("TileSetAtlasSource_kek77")
 sources/7 = SubResource("TileSetAtlasSource_4c57u")
 sources/8 = SubResource("TileSetAtlasSource_efxa6")
 
+[sub_resource type="CircleShape2D" id="CircleShape2D_dg77c"]
+radius = 95.1315
+
 [node name="Main" type="Node"]
 script = ExtResource("1_272bh")
 door_scene = ExtResource("3_1bvp3")
@@ -124,12 +127,34 @@ zombie = ExtResource("12_dg77c")
 [node name="Timer" type="Timer" parent="WaveManager"]
 one_shot = true
 
-[node name="SpawnPoints" type="Node" parent="WaveManager"]
+[node name="SpawnAreas" type="Node" parent="WaveManager"]
 
-[node name="SpawnPoint1" type="Node2D" parent="WaveManager/SpawnPoints"]
-position = Vector2(756, 765)
+[node name="SpawnArea" type="Area2D" parent="WaveManager/SpawnAreas"]
+position = Vector2(-406, -301)
+metadata/_edit_group_ = true
 
-[node name="SpawnPoint2" type="Node2D" parent="WaveManager/SpawnPoints"]
-position = Vector2(1172, 553)
+[node name="SpawnShape" type="CollisionShape2D" parent="WaveManager/SpawnAreas/SpawnArea"]
+shape = SubResource("CircleShape2D_dg77c")
+
+[node name="SpawnArea2" type="Area2D" parent="WaveManager/SpawnAreas"]
+position = Vector2(1528, -210)
+metadata/_edit_group_ = true
+
+[node name="SpawnShape" type="CollisionShape2D" parent="WaveManager/SpawnAreas/SpawnArea2"]
+shape = SubResource("CircleShape2D_dg77c")
+
+[node name="SpawnArea3" type="Area2D" parent="WaveManager/SpawnAreas"]
+position = Vector2(515, -250)
+metadata/_edit_group_ = true
+
+[node name="SpawnShape" type="CollisionShape2D" parent="WaveManager/SpawnAreas/SpawnArea3"]
+shape = SubResource("CircleShape2D_dg77c")
+
+[node name="SpawnArea4" type="Area2D" parent="WaveManager/SpawnAreas"]
+position = Vector2(2333, 677)
+metadata/_edit_group_ = true
+
+[node name="SpawnShape" type="CollisionShape2D" parent="WaveManager/SpawnAreas/SpawnArea4"]
+shape = SubResource("CircleShape2D_dg77c")
 
 [connection signal="timeout" from="WaveManager/Timer" to="WaveManager" method="_on_timer_timeout"]

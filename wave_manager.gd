@@ -10,13 +10,16 @@ func _ready() -> void:
 
 func _on_timer_timeout() -> void:
 	spawn_zombie()
-	print("Spawned zombie")
-	#restart timer
 	$Timer.start()
 
 func spawn_zombie() -> void:
-	var zombieInstance = zombie.instantiate()
-	var spawnPoints = $SpawnPoints.get_children()
-	var spawnPoint: Vector2 = spawnPoints.pick_random().global_position
-	zombieInstance.global_position = spawnPoint
-	add_child(zombieInstance)
+	var spawnAreas = $SpawnAreas.get_children()
+	var selectedSpawnArea: Area2D = spawnAreas.pick_random()
+	var overlappingBodies: Array[Node2D] = selectedSpawnArea.get_overlapping_bodies()
+	var enemies: Array[Node2D] = overlappingBodies.filter(func(body): return body.is_in_group("Enemies"))
+	if enemies.is_empty():
+		var spawnPoint: Vector2 = selectedSpawnArea.global_position
+		var zombieInstance = zombie.instantiate()
+		zombieInstance.global_position = spawnPoint
+		add_child(zombieInstance)
+		print("Spawned zombie")
