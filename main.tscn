@@ -127,9 +127,9 @@ one_shot = true
 [node name="SpawnPoints" type="Node" parent="WaveManager"]
 
 [node name="SpawnPoint1" type="Node2D" parent="WaveManager/SpawnPoints"]
-position = Vector2(841, 734)
+position = Vector2(756, 765)
 
 [node name="SpawnPoint2" type="Node2D" parent="WaveManager/SpawnPoints"]
-position = Vector2(1158, 587)
+position = Vector2(1172, 553)
 
 [connection signal="timeout" from="WaveManager/Timer" to="WaveManager" method="_on_timer_timeout"]

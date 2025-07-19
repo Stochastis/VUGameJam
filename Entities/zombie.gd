@@ -9,11 +9,8 @@ extends CharacterBody2D
 
 var can_attack = true
 
-func _enemy_check(entity):
+func is_enemy(entity):
 	return entity.is_in_group("Enemies")
-
-func _take_damage(amount: int) -> void:
-	current_health -= amount
 
 func _physics_process(_delta):
 	if target != null:
@@ -23,17 +20,18 @@ func _physics_process(_delta):
 		move_and_slide()
 
 func _on_proximity_body_entered(body: Node2D) -> void:
-	if _enemy_check(body) == false:
+	if target == null and not is_enemy(body):
 		target = body
 
-func _on_area_2d_body_exited(body: Node2D) -> void:
-	var overlapping_bodies = %Chase_Proximity.get_overlapping_areas()
-	
-	if overlapping_bodies.any(func(): _enemy_check(body)):
-		target = overlapping_bodies.filter(_enemy_check(body) == false).front()
-	else:
-		target = null
-#
+func _on_chase_proximity_body_exited(body: Node2D) -> void:
+	# We only care if a body left the chase proximity if the body that left is the current target
+	# Doesn't matter if other bodies around are leaving the proximity
+	if body == target:
+		var overlapping_bodies: Array[Area2D] = %Chase_Proximity.get_overlapping_areas()
+		
+		var nonEnemies: Array[Area2D] = overlapping_bodies.filter(func(overlap): not is_enemy(overlap))
+		target = null if nonEnemies.is_empty() else nonEnemies.front()
+
 func _on_attack_proximity_body_shape_entered(_body_rid: RID, body: Node2D, _body_shape_index: int, _local_shape_index: int) -> void:
 	if body == target:
 		if can_attack and body.has_node("HealthSystem"):

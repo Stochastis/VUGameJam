@@ -1,10 +1,12 @@
 extends Node
 
 @export var zombie: PackedScene
+@export var enabled: bool = true
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	_on_timer_timeout()
+	if enabled:
+		_on_timer_timeout()
 
 func _on_timer_timeout() -> void:
 	spawn_zombie()
