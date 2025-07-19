@@ -58,3 +58,7 @@ trackedEntityName = "Zombie"
 
 [node name="StateMachine" parent="." instance=ExtResource("6_mx1sb")]
 script = ExtResource("7_ilfrq")
+
+[node name="StateMachine" parent="." node_paths=PackedStringArray("initial_state") instance=ExtResource("6_mx1sb")]
+script = ExtResource("7_ilfrq")
+initial_state = NodePath("")
