@@ -120,6 +120,11 @@ position = Vector2(906, 1484)
 rotation = 1.57149
 collision_mask = 3
 
+[node name="AlliedSoldier6" parent="AlliedSoldiers" instance=ExtResource("10_4c57u")]
+position = Vector2(813, 749)
+rotation = 0.908256
+collision_mask = 3
+
 [node name="WaveManager" type="Node" parent="."]
 script = ExtResource("11_efxa6")
 zombie = ExtResource("12_dg77c")
@@ -156,5 +161,8 @@ metadata/_edit_group_ = true
 
 [node name="SpawnShape" type="CollisionShape2D" parent="WaveManager/SpawnAreas/SpawnArea4"]
 shape = SubResource("CircleShape2D_dg77c")
+
+[node name="Zombie" parent="." instance=ExtResource("12_dg77c")]
+position = Vector2(759, 752)
 
 [connection signal="timeout" from="WaveManager/Timer" to="WaveManager" method="_on_timer_timeout"]

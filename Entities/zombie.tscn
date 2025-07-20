@@ -17,7 +17,7 @@ radius = 453.052
 [node name="Zombie" type="CharacterBody2D" groups=["Enemies"]]
 scale = Vector2(0.25, 0.25)
 script = ExtResource("1_2votk")
-move_speed = 25.0
+move_speed = 20.0
 
 [node name="HealthSystem" parent="." instance=ExtResource("2_rjxgx")]
 maxHealth = 100
