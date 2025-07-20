@@ -1,8 +1,9 @@
-[gd_scene load_steps=9 format=3 uid="uid://bg5skfd20wcbw"]
+[gd_scene load_steps=10 format=3 uid="uid://bg5skfd20wcbw"]
 
-[ext_resource type="Texture2D" uid="uid://bo7ox3gj6s777" path="res://Assets/Environment/ClosedDoor.png" id="1_ba8gm"]
 [ext_resource type="Script" uid="uid://cpm6twph3auq8" path="res://door.gd" id="1_v6xrn"]
+[ext_resource type="Texture2D" uid="uid://dwl8rfik3abdj" path="res://Assets/Environment/ClosedDoorUpDown.png" id="2_4xadh"]
 [ext_resource type="Texture2D" uid="uid://dkdts5jkkrqo6" path="res://Assets/Environment/OpenDoorUpDown.png" id="2_v6xrn"]
+[ext_resource type="Texture2D" uid="uid://h4y2no6dhusb" path="res://Assets/Environment/ClosedDoorLeftRight.png" id="3_6hwww"]
 [ext_resource type="Texture2D" uid="uid://dv6fllihs0ai2" path="res://Assets/Environment/OpenDoorLeftRight.png" id="3_50cdl"]
 [ext_resource type="PackedScene" uid="uid://dw63555i0b121" path="res://Components/interaction_area.tscn" id="5_4xadh"]
 
@@ -10,7 +11,10 @@
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": ExtResource("1_ba8gm")
+"texture": ExtResource("2_4xadh")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_6hwww")
 }, {
 "duration": 1.0,
 "texture": ExtResource("2_v6xrn")
