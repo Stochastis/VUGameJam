@@ -23,12 +23,12 @@ func _ready() -> void:
 
 func _process(delta: float) -> void:
 	var overlappingBodies: Array[Node2D] = observationArea.get_overlapping_bodies()
-	var entitiesInRange: Array[Node2D] = overlappingBodies.filter(func(node): return node.name == trackedEntityName)
-	var observedEntities: Array[Node2D] = entitiesInRange.filter(func(node): return has_line_of_sight(node))
+	var trackedEntitiesInRange: Array[Node2D] = overlappingBodies.filter(func(node): return node.name == trackedEntityName)
+	var trackedObservedEntities: Array[Node2D] = trackedEntitiesInRange.filter(func(node): return has_line_of_sight(node))
 	
-	if observedEntities.size() > 0:
+	if trackedObservedEntities.size() > 0:
 		observingEntity = true
-		targetPosition = closestNode(observedEntities).position
+		targetPosition = closestNode(trackedObservedEntities).position
 	else:
 		observingEntity = false
 	

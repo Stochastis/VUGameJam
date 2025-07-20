@@ -1,0 +1,64 @@
+[gd_scene load_steps=8 format=3 uid="uid://blyg5xpe2gttd"]
+
+[ext_resource type="Script" uid="uid://c4edw2jhsjl73" path="res://Entities/zombie.gd" id="1_2votk"]
+[ext_resource type="Texture2D" uid="uid://dp8nmqytlyhrd" path="res://Assets/Zombie.png" id="1_nj2pk"]
+[ext_resource type="PackedScene" uid="uid://ceabu7h8g45hl" path="res://Components/health_bar.tscn" id="2_r0odx"]
+[ext_resource type="PackedScene" uid="uid://bvhx82eau62u8" path="res://Components/health_system.tscn" id="2_rjxgx"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_2votk"]
+size = Vector2(23, 40)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_2votk"]
+radius = 270.224
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_r0odx"]
+radius = 453.052
+
+[node name="Zombie" type="CharacterBody2D" groups=["Enemies"]]
+scale = Vector2(0.25, 0.25)
+script = ExtResource("1_2votk")
+move_speed = 20.0
+
+[node name="HealthSystem" parent="." instance=ExtResource("2_rjxgx")]
+maxHealth = 100
+
+[node name="HealthBar" parent="." node_paths=PackedStringArray("healthSystem") instance=ExtResource("2_r0odx")]
+offset_left = -13.0
+offset_top = -29.0
+offset_right = 12.0
+offset_bottom = -24.0
+healthSystem = NodePath("../HealthSystem")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(-1.5, 1)
+shape = SubResource("RectangleShape2D_2votk")
+
+[node name="Pivot_Point" type="Node2D" parent="."]
+
+[node name="Sprite2D" type="Sprite2D" parent="Pivot_Point"]
+texture = ExtResource("1_nj2pk")
+
+[node name="Attack_Proximity" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Attack_Proximity"]
+shape = SubResource("RectangleShape2D_2votk")
+
+[node name="Focus_Proximity" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Focus_Proximity"]
+shape = SubResource("CircleShape2D_2votk")
+
+[node name="Chase_Proximity" type="Area2D" parent="."]
+unique_name_in_owner = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Chase_Proximity"]
+shape = SubResource("CircleShape2D_r0odx")
+debug_color = Color(0.90265, 0.294429, 0.243426, 0.42)
+
+[node name="NavigationAgent2D" type="NavigationAgent2D" parent="." groups=["Enemies"]]
+avoidance_enabled = true
+
+[connection signal="healthChanged" from="HealthSystem" to="HealthBar" method="_on_health_system_health_changed"]
+[connection signal="body_shape_entered" from="Attack_Proximity" to="." method="_on_attack_proximity_body_shape_entered"]
+[connection signal="body_entered" from="Focus_Proximity" to="." method="_on_proximity_body_entered"]
+[connection signal="body_exited" from="Chase_Proximity" to="." method="_on_chase_proximity_body_exited"]
