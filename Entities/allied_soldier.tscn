@@ -30,6 +30,8 @@ size = Vector2(32, 32)
 
 [node name="AlliedSoldier" type="CharacterBody2D" node_paths=PackedStringArray("lineOfSight")]
 scale = Vector2(0.25, 0.25)
+collision_mask = 7
+motion_mode = 1
 script = ExtResource("1_qcgow")
 lineOfSight = NodePath("LineOfSight")
 metadata/_edit_group_ = true

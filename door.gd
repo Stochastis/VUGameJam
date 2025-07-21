@@ -8,6 +8,8 @@ extends Node2D
 func _ready() -> void:
 	if open:
 		openDoor()
+	else:
+		closeDoor() # To set the correct sprite frame
 
 func interact() -> void:
 	if open:
@@ -19,12 +21,15 @@ func interact() -> void:
 func openDoor() -> void:
 	open = true
 	if northSouth:
-		$AnimatedSprite2D.set_frame_and_progress(1, 0)
-	else:
 		$AnimatedSprite2D.set_frame_and_progress(2, 0)
+	else:
+		$AnimatedSprite2D.set_frame_and_progress(3, 0)
 	$StaticBody2D/CollisionShape2D2.disabled = true
 
 func closeDoor() -> void:
 	open = false
-	$AnimatedSprite2D.set_frame_and_progress(0, 0)
+	if northSouth:
+		$AnimatedSprite2D.set_frame_and_progress(0, 0)
+	else:
+		$AnimatedSprite2D.set_frame_and_progress(1, 0)
 	$StaticBody2D/CollisionShape2D2.disabled = false
