@@ -107,33 +107,27 @@ script = ExtResource("9_kek77")
 [node name="AlliedSoldiers" type="Node" parent="."]
 
 [node name="AlliedSoldier" parent="AlliedSoldiers" instance=ExtResource("10_4c57u")]
-position = Vector2(1630, 15)
-rotation = 4.71644
-collision_mask = 3
+position = Vector2(806, 757)
+rotation = 2.91865
 
 [node name="AlliedSoldier2" parent="AlliedSoldiers" instance=ExtResource("10_4c57u")]
-position = Vector2(439, -11)
-rotation = 4.71239
-collision_mask = 3
+position = Vector2(893, 1582)
+rotation = 1.64519
 
 [node name="AlliedSoldier3" parent="AlliedSoldiers" instance=ExtResource("10_4c57u")]
-position = Vector2(1823, 987)
-rotation = 6.28207
-collision_mask = 3
+position = Vector2(1876, 656)
 
 [node name="AlliedSoldier4" parent="AlliedSoldiers" instance=ExtResource("10_4c57u")]
-position = Vector2(1812, 363)
-collision_mask = 3
+position = Vector2(1516, -47)
+rotation = -1.53137
 
 [node name="AlliedSoldier5" parent="AlliedSoldiers" instance=ExtResource("10_4c57u")]
-position = Vector2(906, 1484)
-rotation = 1.57149
-collision_mask = 3
+position = Vector2(-77, -79)
+rotation = -2.45169
 
 [node name="AlliedSoldier6" parent="AlliedSoldiers" instance=ExtResource("10_4c57u")]
-position = Vector2(813, 749)
-rotation = 2.97607
-collision_mask = 3
+position = Vector2(512, -85)
+rotation = -1.52906
 
 [node name="WaveManager" type="Node" parent="."]
 script = ExtResource("11_efxa6")
