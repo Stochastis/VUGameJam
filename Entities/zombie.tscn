@@ -56,9 +56,6 @@ unique_name_in_owner = true
 shape = SubResource("CircleShape2D_r0odx")
 debug_color = Color(0.90265, 0.294429, 0.243426, 0.42)
 
-[node name="NavigationAgent2D" type="NavigationAgent2D" parent="." groups=["Enemies"]]
-avoidance_enabled = true
-
 [connection signal="healthChanged" from="HealthSystem" to="HealthBar" method="_on_health_system_health_changed"]
 [connection signal="body_shape_entered" from="Attack_Proximity" to="." method="_on_attack_proximity_body_shape_entered"]
 [connection signal="body_entered" from="Focus_Proximity" to="." method="_on_proximity_body_entered"]

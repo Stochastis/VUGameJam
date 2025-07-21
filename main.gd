@@ -1,7 +1,7 @@
 extends Node
 
 # world.gd or whatever your main level scene is
-@onready var tileMapLayer: TileMapLayer = $"TileMapLayers/TileMapLayer-Walls"
+@onready var tileMapLayer: TileMapLayer = $"World/TileMapLayers/TileMapLayer-Environment"
 @export var door_scene: PackedScene
 
 # Called when the node enters the scene tree for the first time.
