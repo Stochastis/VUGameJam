@@ -6,6 +6,7 @@ extends CharacterBody2D
 
 @onready var target = null
 @onready var current_health: int = max_health
+@onready var navAgent := $NavigationAgent2D as NavigationAgent2D
 
 var can_attack = true
 
@@ -14,10 +15,13 @@ func is_enemy(entity):
 
 func _physics_process(_delta):
 	if target != null:
-		var target_direction = global_position.direction_to(target.global_position)
-		velocity = target_direction * move_speed
-		look_at(target.position)
+		var dir: Vector2 = to_local(navAgent.get_next_path_position()).normalized()
+		velocity = dir * move_speed
 		move_and_slide()
+
+func _on_nav_timer_timeout() -> void:
+	if target != null:
+		navAgent.target_position = target.global_position
 
 func _on_proximity_body_entered(body: Node2D) -> void:
 	if target == null and not is_enemy(body):

@@ -1,4 +1,4 @@
-[gd_scene load_steps=24 format=4 uid="uid://bef8rrxlbfg1k"]
+[gd_scene load_steps=25 format=4 uid="uid://bef8rrxlbfg1k"]
 
 [ext_resource type="Texture2D" uid="uid://bvscik1nfrvci" path="res://Assets/Environment/Floor.png" id="1_0xm2m"]
 [ext_resource type="Script" uid="uid://ctwuwe024uqeq" path="res://main.gd" id="1_272bh"]
@@ -25,9 +25,16 @@ texture = ExtResource("5_w48qg")
 0:0/0 = 0
 0:0/0/physics_layer_1/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
 
+[sub_resource type="NavigationPolygon" id="NavigationPolygon_w48qg"]
+vertices = PackedVector2Array(8, 8, -8, 8, -8, -8, 8, -8)
+polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3)])
+outlines = Array[PackedVector2Array]([PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)])
+agent_radius = 0.0
+
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_w48qg"]
 texture = ExtResource("1_0xm2m")
 0:0/0 = 0
+0:0/0/navigation_layer_0/polygon = SubResource("NavigationPolygon_w48qg")
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_5vw27"]
 resource_name = "DoorNSClosed"
@@ -62,6 +69,7 @@ physics_layer_0/collision_layer = 2
 physics_layer_0/collision_mask = 0
 physics_layer_1/collision_layer = 4
 physics_layer_1/collision_mask = 0
+navigation_layer_0/layers = 1
 custom_data_layer_0/name = "is_door"
 custom_data_layer_0/type = 1
 custom_data_layer_1/name = "north_south"
@@ -163,5 +171,8 @@ shape = SubResource("CircleShape2D_dg77c")
 
 [node name="Zombie" parent="World" instance=ExtResource("12_dg77c")]
 position = Vector2(632, 773)
+
+[node name="Zombie2" parent="World" instance=ExtResource("12_dg77c")]
+position = Vector2(1124, 711)
 
 [connection signal="timeout" from="World/WaveManager/Timer" to="World/WaveManager" method="_on_timer_timeout"]
