@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://bg5skfd20wcbw"]
+[gd_scene load_steps=11 format=3 uid="uid://bg5skfd20wcbw"]
 
 [ext_resource type="Script" uid="uid://cpm6twph3auq8" path="res://door.gd" id="1_v6xrn"]
 [ext_resource type="Texture2D" uid="uid://dwl8rfik3abdj" path="res://Assets/Environment/ClosedDoorUpDown.png" id="2_4xadh"]
@@ -27,6 +27,12 @@ animations = [{
 "speed": 5.0
 }]
 
+[sub_resource type="NavigationPolygon" id="NavigationPolygon_4xadh"]
+vertices = PackedVector2Array(8, 8, -8, 8, -8, -8, 8, -8)
+polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3)])
+outlines = Array[PackedVector2Array]([PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)])
+agent_radius = 0.0
+
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_hun61"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_y5njw"]
@@ -36,7 +42,12 @@ script = ExtResource("1_v6xrn")
 metadata/_edit_group_ = true
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+scale = Vector2(1, 1)
 sprite_frames = SubResource("SpriteFrames_t4u4y")
+
+[node name="NavigationRegion2D" type="NavigationRegion2D" parent="."]
+scale = Vector2(1, 1)
+navigation_polygon = SubResource("NavigationPolygon_4xadh")
 
 [node name="StaticBody2D" type="StaticBody2D" parent="."]
 scale = Vector2(0.8, 0.8)

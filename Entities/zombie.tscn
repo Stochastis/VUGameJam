@@ -62,7 +62,6 @@ debug_color = Color(0.90265, 0.294429, 0.243426, 0.42)
 debug_enabled = true
 
 [node name="NavTimer" type="Timer" parent="."]
-wait_time = 0.1
 autostart = true
 
 [connection signal="healthChanged" from="HealthSystem" to="HealthBar" method="_on_health_system_health_changed"]
