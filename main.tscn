@@ -1,4 +1,4 @@
-[gd_scene load_steps=28 format=4 uid="uid://bef8rrxlbfg1k"]
+[gd_scene load_steps=26 format=4 uid="uid://bef8rrxlbfg1k"]
 
 [ext_resource type="Texture2D" uid="uid://bvscik1nfrvci" path="res://Assets/Environment/Floor.png" id="1_0xm2m"]
 [ext_resource type="Script" uid="uid://ctwuwe024uqeq" path="res://main.gd" id="1_272bh"]
@@ -51,32 +51,18 @@ texture = ExtResource("6_w48qg")
 0:0/0 = 0
 0:0/0/custom_data_0 = true
 
-[sub_resource type="NavigationPolygon" id="NavigationPolygon_vivmo"]
-vertices = PackedVector2Array(8, 8, -8, 8, -8, -8, 8, -8)
-polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3)])
-outlines = Array[PackedVector2Array]([PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)])
-agent_radius = 0.0
-
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_4c57u"]
 resource_name = "DoorNSOpen"
 texture = ExtResource("4_7mycd")
 0:0/0 = 0
-0:0/0/navigation_layer_0/polygon = SubResource("NavigationPolygon_vivmo")
 0:0/0/custom_data_0 = true
 0:0/0/custom_data_1 = true
 0:0/0/custom_data_2 = true
-
-[sub_resource type="NavigationPolygon" id="NavigationPolygon_2cqfq"]
-vertices = PackedVector2Array(8, 8, -8, 8, -8, -8, 8, -8)
-polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3)])
-outlines = Array[PackedVector2Array]([PackedVector2Array(-8, 8, -8, -8, 8, -8, 8, 8)])
-agent_radius = 0.0
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_efxa6"]
 resource_name = "DoorEWOpen"
 texture = ExtResource("5_272bh")
 0:0/0 = 0
-0:0/0/navigation_layer_0/polygon = SubResource("NavigationPolygon_2cqfq")
 0:0/0/custom_data_0 = true
 0:0/0/custom_data_2 = true
 

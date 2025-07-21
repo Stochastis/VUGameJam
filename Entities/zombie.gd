@@ -3,6 +3,7 @@ extends CharacterBody2D
 @export var move_speed: float = 75
 @export var max_health: int = 100
 @export var cooldown: = 1.0
+@export var ROTATIONSPEED: float = 1
 
 @onready var target = null
 @onready var current_health: int = max_health
@@ -13,11 +14,18 @@ var can_attack = true
 func is_enemy(entity):
 	return entity.is_in_group("Enemies")
 
-func _physics_process(_delta):
+func _physics_process(delta):
 	if target != null:
-		var dir: Vector2 = to_local(navAgent.get_next_path_position()).normalized()
-		velocity = dir * move_speed
-		move_and_slide()
+		var targetPos: Vector2 = navAgent.get_next_path_position()
+		var to_target = (targetPos - global_position).normalized()
+		var desired_angle = to_target.angle()
+		
+		rotation = lerp_angle(rotation, desired_angle, ROTATIONSPEED * delta)
+		
+		#var dir: Vector2 = to_local(targetPos).normalized()
+		#velocity = dir * move_speed
+		#move_and_slide()
+		
 
 func _on_nav_timer_timeout() -> void:
 	if target != null:
