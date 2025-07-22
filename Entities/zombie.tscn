@@ -78,6 +78,7 @@ observationArea = NodePath("../Focus_Area")
 
 [node name="LineOfSight" parent="." node_paths=PackedStringArray("parent") instance=ExtResource("7_5p7nf")]
 parent = NodePath("..")
+blockingLayers = Array[int]([2, 3])
 
 [connection signal="healthChanged" from="HealthSystem" to="HealthBar" method="_on_health_system_health_changed"]
 [connection signal="body_shape_entered" from="Attack_Proximity" to="." method="_on_attack_proximity_body_shape_entered"]

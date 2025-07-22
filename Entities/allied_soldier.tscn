@@ -68,6 +68,7 @@ observationArea = NodePath("../ObservationArea")
 
 [node name="LineOfSight" parent="." node_paths=PackedStringArray("parent") instance=ExtResource("5_2q06j")]
 parent = NodePath("..")
+blockingLayers = Array[int]([2])
 
 [node name="StateMachine" parent="." node_paths=PackedStringArray("initial_state") instance=ExtResource("6_mx1sb")]
 script = ExtResource("7_ilfrq")
