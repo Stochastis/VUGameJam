@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://bg5skfd20wcbw"]
+[gd_scene load_steps=12 format=3 uid="uid://bg5skfd20wcbw"]
 
 [ext_resource type="Script" uid="uid://cpm6twph3auq8" path="res://door.gd" id="1_v6xrn"]
 [ext_resource type="Texture2D" uid="uid://dwl8rfik3abdj" path="res://Assets/Environment/ClosedDoorUpDown.png" id="2_4xadh"]
@@ -27,6 +27,18 @@ animations = [{
 "speed": 5.0
 }]
 
+[sub_resource type="NavigationPolygon" id="NavigationPolygon_4xadh"]
+vertices = PackedVector2Array(2, 8, -2, 8, -2, -8, 2, -8)
+polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3)])
+outlines = Array[PackedVector2Array]([PackedVector2Array(-2, -8, 2, -8, 2, 8, -2, 8)])
+agent_radius = 0.0
+
+[sub_resource type="NavigationPolygon" id="NavigationPolygon_6hwww"]
+vertices = PackedVector2Array(8, 2, -8, 2, -8, -2, 8, -2)
+polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3)])
+outlines = Array[PackedVector2Array]([PackedVector2Array(-8, -2, 8, -2, 8, 2, -8, 2)])
+agent_radius = 0.0
+
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_hun61"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_y5njw"]
@@ -38,7 +50,16 @@ metadata/_edit_group_ = true
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_t4u4y")
 
+[node name="NavigationRegion2DNS" type="NavigationRegion2D" parent="."]
+navigation_polygon = SubResource("NavigationPolygon_4xadh")
+enabled = false
+
+[node name="NavigationRegion2DEW" type="NavigationRegion2D" parent="."]
+navigation_polygon = SubResource("NavigationPolygon_6hwww")
+enabled = false
+
 [node name="StaticBody2D" type="StaticBody2D" parent="."]
+visible = false
 scale = Vector2(0.8, 0.8)
 collision_layer = 2
 collision_mask = 0
@@ -47,12 +68,14 @@ collision_mask = 0
 shape = SubResource("RectangleShape2D_hun61")
 
 [node name="Area2D" type="Area2D" parent="."]
+visible = false
 scale = Vector2(0.8, 0.8)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
 shape = SubResource("RectangleShape2D_hun61")
 
 [node name="InteractionArea" parent="." node_paths=PackedStringArray("interactableObject") instance=ExtResource("5_4xadh")]
+visible = false
 scale = Vector2(0.8, 0.8)
 interactableObject = NodePath("..")
 

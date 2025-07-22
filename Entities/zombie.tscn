@@ -17,6 +17,8 @@ radius = 453.052
 [node name="Zombie" type="CharacterBody2D" groups=["Enemies"]]
 scale = Vector2(0.25, 0.25)
 collision_mask = 7
+motion_mode = 1
+wall_min_slide_angle = 0.0
 script = ExtResource("1_2votk")
 move_speed = 20.0
 
@@ -56,10 +58,14 @@ unique_name_in_owner = true
 shape = SubResource("CircleShape2D_r0odx")
 debug_color = Color(0.90265, 0.294429, 0.243426, 0.42)
 
-[node name="NavigationAgent2D" type="NavigationAgent2D" parent="." groups=["Enemies"]]
-avoidance_enabled = true
+[node name="NavigationAgent2D" type="NavigationAgent2D" parent="."]
+debug_enabled = true
+
+[node name="NavTimer" type="Timer" parent="."]
+autostart = true
 
 [connection signal="healthChanged" from="HealthSystem" to="HealthBar" method="_on_health_system_health_changed"]
 [connection signal="body_shape_entered" from="Attack_Proximity" to="." method="_on_attack_proximity_body_shape_entered"]
 [connection signal="body_entered" from="Focus_Proximity" to="." method="_on_proximity_body_entered"]
 [connection signal="body_exited" from="Chase_Proximity" to="." method="_on_chase_proximity_body_exited"]
+[connection signal="timeout" from="NavTimer" to="." method="_on_nav_timer_timeout"]

@@ -1,7 +1,8 @@
 extends Node
 
 # world.gd or whatever your main level scene is
-@onready var tileMapLayer: TileMapLayer = $"TileMapLayers/TileMapLayer-Walls"
+@onready var tileMapLayer: TileMapLayer = $"World/NavigationRegion2D/TileMapLayer-Environment"
+@onready var worldNavigation: NavigationRegion2D = $World/NavigationRegion2D
 @export var door_scene: PackedScene
 
 # Called when the node enters the scene tree for the first time.
@@ -30,5 +31,5 @@ func spawn_doors():
 			if tile_data.has_custom_data("open"):
 				door.open = tile_data.get_custom_data("open")
 			
-			add_child(door)
+			worldNavigation.add_child(door)
 			tileMapLayer.set_cell(cell_pos, -1)
