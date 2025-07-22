@@ -12,7 +12,7 @@ extends CharacterBody2D
 var can_attack = true
 
 func is_enemy(entity):
-	return entity.is_in_group("Enemies")
+	return entity.is_in_group("Zombies")
 
 func _physics_process(delta):
 	if target != null:

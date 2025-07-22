@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://gekeoi5mba2l"]
+
+[ext_resource type="Script" uid="uid://b7p1fntsf0fgh" path="res://Components/observer.gd" id="1_sykmf"]
+
+[node name="Observer" type="Node2D"]
+script = ExtResource("1_sykmf")

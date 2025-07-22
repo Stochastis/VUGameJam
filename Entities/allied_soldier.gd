@@ -1,13 +1,11 @@
 extends CharacterBody2D
 
 @export var move_speed: float = 100
-@export var lineOfSight: LineOfSight
-@export var trackedEntityName: String
+@export var observer: Observer
 @export var ROTATIONSPEED: float = 8
 @export var debugLines: bool = true
 
 const MAXFLOAT: float = 10000000000000000
-const WALLMASK: int = 2
 
 var observingEntity: bool = false
 var targetPosition: Vector2
@@ -22,9 +20,7 @@ func _ready() -> void:
 
 func _process(delta: float) -> void:
 	#Awareness of Zombies
-	var overlappingBodies: Array[Node2D] = $ObservationArea.get_overlapping_bodies()
-	var trackedEntitiesInRange: Array[Node2D] = overlappingBodies.filter(func(node): return node.name == trackedEntityName)
-	var trackedObservedEntities: Array[Node2D] = trackedEntitiesInRange.filter(func(node): return lineOfSight.has_line_of_sight(node, WALLMASK))
+	var trackedObservedEntities: Array[Node2D] = observer.observedEntities
 	
 	if trackedObservedEntities.size() > 0:
 		observingEntity = true
