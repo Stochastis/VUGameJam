@@ -29,13 +29,13 @@ size = Vector2(32, 32)
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_qcgow"]
 
-[node name="AlliedSoldier" type="CharacterBody2D" node_paths=PackedStringArray("lineOfSight")]
+[node name="AlliedSoldier" type="CharacterBody2D" node_paths=PackedStringArray("lineOfSight", "observer")]
 scale = Vector2(0.25, 0.25)
 collision_mask = 7
 motion_mode = 1
 script = ExtResource("1_qcgow")
 lineOfSight = NodePath("LineOfSight")
-trackedEntityName = "Zombie"
+observer = NodePath("Observer")
 metadata/_edit_group_ = true
 
 [node name="HealthSystem" parent="." instance=ExtResource("1_pd1d8")]
@@ -56,7 +56,10 @@ shape = SubResource("CircleShape2D_qcgow")
 [node name="ViewCone" type="CollisionPolygon2D" parent="ObservationArea"]
 polygon = PackedVector2Array(1024, -1024, 1024, 1024, 20, 320, 20, -320)
 
-[node name="Observer" parent="." instance=ExtResource("5_ilfrq")]
+[node name="Observer" parent="." node_paths=PackedStringArray("lineOfSight", "observationArea") instance=ExtResource("5_ilfrq")]
+trackedEntityNames = Array[String](["Zombie"])
+lineOfSight = NodePath("../LineOfSight")
+observationArea = NodePath("../ObservationArea")
 
 [node name="LineOfSight" parent="." node_paths=PackedStringArray("parent") instance=ExtResource("5_2q06j")]
 parent = NodePath("..")
