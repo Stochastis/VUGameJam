@@ -57,10 +57,11 @@ shape = SubResource("CircleShape2D_qcgow")
 [node name="ViewCone" type="CollisionPolygon2D" parent="ObservationArea"]
 polygon = PackedVector2Array(1024, -1024, 1024, 1024, 20, 320, 20, -320)
 
-[node name="Targeter" parent="." instance=ExtResource("5_smne3")]
+[node name="Targeter" parent="." node_paths=PackedStringArray("observer") instance=ExtResource("5_smne3")]
+observer = NodePath("../Observer")
+trackedEntityGroups = Array[String](["Zombies"])
 
 [node name="Observer" parent="." node_paths=PackedStringArray("lineOfSight", "observationArea") instance=ExtResource("5_ilfrq")]
-trackedEntityGroups = Array[String](["Zombies"])
 lineOfSight = NodePath("../LineOfSight")
 observationArea = NodePath("../ObservationArea")
 
