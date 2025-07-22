@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://se3ob4ys2bx5"]
+
+[ext_resource type="Script" uid="uid://3wpjnk0no41g" path="res://States/npc_targeting.gd" id="1_57dhq"]
+
+[node name="NpcTargeting" type="Node"]
+script = ExtResource("1_57dhq")

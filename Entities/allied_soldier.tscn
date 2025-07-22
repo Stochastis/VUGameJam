@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://ce22jwvxoan48"]
+[gd_scene load_steps=17 format=3 uid="uid://ce22jwvxoan48"]
 
 [ext_resource type="PackedScene" uid="uid://bvhx82eau62u8" path="res://Components/health_system.tscn" id="1_pd1d8"]
 [ext_resource type="Script" uid="uid://dbsu2wgaqddwy" path="res://Entities/allied_soldier.gd" id="1_qcgow"]
@@ -9,7 +9,10 @@
 [ext_resource type="PackedScene" uid="uid://cvhxcb8j5nxg7" path="res://Components/targeter.tscn" id="5_smne3"]
 [ext_resource type="PackedScene" uid="uid://bhwn8uo4g627j" path="res://States/state_machine.tscn" id="6_mx1sb"]
 [ext_resource type="Script" uid="uid://bfeis8rdcnydk" path="res://States/state_machine.gd" id="7_ilfrq"]
-[ext_resource type="PackedScene" uid="uid://dl2o8qjiic7t0" path="res://States/npc_idle.tscn" id="8_8ydr2"]
+[ext_resource type="PackedScene" uid="uid://bogpaq70csxuw" path="res://States/npc_idle_stand.tscn" id="10_smne3"]
+[ext_resource type="PackedScene" uid="uid://cqrjjkq5ghuux" path="res://States/npc_idle_turn.tscn" id="11_5qc07"]
+[ext_resource type="PackedScene" uid="uid://d0thbvrt86t67" path="res://States/npc_idle_walk.tscn" id="12_o50em"]
+[ext_resource type="PackedScene" uid="uid://se3ob4ys2bx5" path="res://States/npc_targeting.tscn" id="13_o50em"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_2q06j"]
 animations = [{
@@ -72,7 +75,13 @@ blockingLayers = Array[int]([2])
 
 [node name="StateMachine" parent="." node_paths=PackedStringArray("initial_state") instance=ExtResource("6_mx1sb")]
 script = ExtResource("7_ilfrq")
-initial_state = NodePath("NpcIdle")
+initial_state = NodePath("NpcIdleStand")
 
-[node name="NpcIdle" parent="StateMachine" node_paths=PackedStringArray("entity") instance=ExtResource("8_8ydr2")]
-entity = NodePath("../..")
+[node name="NpcIdleStand" parent="StateMachine" node_paths=PackedStringArray("targeter") instance=ExtResource("10_smne3")]
+targeter = NodePath("../../Targeter")
+
+[node name="NpcIdleTurn" parent="StateMachine" instance=ExtResource("11_5qc07")]
+
+[node name="NpcIdleWalk" parent="StateMachine" instance=ExtResource("12_o50em")]
+
+[node name="NpcTargeting" parent="StateMachine" instance=ExtResource("13_o50em")]
