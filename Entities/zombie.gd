@@ -22,10 +22,8 @@ func _physics_process(delta):
 		
 		rotation = lerp_angle(rotation, desired_angle, ROTATIONSPEED * delta)
 		
-		#var dir: Vector2 = to_local(targetPos).normalized()
-		#velocity = dir * move_speed
-		#move_and_slide()
-		
+		velocity = to_target * move_speed
+		move_and_slide()
 
 func _on_nav_timer_timeout() -> void:
 	if target != null:
