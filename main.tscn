@@ -13,7 +13,7 @@
 [ext_resource type="Script" uid="uid://b4wmtfqvvrxfa" path="res://camera_2d.gd" id="9_kek77"]
 [ext_resource type="PackedScene" uid="uid://ce22jwvxoan48" path="res://Entities/allied_soldier.tscn" id="10_4c57u"]
 [ext_resource type="Script" uid="uid://c7on6l54cj36u" path="res://wave_manager.gd" id="11_efxa6"]
-[ext_resource type="PackedScene" uid="uid://blyg5xpe2gttd" path="res://Entities/zombie.tscn" id="12_dg77c"]
+[ext_resource type="PackedScene" uid="uid://dl3ob63ckvjq5" path="res://Entities/zombie.tscn" id="12_dg77c"]
 
 [sub_resource type="NavigationPolygon" id="NavigationPolygon_yaehf"]
 
@@ -138,6 +138,7 @@ rotation = -1.52906
 [node name="WaveManager" type="Node" parent="World"]
 script = ExtResource("11_efxa6")
 zombie = ExtResource("12_dg77c")
+enabled = false
 
 [node name="Timer" type="Timer" parent="World/WaveManager"]
 one_shot = true
@@ -172,10 +173,7 @@ metadata/_edit_group_ = true
 [node name="SpawnShape" type="CollisionShape2D" parent="World/WaveManager/SpawnAreas/SpawnArea4"]
 shape = SubResource("CircleShape2D_dg77c")
 
-[node name="Zombie" parent="World" instance=ExtResource("12_dg77c")]
-position = Vector2(632, 773)
-
-[node name="Zombie2" parent="World" instance=ExtResource("12_dg77c")]
-position = Vector2(1124, 711)
+[node name="Zombie" parent="." instance=ExtResource("12_dg77c")]
+position = Vector2(1105, 674)
 
 [connection signal="timeout" from="World/WaveManager/Timer" to="World/WaveManager" method="_on_timer_timeout"]

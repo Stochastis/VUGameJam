@@ -1,6 +1,7 @@
 extends Node2D
 class_name Targeter
 
+@export var parent: Node2D
 @export var observer: Observer
 @export var trackedEntityGroups: Array[String]
 @export var trackedEntityNames: Array[String]
@@ -10,6 +11,16 @@ const MAXFLOAT: float = 10000000000000000
 
 var targetingEntity: bool = false
 var targetPosition: Vector2
+var targetNode: Node2D
+
+signal NewTargetAcquired
+signal TargetsLost
+
+func _ready() -> void:
+	resetTarget()
+
+func resetTarget() -> void:
+	targetPosition = global_position + Vector2.from_angle(rotation)
 
 #TODO: Change this (using states) so that the soldier isn't just spinning around the last target forever
 func _process(_delta: float) -> void:
@@ -22,9 +33,14 @@ func _process(_delta: float) -> void:
 		possibleTargets.append_array(observedEntities.filter(func(node): return node.name == trackedEntityName and not possibleTargets.has(node)))
 		
 	if possibleTargets.size() > 0:
+		if not targetingEntity:
+			NewTargetAcquired.emit()
 		targetingEntity = true
-		targetPosition = closestNode(possibleTargets).position
+		targetNode = closestNode(possibleTargets)
+		targetPosition = targetNode.position
 	else:
+		if targetingEntity:
+			TargetsLost.emit()
 		targetingEntity = false
 		
 	#Debug Graphics
@@ -45,4 +61,4 @@ func closestNode(nodes: Array[Node2D]) -> Node2D:
 func _draw() -> void:
 	if displayDebugGraphics:
 		draw_line(position, to_local(targetPosition), Color.BLUE, 2)
-		draw_circle(to_local(targetPosition), 20, Color.DARK_ORANGE, false)
+		draw_circle(to_local(targetPosition), 20, Color.YELLOW_GREEN if parent.is_in_group("Good Guys") else Color.FIREBRICK, false, 3)
