@@ -6,7 +6,6 @@ extends CharacterBody2D
 @export var debugLines: bool = true
 
 const MAXFLOAT: float = 10000000000000000
-const WALLMASK: int = 2
 
 var observingEntity: bool = false
 var targetPosition: Vector2
