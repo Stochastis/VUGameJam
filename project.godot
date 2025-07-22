@@ -27,6 +27,7 @@ project/assembly_name="VUGameJam"
 [global_group]
 
 Zombies=""
+"Good Guys"=""
 
 [input]
 

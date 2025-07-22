@@ -1,9 +1,12 @@
-[gd_scene load_steps=8 format=3 uid="uid://blyg5xpe2gttd"]
+[gd_scene load_steps=11 format=3 uid="uid://dl3ob63ckvjq5"]
 
 [ext_resource type="Script" uid="uid://c4edw2jhsjl73" path="res://Entities/zombie.gd" id="1_2votk"]
 [ext_resource type="Texture2D" uid="uid://dp8nmqytlyhrd" path="res://Assets/Zombie.png" id="1_nj2pk"]
 [ext_resource type="PackedScene" uid="uid://ceabu7h8g45hl" path="res://Components/health_bar.tscn" id="2_r0odx"]
 [ext_resource type="PackedScene" uid="uid://bvhx82eau62u8" path="res://Components/health_system.tscn" id="2_rjxgx"]
+[ext_resource type="PackedScene" uid="uid://cvhxcb8j5nxg7" path="res://Components/targeter.tscn" id="5_fqedw"]
+[ext_resource type="PackedScene" uid="uid://gekeoi5mba2l" path="res://Components/observer.tscn" id="6_8qtrh"]
+[ext_resource type="PackedScene" uid="uid://bivqglsx6xa3m" path="res://Components/line_of_sight.tscn" id="7_5p7nf"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_2votk"]
 size = Vector2(23, 40)
@@ -12,15 +15,15 @@ size = Vector2(23, 40)
 radius = 270.224
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_r0odx"]
-radius = 453.052
+radius = 729.098
 
-[node name="Zombie" type="CharacterBody2D" groups=["Zombies"]]
+[node name="Zombie" type="CharacterBody2D" node_paths=PackedStringArray("targeter") groups=["Zombies"]]
 scale = Vector2(0.25, 0.25)
 collision_mask = 7
 motion_mode = 1
 wall_min_slide_angle = 0.0
 script = ExtResource("1_2votk")
-move_speed = 20.0
+targeter = NodePath("Targeter")
 
 [node name="HealthSystem" parent="." instance=ExtResource("2_rjxgx")]
 maxHealth = 100
@@ -46,15 +49,15 @@ texture = ExtResource("1_nj2pk")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Attack_Proximity"]
 shape = SubResource("RectangleShape2D_2votk")
 
-[node name="Focus_Proximity" type="Area2D" parent="."]
+[node name="Focus_Area" type="Area2D" parent="."]
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Focus_Proximity"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Focus_Area"]
 shape = SubResource("CircleShape2D_2votk")
 
-[node name="Chase_Proximity" type="Area2D" parent="."]
+[node name="Chase_Area" type="Area2D" parent="."]
 unique_name_in_owner = true
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Chase_Proximity"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Chase_Area"]
 shape = SubResource("CircleShape2D_r0odx")
 debug_color = Color(0.90265, 0.294429, 0.243426, 0.42)
 
@@ -64,8 +67,21 @@ debug_enabled = true
 [node name="NavTimer" type="Timer" parent="."]
 autostart = true
 
+[node name="Targeter" parent="." node_paths=PackedStringArray("parent", "observer") instance=ExtResource("5_fqedw")]
+parent = NodePath("..")
+observer = NodePath("../Observer")
+trackedEntityGroups = Array[String](["Good Guys"])
+
+[node name="Observer" parent="." node_paths=PackedStringArray("lineOfSight", "observationArea") instance=ExtResource("6_8qtrh")]
+lineOfSight = NodePath("../LineOfSight")
+observationArea = NodePath("../Focus_Area")
+
+[node name="LineOfSight" parent="." node_paths=PackedStringArray("parent") instance=ExtResource("7_5p7nf")]
+parent = NodePath("..")
+blockingLayers = Array[int]([2, 3])
+
 [connection signal="healthChanged" from="HealthSystem" to="HealthBar" method="_on_health_system_health_changed"]
 [connection signal="body_shape_entered" from="Attack_Proximity" to="." method="_on_attack_proximity_body_shape_entered"]
-[connection signal="body_entered" from="Focus_Proximity" to="." method="_on_proximity_body_entered"]
-[connection signal="body_exited" from="Chase_Proximity" to="." method="_on_chase_proximity_body_exited"]
 [connection signal="timeout" from="NavTimer" to="." method="_on_nav_timer_timeout"]
+[connection signal="NewTargetAcquired" from="Targeter" to="." method="_on_targeter_new_target_acquired"]
+[connection signal="TargetsLost" from="Targeter" to="." method="_on_targeter_targets_lost"]

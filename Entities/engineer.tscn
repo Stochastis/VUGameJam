@@ -7,7 +7,7 @@
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_fau05"]
 size = Vector2(32, 32)
 
-[node name="Engineer" type="CharacterBody2D" node_paths=PackedStringArray("playerInteractionArea")]
+[node name="Engineer" type="CharacterBody2D" node_paths=PackedStringArray("playerInteractionArea") groups=["Good Guys"]]
 top_level = true
 scale = Vector2(0.25, 0.25)
 collision_mask = 7
