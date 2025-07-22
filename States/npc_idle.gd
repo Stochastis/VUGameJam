@@ -19,7 +19,7 @@ func update(delta: float):
 	else:
 		randomize_values()
 
-func physics_update(delta: float):
+func physics_update(_delta: float):
 	if entity:
 		entity.velocity = move_direction * (entity.move_speed * 0.25)
 		entity.move_and_slide()
