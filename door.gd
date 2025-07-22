@@ -20,18 +20,20 @@ func interact() -> void:
 
 func openDoor() -> void:
 	open = true
-	$NavigationRegion2D.enabled = true
 	if northSouth:
+		$NavigationRegion2DNS.enabled = true
 		$AnimatedSprite2D.set_frame_and_progress(2, 0)
 	else:
+		$NavigationRegion2DEW.enabled = true
 		$AnimatedSprite2D.set_frame_and_progress(3, 0)
 	$StaticBody2D/CollisionShape2D2.disabled = true
 
 func closeDoor() -> void:
 	open = false
-	$NavigationRegion2D.enabled = false
 	if northSouth:
+		$NavigationRegion2DNS.enabled = false
 		$AnimatedSprite2D.set_frame_and_progress(0, 0)
 	else:
+		$NavigationRegion2DEW.enabled = false
 		$AnimatedSprite2D.set_frame_and_progress(1, 0)
 	$StaticBody2D/CollisionShape2D2.disabled = false
