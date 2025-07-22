@@ -2,7 +2,6 @@ extends CharacterBody2D
 
 @export var move_speed: float = 100
 @export var lineOfSight: LineOfSight
-@export var trackedEntityName: String
 @export var ROTATIONSPEED: float = 8
 @export var debugLines: bool = true
 
