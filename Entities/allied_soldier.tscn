@@ -34,6 +34,7 @@ collision_mask = 7
 motion_mode = 1
 script = ExtResource("1_qcgow")
 lineOfSight = NodePath("LineOfSight")
+trackedEntityName = "Zombie"
 metadata/_edit_group_ = true
 
 [node name="HealthSystem" parent="." instance=ExtResource("1_pd1d8")]
@@ -54,9 +55,8 @@ shape = SubResource("CircleShape2D_qcgow")
 [node name="ViewCone" type="CollisionPolygon2D" parent="ObservationArea"]
 polygon = PackedVector2Array(1024, -1024, 1024, 1024, 20, 320, 20, -320)
 
-[node name="LineOfSight" parent="." node_paths=PackedStringArray("parent", "observationArea") instance=ExtResource("5_2q06j")]
+[node name="LineOfSight" parent="." node_paths=PackedStringArray("parent") instance=ExtResource("5_2q06j")]
 parent = NodePath("..")
-observationArea = NodePath("../ObservationArea")
 
 [node name="StateMachine" parent="." node_paths=PackedStringArray("initial_state") instance=ExtResource("6_mx1sb")]
 script = ExtResource("7_ilfrq")

@@ -7,6 +7,7 @@ extends CharacterBody2D
 @export var debugLines: bool = true
 
 const MAXFLOAT: float = 10000000000000000
+const WALLMASK: int = 2
 
 var observingEntity: bool = false
 var targetPosition: Vector2
@@ -16,13 +17,14 @@ var endPoint: Vector2 = Vector2(0, 0)
 var startPoint: Vector2 = Vector2(0, 0)
 
 func _ready() -> void:
+	#TODO: Change this (using states) so that the soldier isn't just spinning around the initial target forever until a zombie happens to come within his LineOfSight
 	targetPosition = position + Vector2.from_angle(rotation)
 
 func _process(delta: float) -> void:
 	#Awareness of Zombies
 	var overlappingBodies: Array[Node2D] = $ObservationArea.get_overlapping_bodies()
 	var trackedEntitiesInRange: Array[Node2D] = overlappingBodies.filter(func(node): return node.name == trackedEntityName)
-	var trackedObservedEntities: Array[Node2D] = trackedEntitiesInRange.filter(func(node): return lineOfSight.has_line_of_sight(node, 2))
+	var trackedObservedEntities: Array[Node2D] = trackedEntitiesInRange.filter(func(node): return lineOfSight.has_line_of_sight(node, WALLMASK))
 	
 	if trackedObservedEntities.size() > 0:
 		observingEntity = true
@@ -33,7 +35,6 @@ func _process(delta: float) -> void:
 	var to_target = (targetPosition - position).normalized()
 	var desired_angle = to_target.angle()
 	rotation = lerp_angle(rotation, desired_angle, ROTATIONSPEED * delta)
-	
 	
 	if observingEntity:
 		$AnimatedSprite2D.set_frame_and_progress(1, 0)

@@ -2,7 +2,6 @@ extends Node2D
 class_name LineOfSight
 
 @export var parent: Node2D
-@export var observationArea: Area2D
 
 func has_line_of_sight(target: Node2D, mask: int) -> bool:
 	var query = PhysicsRayQueryParameters2D.create(parent.global_position, target.global_position, mask, [parent, target])
