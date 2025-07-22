@@ -14,7 +14,7 @@ radius = 270.224
 [sub_resource type="CircleShape2D" id="CircleShape2D_r0odx"]
 radius = 453.052
 
-[node name="Zombie" type="CharacterBody2D" groups=["Enemies"]]
+[node name="Zombie" type="CharacterBody2D" groups=["Zombies"]]
 scale = Vector2(0.25, 0.25)
 collision_mask = 7
 motion_mode = 1
