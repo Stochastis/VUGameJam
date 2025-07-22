@@ -2,13 +2,13 @@ extends CharacterBody2D
 
 @export var move_speed: float = 100
 @export var observer: Observer
+@export var targeter: Targeter
 @export var ROTATIONSPEED: float = 8
 @export var debugLines: bool = true
 
 const MAXFLOAT: float = 10000000000000000
 
 var observingEntity: bool = false
-var targetPosition: Vector2
 
 # Line of sight debug
 var endPoint: Vector2 = Vector2(0, 0)
@@ -16,7 +16,7 @@ var startPoint: Vector2 = Vector2(0, 0)
 
 func _ready() -> void:
 	#TODO: Change this (using states) so that the soldier isn't just spinning around the initial target forever until a zombie happens to come within his LineOfSight
-	targetPosition = position + Vector2.from_angle(rotation)
+	targeter.targetPosition = position + Vector2.from_angle(rotation)
 
 func _process(delta: float) -> void:
 	#Awareness of Zombies
@@ -24,11 +24,11 @@ func _process(delta: float) -> void:
 	
 	if trackedObservedEntities.size() > 0:
 		observingEntity = true
-		targetPosition = closestNode(trackedObservedEntities).position
+		targeter.targetPosition = closestNode(trackedObservedEntities).position
 	else:
 		observingEntity = false
 	
-	var to_target = (targetPosition - position).normalized()
+	var to_target = (targeter.targetPosition - position).normalized()
 	var desired_angle = to_target.angle()
 	rotation = lerp_angle(rotation, desired_angle, ROTATIONSPEED * delta)
 	
@@ -39,7 +39,7 @@ func _process(delta: float) -> void:
 	
 	#Debug Lines
 	startPoint = to_local(global_position)
-	endPoint = to_local(targetPosition)
+	endPoint = to_local(targeter.targetPosition)
 	queue_redraw()
 
 func closestNode(nodes: Array[Node2D]) -> Node2D:
