@@ -7,4 +7,4 @@ class_name npc_idle_walk
 
 func update(_delta: float) -> void:
 	if targeter.targetingEntity:
-		Transitioned.emit("npc_idle_walk", "npc_targeting")
+		Transitioned.emit(self, "npctargeting")

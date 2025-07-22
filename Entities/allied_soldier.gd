@@ -10,7 +10,8 @@ func _process(delta: float) -> void:
 	var desired_angle = to_target.angle()
 	rotation = lerp_angle(rotation, desired_angle, ROTATIONSPEED * delta)
 	
-	if targeter.targetingEntity:
-		$AnimatedSprite2D.set_frame_and_progress(1, 0)
-	else:
-		$AnimatedSprite2D.set_frame_and_progress(0, 0)
+func _on_npc_targeting_targeting_entered() -> void:
+	$AnimatedSprite2D.set_frame_and_progress(1, 0)
+
+func _on_npc_targeting_targeting_exited() -> void:
+	$AnimatedSprite2D.set_frame_and_progress(0, 0)

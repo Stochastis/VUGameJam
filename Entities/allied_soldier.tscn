@@ -80,8 +80,14 @@ initial_state = NodePath("NpcIdleStand")
 [node name="NpcIdleStand" parent="StateMachine" node_paths=PackedStringArray("targeter") instance=ExtResource("10_smne3")]
 targeter = NodePath("../../Targeter")
 
-[node name="NpcIdleTurn" parent="StateMachine" instance=ExtResource("11_5qc07")]
+[node name="NpcIdleTurn" parent="StateMachine" node_paths=PackedStringArray("targeter") instance=ExtResource("11_5qc07")]
+targeter = NodePath("../../Targeter")
 
-[node name="NpcIdleWalk" parent="StateMachine" instance=ExtResource("12_o50em")]
+[node name="NpcIdleWalk" parent="StateMachine" node_paths=PackedStringArray("targeter") instance=ExtResource("12_o50em")]
+targeter = NodePath("../../Targeter")
 
-[node name="NpcTargeting" parent="StateMachine" instance=ExtResource("13_o50em")]
+[node name="NpcTargeting" parent="StateMachine" node_paths=PackedStringArray("targeter") instance=ExtResource("13_o50em")]
+targeter = NodePath("../../Targeter")
+
+[connection signal="TargetingEntered" from="StateMachine/NpcTargeting" to="." method="_on_npc_targeting_targeting_entered"]
+[connection signal="TargetingExited" from="StateMachine/NpcTargeting" to="." method="_on_npc_targeting_targeting_exited"]

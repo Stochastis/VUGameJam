@@ -9,10 +9,10 @@ func enter():
 	$Timer.start(randf_range(minWaitTime, maxWaitTime))
 
 func _on_timer_timeout() -> void:
-	var nextState: String = ["npc_idle_turn", "npc_idle_walk"].pick_random()
-	Transitioned.emit("npc_idle_stand", nextState)
+	var nextState: String = ["npcidleturn", "npcidlewalk"].pick_random()
+	Transitioned.emit(self, nextState)
 
 func update(_delta: float) -> void:
 	if targeter.targetingEntity:
 		$Timer.stop()
-		Transitioned.emit("npc_idle_stand", "npc_targeting")
+		Transitioned.emit(self, "npctargeting")
