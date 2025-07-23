@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=3 uid="uid://ce22jwvxoan48"]
+[gd_scene load_steps=16 format=3 uid="uid://ce22jwvxoan48"]
 
 [ext_resource type="PackedScene" uid="uid://bvhx82eau62u8" path="res://Components/health_system.tscn" id="1_pd1d8"]
 [ext_resource type="Script" uid="uid://dbsu2wgaqddwy" path="res://Entities/allied_soldier.gd" id="1_qcgow"]
@@ -8,7 +8,6 @@
 [ext_resource type="PackedScene" uid="uid://gekeoi5mba2l" path="res://Components/observer.tscn" id="5_ilfrq"]
 [ext_resource type="PackedScene" uid="uid://cvhxcb8j5nxg7" path="res://Components/targeter.tscn" id="5_smne3"]
 [ext_resource type="PackedScene" uid="uid://bhwn8uo4g627j" path="res://States/state_machine.tscn" id="6_mx1sb"]
-[ext_resource type="Script" uid="uid://bfeis8rdcnydk" path="res://States/state_machine.gd" id="7_ilfrq"]
 [ext_resource type="PackedScene" uid="uid://bogpaq70csxuw" path="res://States/npc_idle_stand.tscn" id="10_smne3"]
 [ext_resource type="PackedScene" uid="uid://cqrjjkq5ghuux" path="res://States/npc_idle_turn.tscn" id="11_5qc07"]
 [ext_resource type="PackedScene" uid="uid://d0thbvrt86t67" path="res://States/npc_idle_walk.tscn" id="12_o50em"]
@@ -73,7 +72,6 @@ parent = NodePath("..")
 blockingLayers = Array[int]([2])
 
 [node name="StateMachine" parent="." node_paths=PackedStringArray("initial_state") instance=ExtResource("6_mx1sb")]
-script = ExtResource("7_ilfrq")
 initial_state = NodePath("NpcIdleStand")
 
 [node name="NpcIdleStand" parent="StateMachine" node_paths=PackedStringArray("targeter") instance=ExtResource("10_smne3")]

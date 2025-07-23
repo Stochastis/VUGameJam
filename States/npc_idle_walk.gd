@@ -16,7 +16,14 @@ func enter() -> void:
 		return
 	
 	#One-time set the navAgent's target to where the NPC is currently looking
+	if not navAgent.navigation_finished.is_connected(_on_navigation_agent_2d_navigation_finished):
+		navAgent.navigation_finished.connect(_on_navigation_agent_2d_navigation_finished)
 	navAgent.target_position = firstIntersectionPoint
+
+#Disconnect from signal so the func isn't running when navAgent is being used elsewhere
+func exit() -> void:
+	if navAgent.navigation_finished.is_connected(_on_navigation_agent_2d_navigation_finished):
+		navAgent.navigation_finished.disconnect(_on_navigation_agent_2d_navigation_finished)
 
 func update(_delta: float) -> void:
 	#Keep a watch out for targets
@@ -30,7 +37,7 @@ func update(_delta: float) -> void:
 	parent.velocity = toNextPath * parent.move_speed
 	parent.move_and_slide()
 
-func _on_navigation_agent_2d_navigation_finished() -> void:
+func _on_navigation_agent_2d_navigation_finished():
 	targeter.resetTarget()
 	var nextState: String = ["npcidleturn", "npcidlestand"].pick_random()
 	Transitioned.emit(self, nextState)
