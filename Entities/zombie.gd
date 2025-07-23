@@ -19,9 +19,6 @@ func _physics_process(delta):
 	if targeter.targetingEntity:
 		var nextPathPos: Vector2 = navAgent.get_next_path_position()
 		var toNextPath = (nextPathPos - global_position).normalized()
-		var desired_angle = toNextPath.angle()
-		
-		rotation = lerp_angle(rotation, desired_angle, ROTATIONSPEED * delta)
 		
 		velocity = toNextPath * move_speed
 		move_and_slide()

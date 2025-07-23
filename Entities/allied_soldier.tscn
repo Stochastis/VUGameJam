@@ -33,13 +33,11 @@ size = Vector2(32, 32)
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_qcgow"]
 
-[node name="AlliedSoldier" type="CharacterBody2D" node_paths=PackedStringArray("observer", "targeter") groups=["Good Guys"]]
+[node name="AlliedSoldier" type="CharacterBody2D" groups=["Good Guys"]]
 scale = Vector2(0.25, 0.25)
 collision_mask = 7
 motion_mode = 1
 script = ExtResource("1_qcgow")
-observer = NodePath("Observer")
-targeter = NodePath("Targeter")
 metadata/_edit_group_ = true
 
 [node name="HealthSystem" parent="." instance=ExtResource("1_pd1d8")]
@@ -83,11 +81,15 @@ targeter = NodePath("../../Targeter")
 [node name="NpcIdleTurn" parent="StateMachine" node_paths=PackedStringArray("targeter") instance=ExtResource("11_5qc07")]
 targeter = NodePath("../../Targeter")
 
-[node name="NpcIdleWalk" parent="StateMachine" node_paths=PackedStringArray("targeter") instance=ExtResource("12_o50em")]
+[node name="NpcIdleWalk" parent="StateMachine" node_paths=PackedStringArray("targeter", "parent", "navAgent") instance=ExtResource("12_o50em")]
 targeter = NodePath("../../Targeter")
+parent = NodePath("../..")
+navAgent = NodePath("../../NavigationAgent2D")
 
 [node name="NpcTargeting" parent="StateMachine" node_paths=PackedStringArray("targeter") instance=ExtResource("13_o50em")]
 targeter = NodePath("../../Targeter")
+
+[node name="NavigationAgent2D" type="NavigationAgent2D" parent="."]
 
 [connection signal="TargetingEntered" from="StateMachine/NpcTargeting" to="." method="_on_npc_targeting_targeting_entered"]
 [connection signal="TargetingExited" from="StateMachine/NpcTargeting" to="." method="_on_npc_targeting_targeting_exited"]

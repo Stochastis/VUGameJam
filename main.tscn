@@ -176,7 +176,8 @@ metadata/_edit_group_ = true
 [node name="SpawnShape" type="CollisionShape2D" parent="World/WaveManager/SpawnAreas/SpawnArea4"]
 shape = SubResource("CircleShape2D_dg77c")
 
-[node name="Zombie2" parent="World" instance=ExtResource("12_dg77c")]
-position = Vector2(640, 768)
+[node name="TestZom" parent="World" instance=ExtResource("12_dg77c")]
+position = Vector2(1176, 758)
+rotation = -1.11784
 
 [connection signal="timeout" from="World/WaveManager/Timer" to="World/WaveManager" method="_on_timer_timeout"]
