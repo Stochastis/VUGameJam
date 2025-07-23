@@ -16,12 +16,10 @@ func is_zombie(entity):
 	return entity.is_in_group("Zombies")
 
 func _physics_process(delta):
+	#TODO: Move this to a state when ready
 	if targeter.targetingEntity:
 		var nextPathPos: Vector2 = navAgent.get_next_path_position()
 		var toNextPath = (nextPathPos - global_position).normalized()
-		var desired_angle = toNextPath.angle()
-		
-		rotation = lerp_angle(rotation, desired_angle, ROTATIONSPEED * delta)
 		
 		velocity = toNextPath * move_speed
 		move_and_slide()
@@ -33,11 +31,11 @@ func _on_targeter_new_target_acquired() -> void:
 #TODO: Change this to a state when ready
 func _on_targeter_targets_lost() -> void:
 	$Observer.observationArea = $Focus_Area
-	
+
 func _on_nav_timer_timeout() -> void:
 	if targeter.targetingEntity:
 		navAgent.target_position = targeter.targetPosition
-		
+
 func _on_attack_proximity_body_shape_entered(_body_rid: RID, body: Node2D, _body_shape_index: int, _local_shape_index: int) -> void:
 	if body == target:
 		if can_attack and body.has_node("HealthSystem"):

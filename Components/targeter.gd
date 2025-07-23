@@ -1,11 +1,12 @@
 extends Node2D
 class_name Targeter
 
-@export var parent: Node2D
+@export var parent: CharacterBody2D
 @export var observer: Observer
 @export var trackedEntityGroups: Array[String]
 @export var trackedEntityNames: Array[String]
 @export var displayDebugGraphics: bool = true
+@export var ROTATIONSPEED: float = 8
 
 const MAXFLOAT: float = 10000000000000000
 
@@ -20,10 +21,12 @@ func _ready() -> void:
 	resetTarget()
 
 func resetTarget() -> void:
-	targetPosition = global_position + Vector2.from_angle(rotation)
+	targetingEntity = false
+	targetNode = null
+	targetPosition = global_position + (Vector2.from_angle(global_rotation) * 32)
 
 #TODO: Change this (using states) so that the soldier isn't just spinning around the last target forever
-func _process(_delta: float) -> void:
+func _process(delta: float) -> void:
 	#Filter out not-targeting entities
 	var possibleTargets: Array[Node2D]
 	var observedEntities: Array[Node2D] = observer.observedEntities
@@ -35,14 +38,23 @@ func _process(_delta: float) -> void:
 	if possibleTargets.size() > 0:
 		if not targetingEntity:
 			NewTargetAcquired.emit()
-		targetingEntity = true
-		targetNode = closestNode(possibleTargets)
+			targetingEntity = true
+		if not possibleTargets.has(targetNode):
+			targetNode = closestNode(possibleTargets)
+			pass
 		targetPosition = targetNode.position
 	else:
 		if targetingEntity:
 			TargetsLost.emit()
-		targetingEntity = false
-		
+			targetingEntity = false
+			targetNode = null
+			resetTarget()
+	
+	#Face target
+	var to_target = (targetPosition - parent.position).normalized()
+	var desired_angle = to_target.angle()
+	parent.rotation = lerp_angle(parent.rotation, desired_angle, ROTATIONSPEED * delta)
+	
 	#Debug Graphics
 	queue_redraw()
 

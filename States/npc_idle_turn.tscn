@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://cqrjjkq5ghuux"]
+
+[ext_resource type="Script" uid="uid://bloud2p2joir1" path="res://States/npc_idle_turn.gd" id="1_htju3"]
+
+[node name="NpcIdleTurn" type="Node"]
+script = ExtResource("1_htju3")

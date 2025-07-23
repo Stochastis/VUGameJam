@@ -30,5 +30,6 @@ func child_transition(state, new_state_name):
 	if !next_state:
 		return
 	
-	next_state.enter()
+	current_state.exit()
 	current_state = next_state
+	current_state.enter()

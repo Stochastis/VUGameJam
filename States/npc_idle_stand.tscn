@@ -1,0 +1,11 @@
+[gd_scene load_steps=2 format=3 uid="uid://bogpaq70csxuw"]
+
+[ext_resource type="Script" uid="uid://cvvcy80way0en" path="res://States/npc_idle_stand.gd" id="1_gwcdw"]
+
+[node name="NpcIdleStand" type="Node"]
+script = ExtResource("1_gwcdw")
+
+[node name="Timer" type="Timer" parent="."]
+one_shot = true
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
