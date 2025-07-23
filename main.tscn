@@ -136,8 +136,8 @@ position = Vector2(512, -85)
 rotation = -1.52906
 
 [node name="AlliedSoldier7" parent="World/AlliedSoldiers" instance=ExtResource("10_4c57u")]
-position = Vector2(1118, 713)
-rotation = -1.52906
+position = Vector2(1070, 697)
+rotation = -1.5708
 
 [node name="WaveManager" type="Node" parent="World"]
 script = ExtResource("11_efxa6")

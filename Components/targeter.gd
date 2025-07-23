@@ -20,7 +20,7 @@ func _ready() -> void:
 	resetTarget()
 
 func resetTarget() -> void:
-	targetPosition = global_position + Vector2.from_angle(rotation)
+	targetPosition = global_position + (Vector2.from_angle(global_rotation) * 32)
 
 #TODO: Change this (using states) so that the soldier isn't just spinning around the last target forever
 func _process(_delta: float) -> void:
