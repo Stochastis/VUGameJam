@@ -5,6 +5,7 @@ class_name LineOfSight
 @export var blockingLayers: Array[int]
 
 func has_line_of_sight(target: Node2D) -> bool:
+	#Create the combined bitmask
 	var mask := 0
 	for layer in blockingLayers:
 		mask |= 1 << (layer - 1) #Godot layers are 1-indexed in the UI

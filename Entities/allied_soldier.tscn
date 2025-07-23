@@ -51,7 +51,6 @@ sprite_frames = SubResource("SpriteFrames_2q06j")
 shape = SubResource("CircleShape2D_o50em")
 
 [node name="ObservationArea" type="Area2D" parent="."]
-visible = false
 
 [node name="ListeningBubble" type="CollisionShape2D" parent="ObservationArea"]
 scale = Vector2(16, 16)
@@ -97,3 +96,4 @@ debug_enabled = true
 
 [connection signal="TargetingEntered" from="StateMachine/NpcTargeting" to="." method="_on_npc_targeting_targeting_entered"]
 [connection signal="TargetingExited" from="StateMachine/NpcTargeting" to="." method="_on_npc_targeting_targeting_exited"]
+[connection signal="navigation_finished" from="NavigationAgent2D" to="StateMachine/NpcIdleWalk" method="_on_navigation_agent_2d_navigation_finished"]
