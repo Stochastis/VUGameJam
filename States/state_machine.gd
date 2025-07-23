@@ -29,6 +29,7 @@ func child_transition(state, new_state_name):
 	var next_state = states.get(new_state_name.to_lower())
 	if !next_state:
 		return
-	
-	next_state.enter()
+		
+	current_state.exit()
 	current_state = next_state
+	current_state.enter()
