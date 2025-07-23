@@ -14,6 +14,6 @@ func update(_delta: float) -> void:
 
 func enter() -> void:
 	TargetingEntered.emit()
-	
+
 func exit() -> void:
 	TargetingExited.emit()

@@ -28,8 +28,8 @@ animations = [{
 "speed": 5.0
 }]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_lqr21"]
-size = Vector2(32, 32)
+[sub_resource type="CircleShape2D" id="CircleShape2D_o50em"]
+radius = 16.0
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_qcgow"]
 
@@ -37,6 +37,7 @@ size = Vector2(32, 32)
 scale = Vector2(0.25, 0.25)
 collision_mask = 7
 motion_mode = 1
+wall_min_slide_angle = 0.0174533
 script = ExtResource("1_qcgow")
 metadata/_edit_group_ = true
 
@@ -47,16 +48,17 @@ maxHealth = 100
 sprite_frames = SubResource("SpriteFrames_2q06j")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-shape = SubResource("RectangleShape2D_lqr21")
+shape = SubResource("CircleShape2D_o50em")
 
 [node name="ObservationArea" type="Area2D" parent="."]
+visible = false
 
 [node name="ListeningBubble" type="CollisionShape2D" parent="ObservationArea"]
 scale = Vector2(16, 16)
 shape = SubResource("CircleShape2D_qcgow")
 
 [node name="ViewCone" type="CollisionPolygon2D" parent="ObservationArea"]
-polygon = PackedVector2Array(1024, -1024, 1024, 1024, 20, 320, 20, -320)
+polygon = PackedVector2Array(1200, 512, 1200, -512, 1024, -1024, 20, -148, 20, 148, 1024, 1024)
 
 [node name="Targeter" parent="." node_paths=PackedStringArray("parent", "observer") instance=ExtResource("5_smne3")]
 parent = NodePath("..")
@@ -76,6 +78,7 @@ script = ExtResource("7_ilfrq")
 initial_state = NodePath("NpcIdleStand")
 
 [node name="NpcIdleStand" parent="StateMachine" node_paths=PackedStringArray("targeter") instance=ExtResource("10_smne3")]
+maxWaitTime = 1.1
 targeter = NodePath("../../Targeter")
 
 [node name="NpcIdleTurn" parent="StateMachine" node_paths=PackedStringArray("targeter") instance=ExtResource("11_5qc07")]
@@ -90,6 +93,7 @@ navAgent = NodePath("../../NavigationAgent2D")
 targeter = NodePath("../../Targeter")
 
 [node name="NavigationAgent2D" type="NavigationAgent2D" parent="."]
+debug_enabled = true
 
 [connection signal="TargetingEntered" from="StateMachine/NpcTargeting" to="." method="_on_npc_targeting_targeting_entered"]
 [connection signal="TargetingExited" from="StateMachine/NpcTargeting" to="." method="_on_npc_targeting_targeting_exited"]

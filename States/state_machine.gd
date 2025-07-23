@@ -30,7 +30,6 @@ func child_transition(state, new_state_name):
 	if !next_state:
 		return
 	
-	print("Exiting " + current_state.name + ". Entering " + next_state.name)
 	current_state.exit()
 	current_state = next_state
 	current_state.enter()

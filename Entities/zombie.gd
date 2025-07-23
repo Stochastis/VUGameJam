@@ -30,11 +30,11 @@ func _on_targeter_new_target_acquired() -> void:
 #TODO: Change this to a state when ready
 func _on_targeter_targets_lost() -> void:
 	$Observer.observationArea = $Focus_Area
-	
+
 func _on_nav_timer_timeout() -> void:
 	if targeter.targetingEntity:
 		navAgent.target_position = targeter.targetPosition
-		
+
 func _on_attack_proximity_body_shape_entered(_body_rid: RID, body: Node2D, _body_shape_index: int, _local_shape_index: int) -> void:
 	if body == target:
 		if can_attack and body.has_node("HealthSystem"):

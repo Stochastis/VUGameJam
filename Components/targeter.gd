@@ -36,14 +36,18 @@ func _process(delta: float) -> void:
 	if possibleTargets.size() > 0:
 		if not targetingEntity:
 			NewTargetAcquired.emit()
-		targetingEntity = true
-		targetNode = closestNode(possibleTargets)
+			targetingEntity = true
+		if not possibleTargets.has(targetNode):
+			targetNode = closestNode(possibleTargets)
+			pass
 		targetPosition = targetNode.position
 	else:
 		if targetingEntity:
 			TargetsLost.emit()
-		targetingEntity = false
-		
+			targetingEntity = false
+			targetNode = null
+			resetTarget()
+	
 	#Face target
 	var to_target = (targetPosition - parent.position).normalized()
 	var desired_angle = to_target.angle()
