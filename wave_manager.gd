@@ -16,10 +16,10 @@ func spawn_zombie() -> void:
 	var spawnAreas = $SpawnAreas.get_children()
 	var selectedSpawnArea: Area2D = spawnAreas.pick_random()
 	var overlappingBodies: Array[Node2D] = selectedSpawnArea.get_overlapping_bodies()
-	var enemies: Array[Node2D] = overlappingBodies.filter(func(body): return body.is_in_group("Enemies"))
+	var enemies: Array[Node2D] = overlappingBodies.filter(func(body): return body.is_in_group("Zombies"))
 	if enemies.is_empty():
 		var spawnPoint: Vector2 = selectedSpawnArea.global_position
 		var zombieInstance = zombie.instantiate()
 		zombieInstance.global_position = spawnPoint
 		add_child(zombieInstance)
-		print("Spawned zombie")
+		print("Spawned zombie at " + str(zombieInstance.global_position))
