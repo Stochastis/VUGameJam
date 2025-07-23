@@ -77,7 +77,6 @@ script = ExtResource("7_ilfrq")
 initial_state = NodePath("NpcIdleStand")
 
 [node name="NpcIdleStand" parent="StateMachine" node_paths=PackedStringArray("targeter") instance=ExtResource("10_smne3")]
-maxWaitTime = 1.1
 targeter = NodePath("../../Targeter")
 
 [node name="NpcIdleTurn" parent="StateMachine" node_paths=PackedStringArray("targeter") instance=ExtResource("11_5qc07")]
