@@ -26,7 +26,6 @@ func resetTarget() -> void:
 	targetNode = null
 	targetPosition = global_position + (Vector2.from_angle(global_rotation) * 32)
 
-#TODO: Change this (using states) so that the soldier isn't just spinning around the last target forever
 func _process(delta: float) -> void:
 	#Filter out not-targeting entities
 	var possibleTargets: Array[Node2D]

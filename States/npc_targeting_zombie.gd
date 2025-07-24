@@ -8,16 +8,17 @@ class_name npc_targeting_zombie
 @export var chaseObservationArea: Area2D
 @export var observer: Observer
 
-func targetingBehavior() -> void:
-	var nextPathPos: Vector2 = navAgent.get_next_path_position()
+var nextPathPos: Vector2
+
+func physics_update(_delta: float) -> void:
 	var toNextPath = (nextPathPos - parent.global_position).normalized()
-	
 	parent.velocity = toNextPath * moveSpeed
 	parent.move_and_slide()
 
 func _on_nav_timer_timeout() -> void:
-	if targeter.targetingEntity:
-		navAgent.target_position = targeter.targetPosition
+	#Re-nav since the target can move
+	navAgent.target_position = targeter.targetPosition
+	nextPathPos = navAgent.get_next_path_position()
 
 func enter() -> void:
 	observer.observationArea = chaseObservationArea

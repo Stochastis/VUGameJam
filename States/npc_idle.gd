@@ -17,8 +17,6 @@ func _ready() -> void:
 	$StateMachine/NpcIdleTurn.maxTurnDegrees = maxTurnDegrees
 	$StateMachine/NpcIdleWalk.targeter = targeter
 	$StateMachine/NpcIdleWalk.parent = parent
-	$StateMachine/NpcIdleWalk.navAgent = navAgent
-	$StateMachine/NpcIdleWalk.minDistToWalk = minDistToWalk
 
 func enter() -> void:
 	$StateMachine.start()

@@ -6,14 +6,3 @@ class_name NpcTargeting
 func update(_delta: float) -> void:
 	if not targeter.targetingEntity:
 		Transitioned.emit(self, "NpcIdle")
-	
-	targetingBehavior()
-
-func targetingBehavior() -> void:
-	pass
-
-func enter() -> void:
-	pass
-
-func exit() -> void:
-	pass
