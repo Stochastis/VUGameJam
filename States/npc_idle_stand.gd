@@ -1,8 +1,8 @@
 extends State
 class_name npc_idle_stand
 
-@export var minWaitTime: float = 1
-@export var maxWaitTime: float = 5
+var minWaitTime: float = 1
+var maxWaitTime: float = 5
 
 func enter():
 	$Timer.start(randf_range(minWaitTime, maxWaitTime))

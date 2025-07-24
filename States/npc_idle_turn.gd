@@ -1,8 +1,8 @@
 extends State
 class_name npc_idle_turn
 
-@export var targeter: Targeter
-@export var maxTurnDegrees: float = 45
+var targeter: Targeter
+var maxTurnDegrees: float = 45
 
 func enter() -> void:
 	var turnDegrees: float = maxTurnDegrees * randf_range(-1, 1)

@@ -1,10 +1,10 @@
 extends State
 class_name npc_idle_walk
 
-@export var targeter: Targeter
-@export var parent: CharacterBody2D
-@export var navAgent: NavigationAgent2D
-@export var minDistToWalk: float = 16
+var targeter: Targeter
+var parent: CharacterBody2D
+var navAgent: NavigationAgent2D
+var minDistToWalk: float = 16
 
 func enter() -> void:
 	targeter.resetTarget()
