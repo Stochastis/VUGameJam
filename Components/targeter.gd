@@ -31,9 +31,9 @@ func _process(delta: float) -> void:
 	var possibleTargets: Array[Node2D]
 	var observedEntities: Array[Node2D] = observer.observedEntities
 	for group in trackedEntityGroups:
-		possibleTargets.append_array(observedEntities.filter(func(node): return node.is_in_group(group) and not possibleTargets.has(node)))
+		possibleTargets.append_array(observedEntities.filter(func(node): return is_instance_valid(node) and node.is_in_group(group) and not possibleTargets.has(node)))
 	for trackedEntityName in trackedEntityNames:
-		possibleTargets.append_array(observedEntities.filter(func(node): return node.name == trackedEntityName and not possibleTargets.has(node)))
+		possibleTargets.append_array(observedEntities.filter(func(node): return is_instance_valid(node) and node.name == trackedEntityName and not possibleTargets.has(node)))
 	
 	if possibleTargets.size() > 0:
 		if not targetingEntity:

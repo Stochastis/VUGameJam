@@ -114,7 +114,7 @@ script = ExtResource("9_kek77")
 
 [node name="AlliedSoldier" parent="World/AlliedSoldiers" instance=ExtResource("10_4c57u")]
 position = Vector2(806, 757)
-rotation = 2.91865
+rotation = -0.106105
 
 [node name="AlliedSoldier2" parent="World/AlliedSoldiers" instance=ExtResource("10_4c57u")]
 position = Vector2(893, 1582)
@@ -136,8 +136,8 @@ position = Vector2(512, -85)
 rotation = -1.52906
 
 [node name="AlliedSoldier7" parent="World/AlliedSoldiers" instance=ExtResource("10_4c57u")]
-position = Vector2(911, 626)
-rotation = -3.05935
+position = Vector2(-84, 546)
+rotation = -3.15827
 
 [node name="WaveManager" type="Node" parent="World"]
 script = ExtResource("11_efxa6")
@@ -176,8 +176,15 @@ metadata/_edit_group_ = true
 [node name="SpawnShape" type="CollisionShape2D" parent="World/WaveManager/SpawnAreas/SpawnArea4"]
 shape = SubResource("CircleShape2D_dg77c")
 
+[node name="SpawnArea5" type="Area2D" parent="World/WaveManager/SpawnAreas"]
+position = Vector2(-501, 536)
+metadata/_edit_group_ = true
+
+[node name="SpawnShape" type="CollisionShape2D" parent="World/WaveManager/SpawnAreas/SpawnArea5"]
+shape = SubResource("CircleShape2D_dg77c")
+
 [node name="TestZom" parent="World" instance=ExtResource("12_dg77c")]
-position = Vector2(1154, 752)
+position = Vector2(1004, 763)
 rotation = -1.11784
 
 [connection signal="timeout" from="World/WaveManager/Timer" to="World/WaveManager" method="_on_timer_timeout"]
