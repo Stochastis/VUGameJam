@@ -1,25 +1,33 @@
 extends State
-class_name npc_idle
+class_name NpcIdle
 
-@export var entity: CharacterBody2D
+@export var targeter: Targeter
+@export var minWaitTime: float = 1
+@export var maxWaitTime: float = 5
+@export var maxTurnDegrees: float = 45
+@export var parent: CharacterBody2D
+@export var navAgent: NavigationAgent2D
+@export var minDistToWalk: float = 16
 
-var move_direction: Vector2
-var wander_cycle: float
+func _ready() -> void:
+	#Might change this to a more dynamic system in the future if needed for mini state machines and sub-states.
+	$StateMachine/NpcIdleStand.minWaitTime = minWaitTime
+	$StateMachine/NpcIdleStand.maxWaitTime = maxWaitTime
+	$StateMachine/NpcIdleTurn.targeter = targeter
+	$StateMachine/NpcIdleTurn.maxTurnDegrees = maxTurnDegrees
+	$StateMachine/NpcIdleWalk.targeter = targeter
+	$StateMachine/NpcIdleWalk.parent = parent
+	$StateMachine/NpcIdleWalk.navAgent = navAgent
+	$StateMachine/NpcIdleWalk.minDistToWalk = minDistToWalk
 
-func randomize_values():
-	move_direction = Vector2(randf_range(-1, 1), randf_range(-1, 1)).normalized()
-	wander_cycle = randf_range(0, 1.5)
+func enter() -> void:
+	$StateMachine.start()
 
-func enter():
-	randomize_values()
+func exit() -> void:
+	$StateMachine.stop()
 
-func update(delta: float):
-	if wander_cycle > 0:
-		wander_cycle -= delta
-	else:
-		randomize_values()
-
-func physics_update(_delta: float):
-	if entity:
-		entity.velocity = move_direction * (entity.move_speed * 0.25)
-		entity.move_and_slide()
+func update(_delta: float) -> void:
+	#Keep a watch out for targets
+	if targeter.targetingEntity:
+		Transitioned.emit(self, "NpcTargeting")
+		return
