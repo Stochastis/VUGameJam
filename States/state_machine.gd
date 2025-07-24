@@ -52,16 +52,15 @@ func child_transition(state: State, newState: String):
 		return
 	
 	var next_state: State
-	if next_state == null:
-		for s: State in states:
-			var script: Script = s.get_script()
-			while script:
-				if script.get_global_name() ==  newState:
-					next_state = s
-					break
-				script = script.get_base_script()
-			if next_state:
+	for s: State in states:
+		var script: Script = s.get_script()
+		while script:
+			if script.get_global_name() ==  newState:
+				next_state = s
 				break
+			script = script.get_base_script()
+		if next_state:
+			break
 
 	if !next_state:
 		push_warning("Unable to transition states. State not found: " + newState)
