@@ -79,6 +79,7 @@ navAgent = NodePath("../../NavigationAgent2D")
 
 [node name="NpcTargetingSoldier" parent="StateMachine" node_paths=PackedStringArray("animSprite2D", "targeter") instance=ExtResource("10_smne3")]
 animSprite2D = NodePath("../../AnimatedSprite2D")
+shootRestTime = 1.0
 targeter = NodePath("../../Targeter")
 
 [node name="NavigationAgent2D" type="NavigationAgent2D" parent="."]

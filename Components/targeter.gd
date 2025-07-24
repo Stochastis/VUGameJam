@@ -26,15 +26,14 @@ func resetTarget() -> void:
 	targetNode = null
 	targetPosition = global_position + (Vector2.from_angle(global_rotation) * 32)
 
-#TODO: Change this (using states) so that the soldier isn't just spinning around the last target forever
 func _process(delta: float) -> void:
 	#Filter out not-targeting entities
 	var possibleTargets: Array[Node2D]
 	var observedEntities: Array[Node2D] = observer.observedEntities
 	for group in trackedEntityGroups:
-		possibleTargets.append_array(observedEntities.filter(func(node): return node.is_in_group(group) and not possibleTargets.has(node)))
+		possibleTargets.append_array(observedEntities.filter(func(node): return is_instance_valid(node) and node.is_in_group(group) and not possibleTargets.has(node)))
 	for trackedEntityName in trackedEntityNames:
-		possibleTargets.append_array(observedEntities.filter(func(node): return node.name == trackedEntityName and not possibleTargets.has(node)))
+		possibleTargets.append_array(observedEntities.filter(func(node): return is_instance_valid(node) and node.name == trackedEntityName and not possibleTargets.has(node)))
 	
 	if possibleTargets.size() > 0:
 		if not targetingEntity:

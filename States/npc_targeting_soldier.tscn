@@ -4,3 +4,8 @@
 
 [node name="NpcTargetingSoldier" type="Node"]
 script = ExtResource("1_54knp")
+
+[node name="ShootTimer" type="Timer" parent="."]
+one_shot = true
+
+[connection signal="timeout" from="ShootTimer" to="." method="_on_shoot_timer_timeout"]
