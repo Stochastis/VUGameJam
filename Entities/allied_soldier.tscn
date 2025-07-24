@@ -74,8 +74,7 @@ blockingLayers = Array[int]([2])
 [node name="StateMachine" parent="." node_paths=PackedStringArray("initial_state") instance=ExtResource("6_mx1sb")]
 initial_state = NodePath("NpcIdleStand")
 
-[node name="NpcIdleStand" parent="StateMachine" node_paths=PackedStringArray("targeter") instance=ExtResource("10_smne3")]
-targeter = NodePath("../../Targeter")
+[node name="NpcIdleStand" parent="StateMachine" instance=ExtResource("10_smne3")]
 
 [node name="NpcIdleTurn" parent="StateMachine" node_paths=PackedStringArray("targeter") instance=ExtResource("11_5qc07")]
 targeter = NodePath("../../Targeter")

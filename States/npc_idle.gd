@@ -1,25 +1,19 @@
 extends State
 class_name npc_idle
 
-@export var entity: CharacterBody2D
+@export var targeter: Targeter
 
-var move_direction: Vector2
-var wander_cycle: float
+func enter() -> void:
+	$StateMachine.start()
+	$StateMachine.set_process(true)
+	$StateMachine.set_physics_process(true)
 
-func randomize_values():
-	move_direction = Vector2(randf_range(-1, 1), randf_range(-1, 1)).normalized()
-	wander_cycle = randf_range(0, 1.5)
+func exit() -> void:
+	$StateMachine.set_process(false)
+	$StateMachine.set_physics_process(false)
 
-func enter():
-	randomize_values()
-
-func update(delta: float):
-	if wander_cycle > 0:
-		wander_cycle -= delta
-	else:
-		randomize_values()
-
-func physics_update(_delta: float):
-	if entity:
-		entity.velocity = move_direction * (entity.move_speed * 0.25)
-		entity.move_and_slide()
+func update(_delta: float) -> void:
+	#Keep a watch out for targets
+	if targeter.targetingEntity:
+		Transitioned.emit(self, "npctargeting")
+		return

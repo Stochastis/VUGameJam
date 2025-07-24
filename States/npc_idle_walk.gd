@@ -26,11 +26,6 @@ func exit() -> void:
 		navAgent.navigation_finished.disconnect(_on_navigation_agent_2d_navigation_finished)
 
 func update(_delta: float) -> void:
-	#Keep a watch out for targets
-	if targeter.targetingEntity:
-		Transitioned.emit(self, "npctargeting")
-		return
-	
 	var nextPathPos: Vector2 = navAgent.get_next_path_position()
 	targeter.targetPosition = nextPathPos
 	var toNextPath = (nextPathPos - parent.global_position).normalized()

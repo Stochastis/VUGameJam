@@ -6,6 +6,14 @@ var states: Dictionary = {}
 var current_state: State
 
 func _ready():
+	#Don't run the ready/start script if this is a mini state machine. Let the parent state call it when it's entered.
+	#Prevents a mini state machine from entering it's initial state prematurely.
+	if get_parent() is State:
+		return
+	
+	start()
+
+func start() -> void:
 	for child in get_children():
 		if child is State:
 			states[child.name.to_lower()] = child
