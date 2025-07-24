@@ -34,20 +34,19 @@ func _process(delta: float) -> void:
 		possibleTargets.append_array(observedEntities.filter(func(node): return node.is_in_group(group) and not possibleTargets.has(node)))
 	for trackedEntityName in trackedEntityNames:
 		possibleTargets.append_array(observedEntities.filter(func(node): return node.name == trackedEntityName and not possibleTargets.has(node)))
-		
+	
 	if possibleTargets.size() > 0:
 		if not targetingEntity:
-			NewTargetAcquired.emit()
 			targetingEntity = true
+			NewTargetAcquired.emit()
 		if not possibleTargets.has(targetNode):
 			targetNode = closestNode(possibleTargets)
-			pass
 		targetPosition = targetNode.position
 	else:
 		if targetingEntity:
-			TargetsLost.emit()
 			targetingEntity = false
 			targetNode = null
+			TargetsLost.emit()
 			resetTarget()
 	
 	#Face target

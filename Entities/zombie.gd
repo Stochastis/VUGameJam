@@ -15,7 +15,7 @@ var can_attack = true
 func is_zombie(entity):
 	return entity.is_in_group("Zombies")
 
-func _physics_process(delta):
+func _physics_process(_delta):
 	#TODO: Move this to a state when ready
 	if targeter.targetingEntity:
 		var nextPathPos: Vector2 = navAgent.get_next_path_position()
