@@ -1,4 +1,4 @@
-extends npc_targeting
+extends NpcTargeting
 class_name npc_targeting_zombie
 
 @export var navAgent: NavigationAgent2D

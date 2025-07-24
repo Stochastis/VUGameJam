@@ -1,5 +1,5 @@
 extends State
-class_name npc_idle_walk
+class_name NpcIdleWalk
 
 var targeter: Targeter
 var parent: CharacterBody2D
@@ -11,7 +11,7 @@ func enter() -> void:
 	var firstIntersectionPoint: Vector2 = first_intersection_point(targeter.targetPosition)
 	
 	if firstIntersectionPoint.distance_to(parent.global_position) < minDistToWalk:
-		var nextState: String = ["npcidleturn", "npcidlestand"].pick_random()
+		var nextState: String = ["NpcIdleTurn", "NpcIdleStand"].pick_random()
 		Transitioned.emit(self, nextState)
 		return
 	
@@ -34,7 +34,7 @@ func update(_delta: float) -> void:
 
 func _on_navigation_agent_2d_navigation_finished():
 	targeter.resetTarget()
-	var nextState: String = ["npcidleturn", "npcidlestand"].pick_random()
+	var nextState: String = ["NpcIdleTurn", "NpcIdleStand"].pick_random()
 	Transitioned.emit(self, nextState)
 
 func first_intersection_point(target: Vector2) -> Vector2:

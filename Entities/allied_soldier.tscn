@@ -9,7 +9,7 @@
 [ext_resource type="PackedScene" uid="uid://cvhxcb8j5nxg7" path="res://Components/targeter.tscn" id="5_smne3"]
 [ext_resource type="PackedScene" uid="uid://bhwn8uo4g627j" path="res://States/state_machine.tscn" id="6_mx1sb"]
 [ext_resource type="PackedScene" uid="uid://dl2o8qjiic7t0" path="res://States/npc_idle.tscn" id="9_smne3"]
-[ext_resource type="PackedScene" uid="uid://se3ob4ys2bx5" path="res://States/npc_targeting.tscn" id="13_o50em"]
+[ext_resource type="PackedScene" uid="uid://cjdj5a7g077yl" path="res://States/npc_targeting_soldier.tscn" id="10_smne3"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_2q06j"]
 animations = [{
@@ -77,7 +77,8 @@ targeter = NodePath("../../Targeter")
 parent = NodePath("../..")
 navAgent = NodePath("../../NavigationAgent2D")
 
-[node name="NpcTargeting" parent="StateMachine" node_paths=PackedStringArray("targeter") instance=ExtResource("13_o50em")]
+[node name="NpcTargetingSoldier" parent="StateMachine" node_paths=PackedStringArray("animSprite2D", "targeter") instance=ExtResource("10_smne3")]
+animSprite2D = NodePath("../../AnimatedSprite2D")
 targeter = NodePath("../../Targeter")
 
 [node name="NavigationAgent2D" type="NavigationAgent2D" parent="."]

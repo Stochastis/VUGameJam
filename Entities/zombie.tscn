@@ -9,7 +9,7 @@
 [ext_resource type="PackedScene" uid="uid://bivqglsx6xa3m" path="res://Components/line_of_sight.tscn" id="7_5p7nf"]
 [ext_resource type="PackedScene" uid="uid://bhwn8uo4g627j" path="res://States/state_machine.tscn" id="8_ksr8e"]
 [ext_resource type="PackedScene" uid="uid://dl2o8qjiic7t0" path="res://States/npc_idle.tscn" id="9_kq8yi"]
-[ext_resource type="PackedScene" uid="uid://se3ob4ys2bx5" path="res://States/npc_targeting.tscn" id="12_i0c57"]
+[ext_resource type="PackedScene" uid="uid://tilqk8b376eh" path="res://States/npc_targeting_zombie.tscn" id="10_kq8yi"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_2votk"]
 size = Vector2(23, 40)
@@ -89,10 +89,13 @@ maxWaitTime = 10.0
 parent = NodePath("../..")
 navAgent = NodePath("../../NavigationAgent2D")
 
-[node name="NpcTargeting" parent="StateMachine" node_paths=PackedStringArray("targeter") instance=ExtResource("12_i0c57")]
+[node name="NpcTargetingZombie" parent="StateMachine" node_paths=PackedStringArray("navAgent", "parent", "idleObservationArea", "chaseObservationArea", "observer", "targeter") instance=ExtResource("10_kq8yi")]
+navAgent = NodePath("../../NavigationAgent2D")
+parent = NodePath("../..")
+idleObservationArea = NodePath("../../Focus_Area")
+chaseObservationArea = NodePath("../../Chase_Area")
+observer = NodePath("../../Observer")
 targeter = NodePath("../../Targeter")
 
 [connection signal="healthChanged" from="HealthSystem" to="HealthBar" method="_on_health_system_health_changed"]
 [connection signal="body_shape_entered" from="Attack_Proximity" to="." method="_on_attack_proximity_body_shape_entered"]
-[connection signal="NewTargetAcquired" from="Targeter" to="." method="_on_targeter_new_target_acquired"]
-[connection signal="TargetsLost" from="Targeter" to="." method="_on_targeter_targets_lost"]

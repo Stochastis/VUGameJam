@@ -1,5 +1,5 @@
 extends State
-class_name npc_idle
+class_name NpcIdle
 
 @export var targeter: Targeter
 @export var minWaitTime: float = 1
@@ -22,15 +22,12 @@ func _ready() -> void:
 
 func enter() -> void:
 	$StateMachine.start()
-	$StateMachine.set_process(true)
-	$StateMachine.set_physics_process(true)
 
 func exit() -> void:
-	$StateMachine.set_process(false)
-	$StateMachine.set_physics_process(false)
+	$StateMachine.stop()
 
 func update(_delta: float) -> void:
 	#Keep a watch out for targets
 	if targeter.targetingEntity:
-		Transitioned.emit(self, "npctargeting")
+		Transitioned.emit(self, "NpcTargeting")
 		return
