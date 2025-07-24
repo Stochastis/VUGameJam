@@ -1,0 +1,9 @@
+[gd_scene load_steps=2 format=3 uid="uid://tilqk8b376eh"]
+
+[ext_resource type="Script" uid="uid://bwhugy20xsjvv" path="res://States/npc_targeting_zombie.gd" id="1_mx58n"]
+
+[node name="NpcTargetingZombie" type="Node"]
+script = ExtResource("1_mx58n")
+
+[node name="NavTimer" type="Timer" parent="."]
+autostart = true

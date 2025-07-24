@@ -82,6 +82,3 @@ targeter = NodePath("../../Targeter")
 
 [node name="NavigationAgent2D" type="NavigationAgent2D" parent="."]
 debug_enabled = true
-
-[connection signal="TargetingEntered" from="StateMachine/NpcTargeting" to="." method="_on_npc_targeting_targeting_entered"]
-[connection signal="TargetingExited" from="StateMachine/NpcTargeting" to="." method="_on_npc_targeting_targeting_exited"]

@@ -14,8 +14,9 @@ var targetingEntity: bool = false
 var targetPosition: Vector2
 var targetNode: Node2D
 
-signal NewTargetAcquired
-signal TargetsLost
+#Don't need these signals right now, but might need them in the future.
+#signal NewTargetAcquired
+#signal TargetsLost
 
 func _ready() -> void:
 	resetTarget()
@@ -38,7 +39,7 @@ func _process(delta: float) -> void:
 	if possibleTargets.size() > 0:
 		if not targetingEntity:
 			targetingEntity = true
-			NewTargetAcquired.emit()
+			#NewTargetAcquired.emit()
 		if not possibleTargets.has(targetNode):
 			targetNode = closestNode(possibleTargets)
 		targetPosition = targetNode.position
@@ -46,7 +47,7 @@ func _process(delta: float) -> void:
 		if targetingEntity:
 			targetingEntity = false
 			targetNode = null
-			TargetsLost.emit()
+			#TargetsLost.emit()
 			resetTarget()
 	
 	#Face target
