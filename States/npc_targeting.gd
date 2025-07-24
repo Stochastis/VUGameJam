@@ -10,7 +10,7 @@ signal TargetingExited
 
 func update(_delta: float) -> void:
 	if not targeter.targetingEntity:
-		Transitioned.emit(self, "npcidlestand")
+		Transitioned.emit(self, "npcidle")
 
 func enter() -> void:
 	TargetingEntered.emit()
