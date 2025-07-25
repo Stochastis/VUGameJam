@@ -28,6 +28,7 @@ project/assembly_name="VUGameJam"
 
 Zombies=""
 "Good Guys"=""
+Breakable=""
 
 [input]
 

@@ -1,7 +1,6 @@
-extends CharacterBody2D
-
-@export var move_speed: float = 20
+extends Node2D
+class_name OuterWall
 
 func _on_health_system_health_changed() -> void:
 	if $HealthSystem.currHealth <= 0:
-		queue_free()
+		pass

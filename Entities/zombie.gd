@@ -14,3 +14,7 @@ func _on_attack_proximity_body_shape_entered(_body_rid: RID, body: Node2D, _body
 		elif not body.has_node("HealthSystem"):
 			printerr("body does not have HealthSystem component")
 		get_tree().create_timer(cooldown).timeout.connect(func(): can_attack = true)
+
+func _on_health_system_health_changed() -> void:
+	if $HealthSystem.currHealth <= 0:
+		queue_free()

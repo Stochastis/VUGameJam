@@ -105,5 +105,6 @@ idleObservationArea = NodePath("../../Focus_Area")
 targeter = NodePath("../../Targeter")
 targetLostMoveSpeed = 15.0
 
+[connection signal="healthChanged" from="HealthSystem" to="." method="_on_health_system_health_changed"]
 [connection signal="healthChanged" from="HealthSystem" to="HealthBar" method="_on_health_system_health_changed"]
 [connection signal="body_shape_entered" from="Attack_Proximity" to="." method="_on_attack_proximity_body_shape_entered"]

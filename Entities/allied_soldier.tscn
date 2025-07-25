@@ -87,3 +87,5 @@ targeter = NodePath("../../Targeter")
 
 [node name="NavigationAgent2D" type="NavigationAgent2D" parent="."]
 debug_enabled = true
+
+[connection signal="healthChanged" from="HealthSystem" to="." method="_on_health_system_health_changed"]

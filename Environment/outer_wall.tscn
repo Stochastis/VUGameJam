@@ -1,0 +1,44 @@
+[gd_scene load_steps=7 format=3 uid="uid://iug3nyrebcte"]
+
+[ext_resource type="Script" uid="uid://hjj6jxgosrx3" path="res://Environment/outer_wall.gd" id="1_38pn6"]
+[ext_resource type="Script" uid="uid://jxurm3smcvu1" path="res://Components/health_system.gd" id="2_22s3a"]
+[ext_resource type="Texture2D" uid="uid://sn1fhh3r5jfs" path="res://Assets/Environment/OuterWallEdge.png" id="4_fcp2d"]
+[ext_resource type="Texture2D" uid="uid://d1581ndidnr7t" path="res://Assets/Environment/BreakableOuterWallNS.png" id="5_pvxen"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_483ig"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("4_fcp2d")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_pvxen")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_1c8du"]
+size = Vector2(16, 16)
+
+[node name="OuterWall" type="Node2D"]
+script = ExtResource("1_38pn6")
+metadata/_edit_group_ = true
+
+[node name="HealthSystem" type="Node" parent="."]
+script = ExtResource("2_22s3a")
+maxHealth = 100
+metadata/_custom_type_script = "uid://jxurm3smcvu1"
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_483ig")
+
+[node name="StaticBody2D" type="StaticBody2D" parent="."]
+collision_layer = 4
+collision_mask = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
+shape = SubResource("RectangleShape2D_1c8du")
+
+[connection signal="healthChanged" from="HealthSystem" to="." method="_on_health_system_health_changed"]

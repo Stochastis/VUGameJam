@@ -13,9 +13,7 @@ func _ready() -> void:
 func damage(damageAmount: int) -> void:
 	currHealth -= damageAmount
 	healthChanged.emit()
-	if currHealth <= 0:
-		get_parent().queue_free()
-	
+
 func heal(healAmount: int) -> void:
 	currHealth += healAmount
 	healthChanged.emit()
