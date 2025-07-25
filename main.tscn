@@ -184,7 +184,7 @@ metadata/_edit_group_ = true
 shape = SubResource("CircleShape2D_dg77c")
 
 [node name="TestZom" parent="World" instance=ExtResource("12_dg77c")]
-position = Vector2(1004, 763)
+position = Vector2(1288, 701)
 rotation = -1.11784
 
 [connection signal="timeout" from="World/WaveManager/Timer" to="World/WaveManager" method="_on_timer_timeout"]

@@ -10,6 +10,9 @@ class_name npc_targeting_zombie
 
 var nextPathPos: Vector2
 
+func is_good_guy(entity):
+	return entity.is_in_group("Good Guys")
+
 func physics_update(_delta: float) -> void:
 	var toNextPath = (nextPathPos - parent.global_position).normalized()
 	parent.velocity = toNextPath * moveSpeed
@@ -22,6 +25,7 @@ func _on_nav_timer_timeout() -> void:
 
 func enter() -> void:
 	observer.observationArea = chaseObservationArea
+	parent.target = observer.observedEntities.filter(func(entity): is_good_guy(entity)).front()
 	if not $NavTimer.is_connected("timeout", _on_nav_timer_timeout):
 		$NavTimer.connect("timeout", _on_nav_timer_timeout)
 
