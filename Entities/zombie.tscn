@@ -50,6 +50,7 @@ shape = SubResource("RectangleShape2D_2votk")
 texture = ExtResource("1_nj2pk")
 
 [node name="Attack_Proximity" type="Area2D" parent="."]
+collision_mask = 5
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Attack_Proximity"]
 position = Vector2(7.75, 0)
@@ -57,6 +58,7 @@ shape = SubResource("RectangleShape2D_ew888")
 
 [node name="Focus_Area" type="Area2D" parent="."]
 visible = false
+collision_mask = 5
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Focus_Area"]
 shape = SubResource("CircleShape2D_2votk")
@@ -64,6 +66,7 @@ shape = SubResource("CircleShape2D_2votk")
 [node name="Chase_Area" type="Area2D" parent="."]
 unique_name_in_owner = true
 visible = false
+collision_mask = 5
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Chase_Area"]
 shape = SubResource("CircleShape2D_r0odx")
@@ -90,7 +93,7 @@ initial_state = NodePath("NpcIdle")
 
 [node name="NpcIdle" parent="StateMachine" node_paths=PackedStringArray("targeter", "parent", "navAgent") instance=ExtResource("9_kq8yi")]
 targeter = NodePath("../../Targeter")
-maxWaitTime = 10.0
+maxWaitTime = 2.0
 parent = NodePath("../..")
 navAgent = NodePath("../../NavigationAgent2D")
 idleWalkMoveSpeed = 10.0

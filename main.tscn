@@ -100,7 +100,7 @@ sources/20 = SubResource("TileSetAtlasSource_2cqfq")
 tile_proxies/coords_level = [[1, Vector2i(0, 0)], [11, Vector2i(0, 0)], [3, Vector2i(0, 0)], [11, Vector2i(1, 0)], [6, Vector2i(0, 0)], [11, Vector2i(2, 0)], [9, Vector2i(0, 0)], [11, Vector2i(3, 0)], [10, Vector2i(0, 0)], [11, Vector2i(4, 0)]]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_dg77c"]
-radius = 32.0
+radius = 18.0
 
 [node name="Main" type="Node"]
 script = ExtResource("1_272bh")
@@ -210,12 +210,13 @@ outerWallScene = ExtResource("17_yaehf")
 worldNavigation = NodePath("../WorldNavRegion")
 
 [node name="WallBreakerTimer" type="Timer" parent="World/OuterWallManager"]
-wait_time = 5.0
+wait_time = 0.05
 autostart = true
 
 [node name="TestZom" parent="World" instance=ExtResource("12_dg77c")]
-position = Vector2(1004, 763)
-rotation = -1.11784
+modulate = Color(0, 1, 1, 1)
+position = Vector2(-153, 905)
+rotation = 0.0455724
 
 [connection signal="timeout" from="World/WaveManager/Timer" to="World/WaveManager" method="_on_timer_timeout"]
 [connection signal="timeout" from="World/OuterWallManager/WallBreakerTimer" to="World/OuterWallManager" method="_on_wall_breaker_timer_timeout"]

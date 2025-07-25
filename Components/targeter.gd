@@ -41,7 +41,7 @@ func _process(delta: float) -> void:
 			#NewTargetAcquired.emit()
 		if not is_instance_valid(targetNode) or not possibleTargets.has(targetNode):
 			targetNode = closestNode(possibleTargets)
-		targetPosition = targetNode.position
+		targetPosition = targetNode.global_position
 	else:
 		if targetingEntity:
 			targetingEntity = false
