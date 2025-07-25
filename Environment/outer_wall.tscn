@@ -41,4 +41,7 @@ collision_mask = 0
 [node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
 shape = SubResource("RectangleShape2D_1c8du")
 
+[node name="Inside" type="Node2D" parent="."]
+position = Vector2(0, 16)
+
 [connection signal="healthChanged" from="HealthSystem" to="." method="_on_health_system_health_changed"]

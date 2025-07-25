@@ -1,7 +1,7 @@
 [gd_scene load_steps=15 format=3 uid="uid://ce22jwvxoan48"]
 
 [ext_resource type="PackedScene" uid="uid://bvhx82eau62u8" path="res://Components/health_system.tscn" id="1_pd1d8"]
-[ext_resource type="Script" uid="uid://dbsu2wgaqddwy" path="res://Entities/allied_soldier.gd" id="1_qcgow"]
+[ext_resource type="Script" path="res://Entities/allied_soldier.gd" id="1_qcgow"]
 [ext_resource type="Texture2D" uid="uid://bckqv8uthcs8n" path="res://Assets/survivor1_reload.png" id="2_lqr21"]
 [ext_resource type="Texture2D" uid="uid://bi4btcg8yjocb" path="res://Assets/survivor1_machine.png" id="3_qcgow"]
 [ext_resource type="PackedScene" uid="uid://bivqglsx6xa3m" path="res://Components/line_of_sight.tscn" id="5_2q06j"]

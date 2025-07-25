@@ -21,3 +21,4 @@ func enter() -> void:
 
 func exit() -> void:
 	animSprite2D.set_frame_and_progress(0, 0)
+	$ShootTimer.stop()

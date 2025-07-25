@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=3 uid="uid://dl3ob63ckvjq5"]
+[gd_scene load_steps=16 format=3 uid="uid://dl3ob63ckvjq5"]
 
 [ext_resource type="Script" uid="uid://c4edw2jhsjl73" path="res://Entities/zombie.gd" id="1_2votk"]
 [ext_resource type="Texture2D" uid="uid://dp8nmqytlyhrd" path="res://Assets/Zombie.png" id="1_nj2pk"]
@@ -14,6 +14,9 @@
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_2votk"]
 size = Vector2(23, 40)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ew888"]
+size = Vector2(15.5, 40)
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_2votk"]
 radius = 270.224
@@ -39,7 +42,6 @@ offset_bottom = -24.0
 healthSystem = NodePath("../HealthSystem")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(-1.5, 1)
 shape = SubResource("RectangleShape2D_2votk")
 
 [node name="Pivot_Point" type="Node2D" parent="."]
@@ -50,15 +52,18 @@ texture = ExtResource("1_nj2pk")
 [node name="Attack_Proximity" type="Area2D" parent="."]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Attack_Proximity"]
-shape = SubResource("RectangleShape2D_2votk")
+position = Vector2(7.75, 0)
+shape = SubResource("RectangleShape2D_ew888")
 
 [node name="Focus_Area" type="Area2D" parent="."]
+visible = false
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Focus_Area"]
 shape = SubResource("CircleShape2D_2votk")
 
 [node name="Chase_Area" type="Area2D" parent="."]
 unique_name_in_owner = true
+visible = false
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Chase_Area"]
 shape = SubResource("CircleShape2D_r0odx")

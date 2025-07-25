@@ -9,7 +9,7 @@ class_name NpcTargetLostZombie
 func enter() -> void:
 	$ChaseAfterLOSLostTimer.start()
 	navAgent.target_position = targeter.targetPosition
-	
+
 func exit() -> void:
 	$ChaseAfterLOSLostTimer.stop()
 	observer.observationArea = idleObservationArea

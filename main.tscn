@@ -210,7 +210,7 @@ outerWallScene = ExtResource("17_yaehf")
 worldNavigation = NodePath("../WorldNavRegion")
 
 [node name="WallBreakerTimer" type="Timer" parent="World/OuterWallManager"]
-wait_time = 60.0
+wait_time = 5.0
 autostart = true
 
 [node name="TestZom" parent="World" instance=ExtResource("12_dg77c")]

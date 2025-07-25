@@ -6,14 +6,22 @@ extends Node
 
 const FLOORTILESOURCEID = 2
 
-var outerWallEdgeCellPositions: Array[Vector2i]
+var outerWalls: Array[OuterWall]
 
 func _ready() -> void:
 	get_outer_wall_edges()
 	spawn_walls()
+	makeRandomWallBreakable()
+
+func makeRandomWallBreakable() -> void:
+	var randomOuterWall: OuterWall = outerWalls.pick_random()
+	randomOuterWall.makeBreakable()
+
+func _on_wall_breaker_timer_timeout() -> void:
+	makeRandomWallBreakable()
 
 func spawn_walls():
-	for cell_pos: Vector2i in outerWallEdgeCellPositions:
+	for cell_pos: Vector2i in get_outer_wall_edges():
 		var outerWallInst: OuterWall = outerWallScene.instantiate()
 		
 		#Rotate doors
@@ -39,14 +47,17 @@ func spawn_walls():
 		outerWallInst.global_position = tileMapLayer.to_global(local_pos)
 		
 		worldNavigation.add_child(outerWallInst)
+		outerWalls.append(outerWallInst)
 		tileMapLayer.set_cell(cell_pos, -1)
 
-func get_outer_wall_edges():
+func get_outer_wall_edges() -> Array[Vector2i]:
+	var outerWallEdgeCellPositions: Array[Vector2i]
 	for cell_pos: Vector2i in tileMapLayer.get_used_cells():
 		var tileData: TileData = tileMapLayer.get_cell_tile_data(cell_pos)
 		if tileData and tileData.has_custom_data("is_outer_wall_edge"):
 			if tileData.get_custom_data("is_outer_wall_edge"):
 				outerWallEdgeCellPositions.append(cell_pos)
+	return outerWallEdgeCellPositions
 
 func get_rotation_vector(coords:Vector2i) -> Vector2:
 	var vec = Vector2.UP

@@ -61,7 +61,7 @@ func child_transition(state: State, newState: String):
 			script = script.get_base_script()
 		if next_state:
 			break
-
+	
 	if !next_state:
 		push_warning("Unable to transition states. State not found: " + newState)
 		return
