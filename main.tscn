@@ -3,7 +3,7 @@
 [ext_resource type="Texture2D" uid="uid://bvscik1nfrvci" path="res://Assets/Environment/Floor.png" id="1_0xm2m"]
 [ext_resource type="Script" uid="uid://ctwuwe024uqeq" path="res://main.gd" id="1_272bh"]
 [ext_resource type="Texture2D" uid="uid://cog142k52u6mn" path="res://Assets/Environment/Wall.png" id="2_h2yge"]
-[ext_resource type="PackedScene" uid="uid://bg5skfd20wcbw" path="res://door.tscn" id="3_1bvp3"]
+[ext_resource type="PackedScene" uid="uid://bg5skfd20wcbw" path="res://Environment/door.tscn" id="3_1bvp3"]
 [ext_resource type="PackedScene" uid="uid://ck6sugtlhcpdi" path="res://Entities/engineer.tscn" id="3_h2yge"]
 [ext_resource type="Texture2D" uid="uid://dkdts5jkkrqo6" path="res://Assets/Environment/OpenDoorUpDown.png" id="4_7mycd"]
 [ext_resource type="Texture2D" uid="uid://dv6fllihs0ai2" path="res://Assets/Environment/OpenDoorLeftRight.png" id="5_272bh"]
