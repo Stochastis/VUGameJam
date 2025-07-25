@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://ce22jwvxoan48"]
+[gd_scene load_steps=15 format=3 uid="uid://ce22jwvxoan48"]
 
 [ext_resource type="PackedScene" uid="uid://bvhx82eau62u8" path="res://Components/health_system.tscn" id="1_pd1d8"]
 [ext_resource type="Script" uid="uid://dbsu2wgaqddwy" path="res://Entities/allied_soldier.gd" id="1_qcgow"]
@@ -10,6 +10,7 @@
 [ext_resource type="PackedScene" uid="uid://bhwn8uo4g627j" path="res://States/state_machine.tscn" id="6_mx1sb"]
 [ext_resource type="PackedScene" uid="uid://dl2o8qjiic7t0" path="res://States/npc_idle.tscn" id="9_smne3"]
 [ext_resource type="PackedScene" uid="uid://cjdj5a7g077yl" path="res://States/npc_targeting_soldier.tscn" id="10_smne3"]
+[ext_resource type="PackedScene" uid="uid://8ao6prab7xy4" path="res://States/npc_target_lost.tscn" id="11_4nw5l"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_2q06j"]
 animations = [{
@@ -81,6 +82,8 @@ navAgent = NodePath("../../NavigationAgent2D")
 animSprite2D = NodePath("../../AnimatedSprite2D")
 shootRestTime = 1.0
 targeter = NodePath("../../Targeter")
+
+[node name="NpcTargetLost" parent="StateMachine" instance=ExtResource("11_4nw5l")]
 
 [node name="NavigationAgent2D" type="NavigationAgent2D" parent="."]
 debug_enabled = true

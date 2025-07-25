@@ -47,7 +47,6 @@ func _process(delta: float) -> void:
 			targetingEntity = false
 			targetNode = null
 			#TargetsLost.emit()
-			resetTarget()
 	
 	#Face target
 	var to_target = (targetPosition - parent.position).normalized()

@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://dl3ob63ckvjq5"]
+[gd_scene load_steps=15 format=3 uid="uid://dl3ob63ckvjq5"]
 
 [ext_resource type="Script" uid="uid://c4edw2jhsjl73" path="res://Entities/zombie.gd" id="1_2votk"]
 [ext_resource type="Texture2D" uid="uid://dp8nmqytlyhrd" path="res://Assets/Zombie.png" id="1_nj2pk"]
@@ -10,6 +10,7 @@
 [ext_resource type="PackedScene" uid="uid://bhwn8uo4g627j" path="res://States/state_machine.tscn" id="8_ksr8e"]
 [ext_resource type="PackedScene" uid="uid://dl2o8qjiic7t0" path="res://States/npc_idle.tscn" id="9_kq8yi"]
 [ext_resource type="PackedScene" uid="uid://tilqk8b376eh" path="res://States/npc_targeting_zombie.tscn" id="10_kq8yi"]
+[ext_resource type="PackedScene" uid="uid://by1kd7gx3dumi" path="res://States/npc_target_lost_zombie.tscn" id="11_ew888"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_2votk"]
 size = Vector2(23, 40)
@@ -20,13 +21,12 @@ radius = 270.224
 [sub_resource type="CircleShape2D" id="CircleShape2D_r0odx"]
 radius = 729.098
 
-[node name="Zombie" type="CharacterBody2D" node_paths=PackedStringArray("targeter") groups=["Zombies"]]
+[node name="Zombie" type="CharacterBody2D" groups=["Zombies"]]
 scale = Vector2(0.25, 0.25)
 collision_mask = 7
 motion_mode = 1
 wall_min_slide_angle = 0.0
 script = ExtResource("1_2votk")
-targeter = NodePath("Targeter")
 
 [node name="HealthSystem" parent="." instance=ExtResource("2_rjxgx")]
 maxHealth = 100
@@ -65,8 +65,6 @@ shape = SubResource("CircleShape2D_r0odx")
 debug_color = Color(0.90265, 0.294429, 0.243426, 0.42)
 
 [node name="NavigationAgent2D" type="NavigationAgent2D" parent="."]
-simplify_path = true
-simplify_epsilon = 4.0
 debug_enabled = true
 
 [node name="Targeter" parent="." node_paths=PackedStringArray("parent", "observer") instance=ExtResource("5_fqedw")]
@@ -90,14 +88,22 @@ targeter = NodePath("../../Targeter")
 maxWaitTime = 10.0
 parent = NodePath("../..")
 navAgent = NodePath("../../NavigationAgent2D")
+idleWalkMoveSpeed = 10.0
 
-[node name="NpcTargetingZombie" parent="StateMachine" node_paths=PackedStringArray("navAgent", "parent", "idleObservationArea", "chaseObservationArea", "observer", "targeter") instance=ExtResource("10_kq8yi")]
+[node name="NpcTargetingZombie" parent="StateMachine" node_paths=PackedStringArray("navAgent", "parent", "chaseObservationArea", "observer", "targeter") instance=ExtResource("10_kq8yi")]
 navAgent = NodePath("../../NavigationAgent2D")
 parent = NodePath("../..")
-idleObservationArea = NodePath("../../Focus_Area")
 chaseObservationArea = NodePath("../../Chase_Area")
 observer = NodePath("../../Observer")
 targeter = NodePath("../../Targeter")
+
+[node name="NpcTargetLostZombie" parent="StateMachine" node_paths=PackedStringArray("parent", "navAgent", "observer", "idleObservationArea", "targeter") instance=ExtResource("11_ew888")]
+parent = NodePath("../..")
+navAgent = NodePath("../../NavigationAgent2D")
+observer = NodePath("../../Observer")
+idleObservationArea = NodePath("../../Focus_Area")
+targeter = NodePath("../../Targeter")
+targetLostMoveSpeed = 15.0
 
 [connection signal="healthChanged" from="HealthSystem" to="HealthBar" method="_on_health_system_health_changed"]
 [connection signal="body_shape_entered" from="Attack_Proximity" to="." method="_on_attack_proximity_body_shape_entered"]

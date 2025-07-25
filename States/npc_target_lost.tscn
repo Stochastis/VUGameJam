@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://8ao6prab7xy4"]
+
+[ext_resource type="Script" uid="uid://c3b1tdjr78ung" path="res://States/npc_target_lost.gd" id="1_vpcn1"]
+
+[node name="NpcTargetLost" type="Node"]
+script = ExtResource("1_vpcn1")

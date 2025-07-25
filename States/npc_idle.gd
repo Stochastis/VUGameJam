@@ -8,6 +8,7 @@ class_name NpcIdle
 @export var parent: CharacterBody2D
 @export var navAgent: NavigationAgent2D
 @export var minDistToWalk: float = 16
+@export var idleWalkMoveSpeed: float
 
 func _ready() -> void:
 	#Might change this to a more dynamic system in the future if needed for mini state machines and sub-states.
@@ -17,6 +18,7 @@ func _ready() -> void:
 	$StateMachine/NpcIdleTurn.maxTurnDegrees = maxTurnDegrees
 	$StateMachine/NpcIdleWalk.targeter = targeter
 	$StateMachine/NpcIdleWalk.parent = parent
+	$StateMachine/NpcIdleWalk.idleWalkMoveSpeed = idleWalkMoveSpeed
 
 func enter() -> void:
 	$StateMachine.start()

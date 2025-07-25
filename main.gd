@@ -1,6 +1,5 @@
 extends Node
 
-# world.gd or whatever your main level scene is
 @onready var tileMapLayer: TileMapLayer = $"World/NavigationRegion2D/TileMapLayer-Environment"
 @onready var worldNavigation: NavigationRegion2D = $World/NavigationRegion2D
 @export var door_scene: PackedScene
@@ -19,7 +18,7 @@ func spawn_doors():
 			if not tile_data.get_custom_data("is_door"):
 				continue
 			
-			var door = door_scene.instantiate()
+			var door: Door = door_scene.instantiate()
 			
 			# Convert cell coordinates to world position
 			var local_pos = tileMapLayer.map_to_local(cell_pos)
@@ -28,6 +27,10 @@ func spawn_doors():
 			# Read and apply custom data
 			if tile_data.has_custom_data("north_south"):
 				door.northSouth = tile_data.get_custom_data("north_south")
+				if door.northSouth:
+					door.eastWestNavRegion.enabled = false
+				else:
+					door.northSouthNavRegion.enabled = false
 			if tile_data.has_custom_data("open"):
 				door.open = tile_data.get_custom_data("open")
 			

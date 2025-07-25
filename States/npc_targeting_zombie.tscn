@@ -6,4 +6,5 @@
 script = ExtResource("1_mx58n")
 
 [node name="NavTimer" type="Timer" parent="."]
-autostart = true
+
+[connection signal="timeout" from="NavTimer" to="." method="reNav"]

@@ -43,8 +43,10 @@ agent_radius = 0.0
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_y5njw"]
 
-[node name="Door" type="Node2D"]
+[node name="Door" type="Node2D" node_paths=PackedStringArray("northSouthNavRegion", "eastWestNavRegion")]
 script = ExtResource("1_v6xrn")
+northSouthNavRegion = NodePath("NavigationRegion2DNS")
+eastWestNavRegion = NodePath("NavigationRegion2DEW")
 metadata/_edit_group_ = true
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
@@ -52,11 +54,9 @@ sprite_frames = SubResource("SpriteFrames_t4u4y")
 
 [node name="NavigationRegion2DNS" type="NavigationRegion2D" parent="."]
 navigation_polygon = SubResource("NavigationPolygon_4xadh")
-enabled = false
 
 [node name="NavigationRegion2DEW" type="NavigationRegion2D" parent="."]
 navigation_polygon = SubResource("NavigationPolygon_6hwww")
-enabled = false
 
 [node name="StaticBody2D" type="StaticBody2D" parent="."]
 visible = false
