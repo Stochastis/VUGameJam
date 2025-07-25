@@ -21,6 +21,7 @@ func attack() -> void:
 		targetHealthSystem.damage(10)
 
 func physics_update(_delta: float) -> void:
+	attack()
 	var toNextPath = (nextPathPos - parent.global_position).normalized()
 	parent.velocity = toNextPath * moveSpeed
 	parent.move_and_slide()
@@ -36,7 +37,6 @@ func _on_nav_timer_timeout() -> void:
 
 func enter() -> void:
 	observer.observationArea = chaseObservationArea
-	parent.target = targeter.targetNode
 	if not $NavTimer.is_connected("timeout", _on_nav_timer_timeout):
 		$NavTimer.connect("timeout", _on_nav_timer_timeout)
 
