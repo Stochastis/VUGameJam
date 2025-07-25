@@ -6,17 +6,28 @@ class_name npc_targeting_zombie
 @export var moveSpeed: float = 20
 @export var idleObservationArea: Area2D
 @export var chaseObservationArea: Area2D
+@export var attackArea: Area2D
 @export var observer: Observer
+@export var attack_cooldown: float
 
 var nextPathPos: Vector2
 
-func is_good_guy(entity):
-	return entity.is_in_group("Good Guys")
+func attack() -> void:
+	if !targeter.targetNode:
+		return
+	attackArea = parent.Attack_Proximity
+	if targeter.targetNode.has_node("HealthSystem") && attackArea.overlaps_body(targeter.targetNode):
+		var targetHealthSystem: HealthSystem = targeter.targetNode.get_node("HealthSystem")
+		targetHealthSystem.damage(10)
 
 func physics_update(_delta: float) -> void:
 	var toNextPath = (nextPathPos - parent.global_position).normalized()
 	parent.velocity = toNextPath * moveSpeed
 	parent.move_and_slide()
+
+func _on_attack_timer_timeout() -> void:
+	attack()
+	$AttackTimer.start(attack_cooldown)
 
 func _on_nav_timer_timeout() -> void:
 	#Re-nav since the target can move
@@ -25,7 +36,7 @@ func _on_nav_timer_timeout() -> void:
 
 func enter() -> void:
 	observer.observationArea = chaseObservationArea
-	parent.target = observer.observedEntities.filter(func(entity): is_good_guy(entity)).front()
+	parent.target = targeter.targetNode
 	if not $NavTimer.is_connected("timeout", _on_nav_timer_timeout):
 		$NavTimer.connect("timeout", _on_nav_timer_timeout)
 
