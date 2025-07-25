@@ -1,7 +1,8 @@
-[gd_scene load_steps=7 format=3 uid="uid://iug3nyrebcte"]
+[gd_scene load_steps=8 format=3 uid="uid://iug3nyrebcte"]
 
 [ext_resource type="Texture2D" uid="uid://d1581ndidnr7t" path="res://Assets/Environment/BreakableOuterWallNS.png" id="1_aumy4"]
 [ext_resource type="Script" uid="uid://jxurm3smcvu1" path="res://Components/health_system.gd" id="1_jfhbs"]
+[ext_resource type="Script" uid="uid://hjj6jxgosrx3" path="res://Environment/breakable_outer_wall.gd" id="1_y24hf"]
 [ext_resource type="Texture2D" uid="uid://dmlypfcy8df26" path="res://Assets/Environment/BreakableOuterWallEW.png" id="2_y24hf"]
 [ext_resource type="Texture2D" uid="uid://noy05sqdsfhb" path="res://Assets/Environment/BreakableOuterWallSN.png" id="3_dkfqq"]
 [ext_resource type="Texture2D" uid="uid://qjv2c8g7g6o2" path="res://Assets/Environment/BreakableOuterWallWE.png" id="4_bb8rh"]
@@ -27,6 +28,7 @@ animations = [{
 }]
 
 [node name="BreakableOuterWall" type="Node2D"]
+script = ExtResource("1_y24hf")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_jfhbs")

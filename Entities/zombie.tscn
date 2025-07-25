@@ -70,7 +70,7 @@ debug_enabled = true
 [node name="Targeter" parent="." node_paths=PackedStringArray("parent", "observer") instance=ExtResource("5_fqedw")]
 parent = NodePath("..")
 observer = NodePath("../Observer")
-trackedEntityGroups = Array[String](["Good Guys"])
+trackedEntityGroups = Array[String](["Good Guys", "Breakable"])
 
 [node name="Observer" parent="." node_paths=PackedStringArray("lineOfSight", "observationArea") instance=ExtResource("6_8qtrh")]
 lineOfSight = NodePath("../LineOfSight")

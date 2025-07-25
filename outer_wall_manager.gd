@@ -16,7 +16,6 @@ func spawn_doors():
 			if tile_data.get_custom_data("is_door"):
 				continue
 			
-			
 			# Convert cell coordinates to world position
 			var local_pos = tileMapLayer.map_to_local(cell_pos)
 			
