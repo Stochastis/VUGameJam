@@ -100,12 +100,13 @@ maxWaitTime = 10.0
 parent = NodePath("../..")
 navAgent = NodePath("../../NavigationAgent2D")
 
-[node name="NpcTargetingZombie" parent="StateMachine" node_paths=PackedStringArray("navAgent", "parent", "idleObservationArea", "chaseObservationArea", "observer", "targeter") instance=ExtResource("10_kq8yi")]
+[node name="NpcTargetingZombie" parent="StateMachine" node_paths=PackedStringArray("navAgent", "parent", "idleObservationArea", "chaseObservationArea", "observer", "sprite", "targeter") instance=ExtResource("10_kq8yi")]
 navAgent = NodePath("../../NavigationAgent2D")
 parent = NodePath("../..")
 idleObservationArea = NodePath("../../Focus_Area")
 chaseObservationArea = NodePath("../../Chase_Area")
 observer = NodePath("../../Observer")
+sprite = NodePath("../../Pivot_Point/Sprite")
 targeter = NodePath("../../Targeter")
 
 [connection signal="healthChanged" from="HealthSystem" to="HealthBar" method="_on_health_system_health_changed"]
