@@ -1,10 +1,11 @@
-[gd_scene load_steps=8 format=3 uid="uid://iug3nyrebcte"]
+[gd_scene load_steps=10 format=3 uid="uid://iug3nyrebcte"]
 
 [ext_resource type="Script" uid="uid://hjj6jxgosrx3" path="res://Environment/outer_wall.gd" id="1_38pn6"]
 [ext_resource type="Script" uid="uid://jxurm3smcvu1" path="res://Components/health_system.gd" id="2_22s3a"]
 [ext_resource type="Texture2D" uid="uid://sn1fhh3r5jfs" path="res://Assets/Environment/OuterWallEdge.png" id="4_fcp2d"]
 [ext_resource type="PackedScene" uid="uid://kiqu37j3fo0g" path="res://Components/target_point.tscn" id="5_38pn6"]
 [ext_resource type="Texture2D" uid="uid://d1581ndidnr7t" path="res://Assets/Environment/BreakableOuterWallNS.png" id="5_pvxen"]
+[ext_resource type="PackedScene" uid="uid://dw63555i0b121" path="res://Components/interaction_area.tscn" id="6_22s3a"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_nlf3o"]
 size = Vector2(33.8557, 16.2327)
@@ -23,7 +24,12 @@ animations = [{
 "speed": 5.0
 }]
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_li855"]
+size = Vector2(16, 16)
+
 [node name="OuterWall" type="StaticBody2D"]
+collision_layer = 4
+collision_mask = 0
 script = ExtResource("1_38pn6")
 metadata/_edit_group_ = true
 
@@ -45,5 +51,11 @@ position = Vector2(0, 16)
 
 [node name="TargetPoint" parent="." instance=ExtResource("5_38pn6")]
 position = Vector2(0, -9)
+
+[node name="InteractionArea" parent="." node_paths=PackedStringArray("interactableObject") instance=ExtResource("6_22s3a")]
+interactableObject = NodePath("..")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="InteractionArea"]
+shape = SubResource("RectangleShape2D_li855")
 
 [connection signal="healthChanged" from="HealthSystem" to="." method="_on_health_system_health_changed"]

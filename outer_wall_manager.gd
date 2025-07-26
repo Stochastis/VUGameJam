@@ -1,4 +1,5 @@
 extends Node
+class_name OuterWallManager
 
 @export var tileMapLayer: TileMapLayer
 @export var outerWallScene: PackedScene
@@ -14,8 +15,11 @@ func _ready() -> void:
 	makeRandomWallBreakable()
 
 func makeRandomWallBreakable() -> void:
+	if outerWalls.is_empty():
+		return
 	var randomOuterWall: OuterWall = outerWalls.pick_random()
 	randomOuterWall.makeBreakable()
+	outerWalls.erase(randomOuterWall)
 
 func _on_wall_breaker_timer_timeout() -> void:
 	makeRandomWallBreakable()

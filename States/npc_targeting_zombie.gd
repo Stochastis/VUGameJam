@@ -15,10 +15,9 @@ func attack() -> void:
 	if !targeter.targetNode:
 		return
 	if targeter.targetNode.has_node("HealthSystem") && attackArea.overlaps_body(targeter.targetNode):
-		print("health system acquired and overlapping for attack")
 		var targetHealthSystem: HealthSystem = targeter.targetNode.get_node("HealthSystem")
 		targetHealthSystem.damage(10)
-		var sprite : Sprite2D = parent.get_node("Pivot_Point/Sprite")
+		var sprite : Sprite2D = parent.get_node("Sprite")
 		sprite.modulate = Color.DARK_GRAY
 		await get_tree().create_timer(0.1).timeout
 		sprite.modulate = Color.WHITE

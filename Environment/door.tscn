@@ -1,6 +1,6 @@
 [gd_scene load_steps=12 format=3 uid="uid://bg5skfd20wcbw"]
 
-[ext_resource type="Script" path="res://Environment/door.gd" id="1_v6xrn"]
+[ext_resource type="Script" uid="uid://cpm6twph3auq8" path="res://Environment/door.gd" id="1_v6xrn"]
 [ext_resource type="Texture2D" uid="uid://dwl8rfik3abdj" path="res://Assets/Environment/ClosedDoorUpDown.png" id="2_4xadh"]
 [ext_resource type="Texture2D" uid="uid://dkdts5jkkrqo6" path="res://Assets/Environment/OpenDoorUpDown.png" id="2_v6xrn"]
 [ext_resource type="Texture2D" uid="uid://h4y2no6dhusb" path="res://Assets/Environment/ClosedDoorLeftRight.png" id="3_6hwww"]
