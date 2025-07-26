@@ -29,6 +29,8 @@ func resetTarget() -> void:
 
 func _process(delta: float) -> void:
 	if manualTargeting:
+		#Debug Graphics
+		queue_redraw()
 		return
 	
 	#Filter out not-targeting entities
