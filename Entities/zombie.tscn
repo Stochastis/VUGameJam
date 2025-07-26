@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=3 uid="uid://dl3ob63ckvjq5"]
+[gd_scene load_steps=17 format=3 uid="uid://dl3ob63ckvjq5"]
 
 [ext_resource type="Script" uid="uid://c4edw2jhsjl73" path="res://Entities/zombie.gd" id="1_2votk"]
 [ext_resource type="Texture2D" uid="uid://dp8nmqytlyhrd" path="res://Assets/Zombie.png" id="1_nj2pk"]
@@ -11,6 +11,7 @@
 [ext_resource type="PackedScene" uid="uid://dl2o8qjiic7t0" path="res://States/npc_idle.tscn" id="9_kq8yi"]
 [ext_resource type="PackedScene" uid="uid://tilqk8b376eh" path="res://States/npc_targeting_zombie.tscn" id="10_kq8yi"]
 [ext_resource type="PackedScene" uid="uid://by1kd7gx3dumi" path="res://States/npc_target_lost_zombie.tscn" id="11_ew888"]
+[ext_resource type="PackedScene" uid="uid://pxf8rpvhp3cu" path="res://States/zombie_funnel.tscn" id="12_ksr8e"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_2votk"]
 size = Vector2(32, 40)
@@ -104,6 +105,7 @@ parent = NodePath("../..")
 chaseObservationArea = NodePath("../../Chase_Area")
 attackArea = NodePath("../../Attack_Proximity")
 observer = NodePath("../../Observer")
+attack_cooldown = 1.0
 targeter = NodePath("../../Targeter")
 
 [node name="NpcTargetLostZombie" parent="StateMachine" node_paths=PackedStringArray("parent", "navAgent", "observer", "idleObservationArea", "targeter") instance=ExtResource("11_ew888")]
@@ -113,6 +115,11 @@ observer = NodePath("../../Observer")
 idleObservationArea = NodePath("../../Focus_Area")
 targeter = NodePath("../../Targeter")
 targetLostMoveSpeed = 15.0
+
+[node name="ZombieFunnel" parent="StateMachine" node_paths=PackedStringArray("parent", "navAgent", "targeter") instance=ExtResource("12_ksr8e")]
+parent = NodePath("../..")
+navAgent = NodePath("../../NavigationAgent2D")
+targeter = NodePath("../../Targeter")
 
 [connection signal="healthChanged" from="HealthSystem" to="." method="_on_health_system_health_changed"]
 [connection signal="healthChanged" from="HealthSystem" to="HealthBar" method="_on_health_system_health_changed"]

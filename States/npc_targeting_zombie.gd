@@ -37,11 +37,15 @@ func reNav() -> void:
 	navAgent.target_position = targeter.targetPosition
 
 func enter() -> void:
+	if parent.name == "TestZom":
+		print("Entering Targeting state")
 	reNav()
 	$NavTimer.start()
 	$AttackTimer.start(attack_cooldown)
 	observer.observationArea = chaseObservationArea
 
 func exit() -> void:
+	if parent.name == "TestZom":
+		print("Exiting Targeting state")
 	$NavTimer.stop()
 	$AttackTimer.stop()

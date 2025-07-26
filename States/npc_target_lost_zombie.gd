@@ -7,10 +7,14 @@ class_name NpcTargetLostZombie
 @export var idleObservationArea: Area2D
 
 func enter() -> void:
+	if parent.name == "TestZom":
+		print("Entering Lost state")
 	$ChaseAfterLOSLostTimer.start()
 	navAgent.target_position = targeter.targetPosition
 
 func exit() -> void:
+	if parent.name == "TestZom":
+		print("Exiting Lost state")
 	$ChaseAfterLOSLostTimer.stop()
 	observer.observationArea = idleObservationArea
 

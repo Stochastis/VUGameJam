@@ -13,6 +13,7 @@ const MAXFLOAT: float = 10000000000000000
 var targetingEntity: bool = false
 var targetPosition: Vector2
 var targetNode: Node2D
+var manualTargeting: bool = false
 
 #Don't need these signals right now, but might need them in the future.
 #signal NewTargetAcquired
@@ -27,6 +28,9 @@ func resetTarget() -> void:
 	targetPosition = global_position + (Vector2.from_angle(global_rotation) * 32)
 
 func _process(delta: float) -> void:
+	if manualTargeting:
+		return
+	
 	#Filter out not-targeting entities
 	var possibleTargets: Array[Node2D]
 	var observedEntities: Array[Node2D] = observer.observedEntities

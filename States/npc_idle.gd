@@ -21,9 +21,13 @@ func _ready() -> void:
 	$StateMachine/NpcIdleWalk.idleWalkMoveSpeed = idleWalkMoveSpeed
 
 func enter() -> void:
+	if parent.name == "TestZom":
+		print("Entering Idle state")
 	$StateMachine.start()
 
 func exit() -> void:
+	if parent.name == "TestZom":
+		print("Exiting Idle state")
 	$StateMachine.stop()
 
 func update(_delta: float) -> void:

@@ -52,7 +52,7 @@ func spawn_walls():
 		
 		worldNavigation.add_child(outerWallInst)
 		outerWalls.append(outerWallInst)
-		tileMapLayer.set_cell(cell_pos, -1)
+		tileMapLayer.set_cell(cell_pos, 2, Vector2i(0, 0))
 
 func get_outer_wall_edges() -> Array[Vector2i]:
 	var outerWallEdgeCellPositions: Array[Vector2i]

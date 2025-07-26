@@ -1,20 +1,30 @@
 extends Node2D
 class_name OuterWall
 
-const FLOORTILESOURCEID: int = 2
-const FLOORTILEATLASCOORDS: Vector2i = Vector2i(0, 0)
-
-func _on_health_system_health_changed() -> void:
-	if $HealthSystem.currHealth <= 0:
-		var envTileMapLayer: TileMapLayer = get_node("/root/Main/World/WorldNavRegion/TileMapLayer-Environment")
-		var mapLocalPos: Vector2 = envTileMapLayer.to_local(global_position)
-		var cellCoords: Vector2i = envTileMapLayer.local_to_map(mapLocalPos)
-		envTileMapLayer.set_cell(cellCoords, FLOORTILESOURCEID, FLOORTILEATLASCOORDS)
-		queue_free()
+var destroyed: bool = false
 
 func makeBreakable() -> void:
 	$AnimatedSprite2D.set_frame_and_progress(1, 0)
 	add_to_group("Breakable")
 
-func interact() -> void:
-	makeBreakable()
+func _on_health_system_health_changed() -> void:
+	if $HealthSystem.currHealth <= 0:
+		$AnimatedSprite2D.set_frame_and_progress(2, 0)
+		$CollisionShape2D.set_deferred("disabled", true)
+		funnelZoms()
+
+func _on_destroyed_funnel_area_body_entered(body: Node2D) -> void:
+	if destroyed and body is Zombie:
+		funnelZom(body)
+
+func funnelZoms() -> void:
+	var overlappingBodies: Array[Node2D] = $DestroyedFunnelArea.get_overlapping_bodies()
+	for body in overlappingBodies:
+		if not body.is_in_group("Zombies"):
+			continue
+		funnelZom(body)
+
+func funnelZom(zom: Zombie) -> void:
+	var currState: State = zom.stateMachine.current_state
+	zom.funnelNode = $Inside
+	currState.Transitioned.emit(currState, "ZombieFunnel")

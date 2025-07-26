@@ -1,4 +1,5 @@
 extends Node
+class_name StateMachine
 
 @export var initial_state: State
 

@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://pxf8rpvhp3cu"]
+
+[ext_resource type="Script" uid="uid://cg38hpigc1jdo" path="res://States/zombie_funnel.gd" id="1_hwlmc"]
+
+[node name="ZombieFunnel" type="Node"]
+script = ExtResource("1_hwlmc")
