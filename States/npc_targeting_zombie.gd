@@ -1,6 +1,7 @@
 extends NpcTargeting
 class_name npc_targeting_zombie
 
+
 @export var navAgent: NavigationAgent2D
 @export var parent: CharacterBody2D
 @export var moveSpeed: float = 20
@@ -19,7 +20,11 @@ func attack() -> void:
 	if targeter.targetNode.has_node("HealthSystem") && attackArea.overlaps_body(targeter.targetNode):
 		var targetHealthSystem: HealthSystem = targeter.targetNode.get_node("HealthSystem")
 		targetHealthSystem.damage(10)
-
+		var sprite : Sprite2D = parent.get_node("Pivot_Point/Sprite")
+		sprite.modulate = Color.DARK_GRAY
+		await get_tree().create_timer(0.1).timeout
+		sprite.modulate = Color.WHITE
+		
 func physics_update(_delta: float) -> void:
 	var toNextPath = (nextPathPos - parent.global_position).normalized()
 	parent.velocity = toNextPath * moveSpeed
