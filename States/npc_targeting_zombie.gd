@@ -15,13 +15,12 @@ var nextPathPos: Vector2
 func attack() -> void:
 	if !targeter.targetNode:
 		return
-	attackArea = parent.Attack_Proximity
+	attackArea = parent.get_node("Attack_Proximity")
 	if targeter.targetNode.has_node("HealthSystem") && attackArea.overlaps_body(targeter.targetNode):
 		var targetHealthSystem: HealthSystem = targeter.targetNode.get_node("HealthSystem")
 		targetHealthSystem.damage(10)
 
 func physics_update(_delta: float) -> void:
-	attack()
 	var toNextPath = (nextPathPos - parent.global_position).normalized()
 	parent.velocity = toNextPath * moveSpeed
 	parent.move_and_slide()
@@ -34,6 +33,7 @@ func _on_nav_timer_timeout() -> void:
 	#Re-nav since the target can move
 	navAgent.target_position = targeter.targetPosition
 	nextPathPos = navAgent.get_next_path_position()
+	$AttackTimer.start(attack_cooldown)
 
 func enter() -> void:
 	observer.observationArea = chaseObservationArea
