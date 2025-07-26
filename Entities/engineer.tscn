@@ -1,8 +1,9 @@
-[gd_scene load_steps=5 format=3 uid="uid://ck6sugtlhcpdi"]
+[gd_scene load_steps=6 format=3 uid="uid://ck6sugtlhcpdi"]
 
 [ext_resource type="Script" uid="uid://cjmwhvds667ma" path="res://Entities/engineer.gd" id="1_fau05"]
 [ext_resource type="Texture2D" uid="uid://bwod6ufyfj828" path="res://Assets/engineer.png" id="1_nniac"]
 [ext_resource type="PackedScene" uid="uid://bvhx82eau62u8" path="res://Components/health_system.tscn" id="2_0e7np"]
+[ext_resource type="PackedScene" uid="uid://ceabu7h8g45hl" path="res://Components/health_bar.tscn" id="3_3smwa"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_fau05"]
 size = Vector2(32, 32)
@@ -17,6 +18,13 @@ playerInteractionArea = NodePath("PivotPoint/PlayerInteractionArea")
 
 [node name="HealthSystem" parent="." instance=ExtResource("2_0e7np")]
 maxHealth = 100
+
+[node name="HealthBar" parent="." node_paths=PackedStringArray("healthSystem") instance=ExtResource("3_3smwa")]
+offset_left = -24.0
+offset_top = -28.0
+offset_right = 23.0
+offset_bottom = -23.0
+healthSystem = NodePath("../HealthSystem")
 
 [node name="PivotPoint" type="Node2D" parent="."]
 
