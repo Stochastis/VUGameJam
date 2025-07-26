@@ -31,8 +31,9 @@ wall_min_slide_angle = 0.0
 script = ExtResource("1_2votk")
 targeter = NodePath("Targeter")
 
-[node name="HealthSystem" parent="." instance=ExtResource("2_rjxgx")]
+[node name="HealthSystem" parent="." node_paths=PackedStringArray("sprite") instance=ExtResource("2_rjxgx")]
 maxHealth = 100
+sprite = NodePath("../Pivot_Point/Sprite")
 
 [node name="HealthBar" parent="." node_paths=PackedStringArray("healthSystem") instance=ExtResource("2_r0odx")]
 offset_left = -13.0
