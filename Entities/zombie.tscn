@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=3 uid="uid://dl3ob63ckvjq5"]
+[gd_scene load_steps=16 format=3 uid="uid://dl3ob63ckvjq5"]
 
 [ext_resource type="Script" uid="uid://c4edw2jhsjl73" path="res://Entities/zombie.gd" id="1_2votk"]
 [ext_resource type="Texture2D" uid="uid://dp8nmqytlyhrd" path="res://Assets/Zombie.png" id="1_nj2pk"]
@@ -13,10 +13,10 @@
 [ext_resource type="PackedScene" uid="uid://by1kd7gx3dumi" path="res://States/npc_target_lost_zombie.tscn" id="11_ew888"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_2votk"]
-size = Vector2(32, 48)
+size = Vector2(32, 40)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_kq8yi"]
-size = Vector2(22.5, 52)
+size = Vector2(20, 40)
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_2votk"]
 radius = 270.224
@@ -54,7 +54,7 @@ texture = ExtResource("1_nj2pk")
 position = Vector2(-8, 0)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Attack_Proximity"]
-position = Vector2(20, 0)
+position = Vector2(18, 0)
 shape = SubResource("RectangleShape2D_kq8yi")
 
 [node name="Focus_Area" type="Area2D" parent="."]
@@ -103,10 +103,11 @@ parent = NodePath("../..")
 navAgent = NodePath("../../NavigationAgent2D")
 idleWalkMoveSpeed = 10.0
 
-[node name="NpcTargetingZombie" parent="StateMachine" node_paths=PackedStringArray("navAgent", "parent", "chaseObservationArea", "observer", "targeter") instance=ExtResource("10_kq8yi")]
+[node name="NpcTargetingZombie" parent="StateMachine" node_paths=PackedStringArray("navAgent", "parent", "chaseObservationArea", "attackArea", "observer", "targeter") instance=ExtResource("10_kq8yi")]
 navAgent = NodePath("../../NavigationAgent2D")
 parent = NodePath("../..")
 chaseObservationArea = NodePath("../../Chase_Area")
+attackArea = NodePath("../../Attack_Proximity")
 observer = NodePath("../../Observer")
 targeter = NodePath("../../Targeter")
 
