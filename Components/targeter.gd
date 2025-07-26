@@ -41,7 +41,7 @@ func _process(delta: float) -> void:
 			#NewTargetAcquired.emit()
 		if not is_instance_valid(targetNode) or not possibleTargets.has(targetNode):
 			targetNode = closestNode(possibleTargets)
-		targetPosition = targetNode.global_position
+		targetPosition = getTargetPos(targetNode)
 	else:
 		if targetingEntity:
 			targetingEntity = false
@@ -49,7 +49,7 @@ func _process(delta: float) -> void:
 			#TargetsLost.emit()
 	
 	#Face target
-	var to_target = (targetPosition - parent.position).normalized()
+	var to_target = (targetPosition - parent.global_position).normalized()
 	var desired_angle = to_target.angle()
 	parent.rotation = lerp_angle(parent.rotation, desired_angle, ROTATIONSPEED * delta)
 	
@@ -61,13 +61,19 @@ func closestNode(nodes: Array[Node2D]) -> Node2D:
 	var distanceToClosest: float = MAXFLOAT
 	
 	for node in nodes:
-		var distanceToNode: float = position.distance_to(node.position)
+		var distanceToNode: float = global_position.distance_to(getTargetPos(node))
 		if distanceToNode < distanceToClosest:
 			currClosestNode = node
 			distanceToClosest = distanceToNode
 	
 	return currClosestNode
-	
+
+func getTargetPos(node: Node2D) -> Vector2:
+	var targetPoint: TargetPoint = node.get_node_or_null("../TargetPoint")
+	if targetPoint != null:
+		return targetPoint.global_position
+	return node.global_position
+
 func _draw() -> void:
 	if displayDebugGraphics:
 		draw_line(position, to_local(targetPosition), Color.BLUE, 2)

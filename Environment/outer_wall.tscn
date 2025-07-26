@@ -7,9 +7,6 @@
 [ext_resource type="Texture2D" uid="uid://d1581ndidnr7t" path="res://Assets/Environment/BreakableOuterWallNS.png" id="5_pvxen"]
 [ext_resource type="PackedScene" uid="uid://dw63555i0b121" path="res://Components/interaction_area.tscn" id="6_22s3a"]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_nlf3o"]
-size = Vector2(33.8557, 16.2327)
-
 [sub_resource type="SpriteFrames" id="SpriteFrames_483ig"]
 animations = [{
 "frames": [{
@@ -24,6 +21,9 @@ animations = [{
 "speed": 5.0
 }]
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_nlf3o"]
+size = Vector2(16, 16.0145)
+
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_li855"]
 size = Vector2(16, 16)
 
@@ -33,18 +33,17 @@ collision_mask = 0
 script = ExtResource("1_38pn6")
 metadata/_edit_group_ = true
 
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_483ig")
+
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(-2.12283e-07, -4.09782e-08)
-scale = Vector2(0.472595, 0.985665)
+position = Vector2(0, -0.0072732)
 shape = SubResource("RectangleShape2D_nlf3o")
 
 [node name="HealthSystem" type="Node" parent="."]
 script = ExtResource("2_22s3a")
 maxHealth = 100
 metadata/_custom_type_script = "uid://jxurm3smcvu1"
-
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
-sprite_frames = SubResource("SpriteFrames_483ig")
 
 [node name="Inside" type="Node2D" parent="."]
 position = Vector2(0, 16)
@@ -53,6 +52,7 @@ position = Vector2(0, 16)
 position = Vector2(0, -9)
 
 [node name="InteractionArea" parent="." node_paths=PackedStringArray("interactableObject") instance=ExtResource("6_22s3a")]
+visible = false
 interactableObject = NodePath("..")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="InteractionArea"]
