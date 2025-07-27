@@ -6,4 +6,4 @@ func use() -> void:
 	if useableObject.has_method("use"):
 		useableObject.use()
 	else:
-		printerr("Selected Useable Object: " + useableObject.name + " has no method named \"use\"")
+		push_error("Selected Useable Object: " + useableObject.name + " has no method named \"use\"")

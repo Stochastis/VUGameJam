@@ -138,4 +138,4 @@ func _on_repair_replace_timer_timeout() -> void:
 			interact(repRepObj, InteractionType.Replace)
 			print("Replaced: " + str(repRepObj.get_parent().name))
 	else:
-		printerr("Unexpected timeout of RepRepTimer with a null repRepObj")
+		push_error("Unexpected timeout of RepRepTimer with a null repRepObj")

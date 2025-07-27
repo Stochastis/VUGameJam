@@ -8,4 +8,4 @@ func repair() -> void:
 	if repairableObject.has_method("repair"):
 		repairableObject.repair(repairAmount)
 	else:
-		printerr("Selected Repairable Object: " + repairableObject.name + " has no method named \"repair\"")
+		push_error("Selected Repairable Object: " + repairableObject.name + " has no method named \"repair\"")

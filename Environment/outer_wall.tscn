@@ -1,7 +1,7 @@
 [gd_scene load_steps=16 format=3 uid="uid://iug3nyrebcte"]
 
 [ext_resource type="Script" uid="uid://hjj6jxgosrx3" path="res://Environment/outer_wall.gd" id="1_38pn6"]
-[ext_resource type="Script" uid="uid://jxurm3smcvu1" path="res://Components/health_system.gd" id="2_22s3a"]
+[ext_resource type="PackedScene" uid="uid://bvhx82eau62u8" path="res://Components/health_system.tscn" id="2_fcp2d"]
 [ext_resource type="Texture2D" uid="uid://d2jyne7ayxkik" path="res://Assets/Environment/BrokenOuterWall.png" id="4_22s3a"]
 [ext_resource type="Texture2D" uid="uid://sn1fhh3r5jfs" path="res://Assets/Environment/OuterWallEdge.png" id="4_fcp2d"]
 [ext_resource type="PackedScene" uid="uid://kiqu37j3fo0g" path="res://Components/target_point.tscn" id="5_38pn6"]
@@ -53,6 +53,10 @@ collision_mask = 0
 script = ExtResource("1_38pn6")
 metadata/_edit_group_ = true
 
+[node name="HealthSystem" parent="." node_paths=PackedStringArray("sprite") instance=ExtResource("2_fcp2d")]
+maxHealth = 100
+sprite = NodePath("../AnimatedSprite2D")
+
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_483ig")
 
@@ -60,12 +64,6 @@ sprite_frames = SubResource("SpriteFrames_483ig")
 visible = false
 position = Vector2(0, -0.0072732)
 shape = SubResource("RectangleShape2D_nlf3o")
-
-[node name="HealthSystem" type="Node" parent="." node_paths=PackedStringArray("sprite")]
-script = ExtResource("2_22s3a")
-maxHealth = 100
-sprite = NodePath("../AnimatedSprite2D")
-metadata/_custom_type_script = "uid://jxurm3smcvu1"
 
 [node name="Inside" type="Node2D" parent="."]
 position = Vector2(0, 32)
@@ -96,12 +94,15 @@ one_shot = true
 
 [node name="Replaceable" parent="." node_paths=PackedStringArray("replaceableObject") instance=ExtResource("7_fcp2d")]
 replaceableObject = NodePath("..")
+timeToReplace = 4.0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Replaceable"]
 shape = SubResource("RectangleShape2D_axysy")
 
 [node name="Repairable" parent="." node_paths=PackedStringArray("repairableObject") instance=ExtResource("8_pvxen")]
 repairableObject = NodePath("..")
+timeToRepair = 0.5
+repairAmount = 10.0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Repairable"]
 shape = SubResource("RectangleShape2D_fcp2d")

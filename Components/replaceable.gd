@@ -7,4 +7,4 @@ func replace() -> void:
 	if replaceableObject.has_method("replace"):
 		replaceableObject.replace()
 	else:
-		printerr("Selected Replaceable Object: " + replaceableObject.name + " has no method named \"replace\"")
+		push_error("Selected Replaceable Object: " + replaceableObject.name + " has no method named \"replace\"")
