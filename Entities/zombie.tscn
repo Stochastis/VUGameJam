@@ -81,7 +81,6 @@ debug_color = Color(0.90265, 0.294429, 0.243426, 0.42)
 debug_enabled = true
 
 [node name="Targeter" parent="." node_paths=PackedStringArray("parent", "observer") instance=ExtResource("5_fqedw")]
-position = Vector2(24, 0)
 parent = NodePath("..")
 observer = NodePath("../Observer")
 trackedEntityGroups = Array[String](["Good Guys", "Breakable"])
@@ -100,7 +99,8 @@ initial_state = NodePath("NpcIdle")
 
 [node name="NpcIdle" parent="StateMachine" node_paths=PackedStringArray("targeter", "parent", "navAgent") instance=ExtResource("9_kq8yi")]
 targeter = NodePath("../../Targeter")
-maxWaitTime = 2.0
+maxWaitTime = 10.0
+maxTurnDegrees = 50.0
 parent = NodePath("../..")
 navAgent = NodePath("../../NavigationAgent2D")
 idleWalkMoveSpeed = 10.0

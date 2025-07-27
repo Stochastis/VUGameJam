@@ -9,7 +9,6 @@ class_name NpcTargetingZombie
 @export var attackArea: Area2D
 @export var observer: Observer
 @export var attack_cooldown: float
-@export var sprite = Sprite2D
 
 var nextPathPos: Vector2
 
@@ -21,7 +20,7 @@ func attack() -> void:
 		targetHealthSystem.damage(10)
 		
 func physics_update(_delta: float) -> void:
-	var nextPathPos = navAgent.get_next_path_position()
+	nextPathPos = navAgent.get_next_path_position()
 	var toNextPath = (nextPathPos - parent.global_position).normalized()
 	parent.velocity = toNextPath * npcTargetingZombieMoveSpeed
 	parent.move_and_slide()

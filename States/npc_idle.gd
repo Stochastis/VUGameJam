@@ -7,7 +7,6 @@ class_name NpcIdle
 @export var maxTurnDegrees: float = 45
 @export var parent: CharacterBody2D
 @export var navAgent: NavigationAgent2D
-@export var minDistToWalk: float = 16
 @export var idleWalkMoveSpeed: float
 
 func _ready() -> void:
