@@ -42,8 +42,8 @@ func _process(_delta: float) -> void:
 	oldRepRepObj = repRepObj
 	
 	#Debug
-	var objStr: String = "null" if not repRepObj else str(repRepObj.get_parent().name)
-	print(RepRepMode.keys()[repRepMode] + objStr)
+	#var objStr: String = "null" if not repRepObj else str(repRepObj.get_parent().name)
+	#print(RepRepMode.keys()[repRepMode] + objStr)
 
 func _physics_process(_delta):
 	var input_direction =  Input.get_vector("left", "right", "up", "down")
@@ -104,7 +104,7 @@ func closestInteractableArea(interactionType: InteractionType) -> Area2D:
 				if area.name != "Replaceable":
 					continue
 		
-		var distanceToArea: float = self.position.distance_to(area.position)
+		var distanceToArea: float = get_global_mouse_position().distance_to(area.global_position)
 		if distanceToArea < distanceToClosest:
 			currClosestInteractableArea = area
 			distanceToClosest = distanceToArea
