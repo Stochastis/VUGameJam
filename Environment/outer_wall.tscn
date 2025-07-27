@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://iug3nyrebcte"]
+[gd_scene load_steps=16 format=3 uid="uid://iug3nyrebcte"]
 
 [ext_resource type="Script" uid="uid://hjj6jxgosrx3" path="res://Environment/outer_wall.gd" id="1_38pn6"]
 [ext_resource type="Script" uid="uid://jxurm3smcvu1" path="res://Components/health_system.gd" id="2_22s3a"]
@@ -6,6 +6,8 @@
 [ext_resource type="Texture2D" uid="uid://sn1fhh3r5jfs" path="res://Assets/Environment/OuterWallEdge.png" id="4_fcp2d"]
 [ext_resource type="PackedScene" uid="uid://kiqu37j3fo0g" path="res://Components/target_point.tscn" id="5_38pn6"]
 [ext_resource type="Texture2D" uid="uid://d1581ndidnr7t" path="res://Assets/Environment/BreakableOuterWallNS.png" id="5_pvxen"]
+[ext_resource type="PackedScene" uid="uid://empvjc8jchgt" path="res://Components/replaceable.tscn" id="7_fcp2d"]
+[ext_resource type="PackedScene" uid="uid://bwpofjjuvx0ws" path="res://Components/repairable.tscn" id="8_pvxen"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_483ig"]
 animations = [{
@@ -39,6 +41,12 @@ polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3)])
 outlines = Array[PackedVector2Array]([PackedVector2Array(-4, -8, 4, -8, 4, 8, -4, 8)])
 agent_radius = 0.0
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_axysy"]
+size = Vector2(16, 16)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_fcp2d"]
+size = Vector2(16, 16)
+
 [node name="OuterWall" type="StaticBody2D"]
 collision_layer = 4
 collision_mask = 0
@@ -49,6 +57,7 @@ metadata/_edit_group_ = true
 sprite_frames = SubResource("SpriteFrames_483ig")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+visible = false
 position = Vector2(0, -0.0072732)
 shape = SubResource("RectangleShape2D_nlf3o")
 
@@ -84,6 +93,18 @@ enabled = false
 [node name="ZomFunnelTimer" type="Timer" parent="."]
 wait_time = 5.0
 one_shot = true
+
+[node name="Replaceable" parent="." node_paths=PackedStringArray("replaceableObject") instance=ExtResource("7_fcp2d")]
+replaceableObject = NodePath("..")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Replaceable"]
+shape = SubResource("RectangleShape2D_axysy")
+
+[node name="Repairable" parent="." node_paths=PackedStringArray("repairableObject") instance=ExtResource("8_pvxen")]
+repairableObject = NodePath("..")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Repairable"]
+shape = SubResource("RectangleShape2D_fcp2d")
 
 [connection signal="healthChanged" from="HealthSystem" to="." method="_on_health_system_health_changed"]
 [connection signal="timeout" from="ZomFunnelTimer" to="." method="_on_zom_funnel_timer_timeout"]

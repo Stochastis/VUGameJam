@@ -18,11 +18,14 @@ var replacingObject: Node2D
 
 func _process(_delta: float) -> void:
 	look_at(get_global_mouse_position())
+	
 	if repairing:
-		var repairObjStr: String = "null" if not repairingObject else str(repairingObject.name)
+		repairingObject = closestInteractableArea(InteractionType.Repair)
+		var repairObjStr: String = "null" if not repairingObject else str(repairingObject.get_parent().name)
 		print("Repairing: " + repairObjStr)
 	elif replacing:
-		var replaceObjStr: String = "null" if not replacingObject else str(replacingObject.name)
+		replacingObject = closestInteractableArea(InteractionType.Replace)
+		var replaceObjStr: String = "null" if not replacingObject else str(replacingObject.get_parent().name)
 		print("Replacing: " + replaceObjStr)
 
 func _physics_process(_delta):
