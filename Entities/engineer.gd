@@ -5,18 +5,34 @@ extends CharacterBody2D
 
 const MAXFLOAT: float = 10000000000000000
 
+var repairing: bool = false
+var replacing: bool = false
+
 func _input(event: InputEvent) -> void:
 	if event.is_action_pressed("interact"):
 		interact()
+	if event.is_action_pressed("repair"):
+		repairing = true
+	if event.is_action_released("repair"):
+		repairing = false
+	if event.is_action_pressed("replace"):
+		replacing = true
+	if event.is_action_released("replace"):
+		replacing = false
+
+func _process(_delta: float) -> void:
+	look_at(get_global_mouse_position())
+	
+	#Can't do both at the same time. Prioritize repairing over replacing.
+	if repairing:
+		print("repairing")
+	elif replacing:
+		print("replacing")
 
 func _physics_process(_delta):
 	var input_direction =  Input.get_vector("left", "right", "up", "down")
-	
 	velocity = input_direction * move_speed
-	
 	move_and_slide()
-	
-	look_at(get_global_mouse_position())
 
 func interact() -> void:
 	var overlappingAreas = playerInteractionArea.get_overlapping_areas()

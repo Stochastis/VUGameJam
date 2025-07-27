@@ -29,7 +29,7 @@ func openDoor() -> void:
 	else:
 		#$NavigationRegion2DEW.enabled = true
 		$AnimatedSprite2D.set_frame_and_progress(3, 0)
-	$StaticBody2D/CollisionShape2D2.disabled = true
+	$CollisionShape2D.disabled = true
 
 func closeDoor() -> void:
 	open = false
@@ -39,4 +39,4 @@ func closeDoor() -> void:
 	else:
 		#$NavigationRegion2DEW.enabled = false
 		$AnimatedSprite2D.set_frame_and_progress(1, 0)
-	$StaticBody2D/CollisionShape2D2.disabled = false
+	$CollisionShape2D.disabled = false

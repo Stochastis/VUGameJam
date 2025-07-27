@@ -116,7 +116,7 @@ tile_map_data = PackedByteArray("AAAIAAMAEwAAAAAAAAAIAAQAEwAAAAAAAAAIAAUAEwAAAAA
 tile_set = SubResource("TileSet_272bh")
 
 [node name="Engineer" parent="World" instance=ExtResource("3_h2yge")]
-position = Vector2(40, 567)
+position = Vector2(686, 762)
 metadata/_edit_group_ = true
 
 [node name="Camera2D" type="Camera2D" parent="World/Engineer"]
@@ -190,6 +190,9 @@ worldNavigation = NodePath("../WorldNavRegion")
 [node name="WallBreakerTimer" type="Timer" parent="World/OuterWallManager"]
 wait_time = 60.0
 autostart = true
+
+[node name="TestZom" parent="World" instance=ExtResource("12_dg77c")]
+position = Vector2(804, 758)
 
 [connection signal="timeout" from="World/WaveManager/Timer" to="World/WaveManager" method="_on_timer_timeout"]
 [connection signal="timeout" from="World/OuterWallManager/WallBreakerTimer" to="World/OuterWallManager" method="_on_wall_breaker_timer_timeout"]

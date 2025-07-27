@@ -7,6 +7,8 @@
 [ext_resource type="Texture2D" uid="uid://dv6fllihs0ai2" path="res://Assets/Environment/OpenDoorLeftRight.png" id="3_50cdl"]
 [ext_resource type="PackedScene" uid="uid://dw63555i0b121" path="res://Components/interaction_area.tscn" id="5_4xadh"]
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_hun61"]
+
 [sub_resource type="SpriteFrames" id="SpriteFrames_t4u4y"]
 animations = [{
 "frames": [{
@@ -39,15 +41,19 @@ polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3)])
 outlines = Array[PackedVector2Array]([PackedVector2Array(-8, -2, 8, -2, 8, 2, -8, 2)])
 agent_radius = 0.0
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_hun61"]
-
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_y5njw"]
 
-[node name="Door" type="Node2D" node_paths=PackedStringArray("northSouthNavRegion", "eastWestNavRegion")]
+[node name="Door" type="StaticBody2D" node_paths=PackedStringArray("northSouthNavRegion", "eastWestNavRegion") groups=["Breakable"]]
+collision_layer = 2
+collision_mask = 0
 script = ExtResource("1_v6xrn")
 northSouthNavRegion = NodePath("NavigationRegion2DNS")
 eastWestNavRegion = NodePath("NavigationRegion2DEW")
 metadata/_edit_group_ = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+scale = Vector2(0.8, 0.8)
+shape = SubResource("RectangleShape2D_hun61")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_t4u4y")
@@ -57,15 +63,6 @@ navigation_polygon = SubResource("NavigationPolygon_4xadh")
 
 [node name="NavigationRegion2DEW" type="NavigationRegion2D" parent="."]
 navigation_polygon = SubResource("NavigationPolygon_6hwww")
-
-[node name="StaticBody2D" type="StaticBody2D" parent="."]
-visible = false
-scale = Vector2(0.8, 0.8)
-collision_layer = 2
-collision_mask = 0
-
-[node name="CollisionShape2D2" type="CollisionShape2D" parent="StaticBody2D"]
-shape = SubResource("RectangleShape2D_hun61")
 
 [node name="Area2D" type="Area2D" parent="."]
 visible = false
