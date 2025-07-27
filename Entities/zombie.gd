@@ -1,13 +1,14 @@
 extends CharacterBody2D
+class_name Zombie
 
-@export var move_speed: float = 20
-@export var max_health: int = 100
 @export var cooldown: = 1.0
-@export var ROTATIONSPEED: float = 1
-@export var targeter: Targeter
 
 @onready var target = null
-@onready var current_health: int = max_health
-@onready var navAgent := $NavigationAgent2D as NavigationAgent2D
+@onready var stateMachine: StateMachine = $StateMachine
 
 var can_attack = true
+var funnelNode: Node2D
+
+func _on_health_system_health_changed() -> void:
+	if $HealthSystem.currHealth <= 0:
+		queue_free()

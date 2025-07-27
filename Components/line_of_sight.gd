@@ -10,6 +10,16 @@ func has_line_of_sight(target: Node2D) -> bool:
 	for layer in blockingLayers:
 		mask |= 1 << (layer - 1) #Godot layers are 1-indexed in the UI
 	
-	var query = PhysicsRayQueryParameters2D.create(parent.global_position, target.global_position, mask, [parent, target])
+	var ignored: Array[RID]
+	var pointToLookAt: Vector2
+	var targetPoint: TargetPoint = target.get_node_or_null("TargetPoint")
+	if targetPoint != null:
+		pointToLookAt = targetPoint.global_position
+		ignored = [parent]
+	else:
+		pointToLookAt = target.global_position
+		ignored = [parent, target]
+	
+	var query = PhysicsRayQueryParameters2D.create(parent.global_position, pointToLookAt, mask, ignored)
 	var result := get_world_2d().direct_space_state.intersect_ray(query)
 	return result.is_empty()

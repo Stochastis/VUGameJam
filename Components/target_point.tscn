@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://kiqu37j3fo0g"]
+
+[ext_resource type="Script" uid="uid://bbr8gbtq6v71x" path="res://Components/target_point.gd" id="1_o7mq7"]
+
+[node name="TargetPoint" type="Node2D"]
+script = ExtResource("1_o7mq7")

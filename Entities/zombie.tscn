@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=3 uid="uid://dl3ob63ckvjq5"]
+[gd_scene load_steps=17 format=3 uid="uid://dl3ob63ckvjq5"]
 
 [ext_resource type="Script" uid="uid://c4edw2jhsjl73" path="res://Entities/zombie.gd" id="1_2votk"]
 [ext_resource type="Texture2D" uid="uid://dp8nmqytlyhrd" path="res://Assets/Zombie.png" id="1_nj2pk"]
@@ -10,12 +10,14 @@
 [ext_resource type="PackedScene" uid="uid://bhwn8uo4g627j" path="res://States/state_machine.tscn" id="8_ksr8e"]
 [ext_resource type="PackedScene" uid="uid://dl2o8qjiic7t0" path="res://States/npc_idle.tscn" id="9_kq8yi"]
 [ext_resource type="PackedScene" uid="uid://tilqk8b376eh" path="res://States/npc_targeting_zombie.tscn" id="10_kq8yi"]
+[ext_resource type="PackedScene" uid="uid://by1kd7gx3dumi" path="res://States/npc_target_lost_zombie.tscn" id="11_ew888"]
+[ext_resource type="PackedScene" uid="uid://pxf8rpvhp3cu" path="res://States/zombie_funnel.tscn" id="12_ksr8e"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_2votk"]
-size = Vector2(32, 48)
+size = Vector2(28, 32)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_kq8yi"]
-size = Vector2(22.5, 52)
+size = Vector2(20, 40)
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_2votk"]
 radius = 270.224
@@ -23,17 +25,19 @@ radius = 270.224
 [sub_resource type="CircleShape2D" id="CircleShape2D_r0odx"]
 radius = 729.098
 
-[node name="Zombie" type="CharacterBody2D" node_paths=PackedStringArray("targeter") groups=["Zombies"]]
+[node name="Zombie" type="CharacterBody2D" groups=["Zombies"]]
 scale = Vector2(0.25, 0.25)
 collision_mask = 7
 motion_mode = 1
 wall_min_slide_angle = 0.0
 script = ExtResource("1_2votk")
-targeter = NodePath("Targeter")
+
+[node name="Sprite" type="Sprite2D" parent="."]
+texture = ExtResource("1_nj2pk")
 
 [node name="HealthSystem" parent="." node_paths=PackedStringArray("sprite") instance=ExtResource("2_rjxgx")]
 maxHealth = 100
-sprite = NodePath("../Pivot_Point/Sprite")
+sprite = NodePath("../Sprite")
 
 [node name="HealthBar" parent="." node_paths=PackedStringArray("healthSystem") instance=ExtResource("2_r0odx")]
 offset_left = -13.0
@@ -43,22 +47,21 @@ offset_bottom = -24.0
 healthSystem = NodePath("../HealthSystem")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(2, 0)
 shape = SubResource("RectangleShape2D_2votk")
 metadata/_edit_lock_ = true
 
-[node name="Pivot_Point" type="Node2D" parent="."]
-
-[node name="Sprite" type="Sprite2D" parent="Pivot_Point"]
-texture = ExtResource("1_nj2pk")
-
 [node name="Attack_Proximity" type="Area2D" parent="."]
 position = Vector2(-8, 0)
+collision_mask = 5
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Attack_Proximity"]
-position = Vector2(20, 0)
+position = Vector2(18, 0)
 shape = SubResource("RectangleShape2D_kq8yi")
 
 [node name="Focus_Area" type="Area2D" parent="."]
+visible = false
+collision_mask = 5
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Focus_Area"]
 visible = false
@@ -66,6 +69,8 @@ shape = SubResource("CircleShape2D_2votk")
 
 [node name="Chase_Area" type="Area2D" parent="."]
 unique_name_in_owner = true
+visible = false
+collision_mask = 5
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Chase_Area"]
 visible = false
@@ -73,15 +78,13 @@ shape = SubResource("CircleShape2D_r0odx")
 debug_color = Color(0.90265, 0.294429, 0.243426, 0.42)
 
 [node name="NavigationAgent2D" type="NavigationAgent2D" parent="."]
-simplify_path = true
-simplify_epsilon = 4.0
 debug_enabled = true
 
 [node name="Targeter" parent="." node_paths=PackedStringArray("parent", "observer") instance=ExtResource("5_fqedw")]
 position = Vector2(24, 0)
 parent = NodePath("..")
 observer = NodePath("../Observer")
-trackedEntityGroups = Array[String](["Good Guys"])
+trackedEntityGroups = Array[String](["Good Guys", "Breakable"])
 
 [node name="Observer" parent="." node_paths=PackedStringArray("lineOfSight", "observationArea") instance=ExtResource("6_8qtrh")]
 position = Vector2(48, 0)
@@ -97,18 +100,33 @@ initial_state = NodePath("NpcIdle")
 
 [node name="NpcIdle" parent="StateMachine" node_paths=PackedStringArray("targeter", "parent", "navAgent") instance=ExtResource("9_kq8yi")]
 targeter = NodePath("../../Targeter")
-maxWaitTime = 10.0
+maxWaitTime = 2.0
 parent = NodePath("../..")
 navAgent = NodePath("../../NavigationAgent2D")
+idleWalkMoveSpeed = 10.0
 
-[node name="NpcTargetingZombie" parent="StateMachine" node_paths=PackedStringArray("navAgent", "parent", "idleObservationArea", "chaseObservationArea", "observer", "sprite", "targeter") instance=ExtResource("10_kq8yi")]
+[node name="NpcTargetingZombie" parent="StateMachine" node_paths=PackedStringArray("navAgent", "parent", "chaseObservationArea", "attackArea", "observer", "targeter") instance=ExtResource("10_kq8yi")]
 navAgent = NodePath("../../NavigationAgent2D")
 parent = NodePath("../..")
-idleObservationArea = NodePath("../../Focus_Area")
 chaseObservationArea = NodePath("../../Chase_Area")
+attackArea = NodePath("../../Attack_Proximity")
 observer = NodePath("../../Observer")
-sprite = NodePath("../../Pivot_Point/Sprite")
+attack_cooldown = 1.0
 targeter = NodePath("../../Targeter")
 
+[node name="NpcTargetLostZombie" parent="StateMachine" node_paths=PackedStringArray("parent", "navAgent", "observer", "idleObservationArea", "targeter") instance=ExtResource("11_ew888")]
+parent = NodePath("../..")
+navAgent = NodePath("../../NavigationAgent2D")
+observer = NodePath("../../Observer")
+idleObservationArea = NodePath("../../Focus_Area")
+targeter = NodePath("../../Targeter")
+targetLostMoveSpeed = 15.0
+
+[node name="ZombieFunnel" parent="StateMachine" node_paths=PackedStringArray("parent", "navAgent", "targeter") instance=ExtResource("12_ksr8e")]
+parent = NodePath("../..")
+navAgent = NodePath("../../NavigationAgent2D")
+targeter = NodePath("../../Targeter")
+
+[connection signal="healthChanged" from="HealthSystem" to="." method="_on_health_system_health_changed"]
 [connection signal="healthChanged" from="HealthSystem" to="HealthBar" method="_on_health_system_health_changed"]
 [connection signal="body_shape_entered" from="Attack_Proximity" to="." method="_on_attack_proximity_body_shape_entered"]

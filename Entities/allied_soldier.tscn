@@ -1,7 +1,8 @@
-[gd_scene load_steps=14 format=3 uid="uid://ce22jwvxoan48"]
+[gd_scene load_steps=16 format=3 uid="uid://ce22jwvxoan48"]
 
 [ext_resource type="PackedScene" uid="uid://bvhx82eau62u8" path="res://Components/health_system.tscn" id="1_pd1d8"]
 [ext_resource type="Script" uid="uid://dbsu2wgaqddwy" path="res://Entities/allied_soldier.gd" id="1_qcgow"]
+[ext_resource type="PackedScene" uid="uid://ceabu7h8g45hl" path="res://Components/health_bar.tscn" id="2_5qc07"]
 [ext_resource type="Texture2D" uid="uid://bckqv8uthcs8n" path="res://Assets/survivor1_reload.png" id="2_lqr21"]
 [ext_resource type="Texture2D" uid="uid://bi4btcg8yjocb" path="res://Assets/survivor1_machine.png" id="3_qcgow"]
 [ext_resource type="PackedScene" uid="uid://bivqglsx6xa3m" path="res://Components/line_of_sight.tscn" id="5_2q06j"]
@@ -10,6 +11,7 @@
 [ext_resource type="PackedScene" uid="uid://bhwn8uo4g627j" path="res://States/state_machine.tscn" id="6_mx1sb"]
 [ext_resource type="PackedScene" uid="uid://dl2o8qjiic7t0" path="res://States/npc_idle.tscn" id="9_smne3"]
 [ext_resource type="PackedScene" uid="uid://cjdj5a7g077yl" path="res://States/npc_targeting_soldier.tscn" id="10_smne3"]
+[ext_resource type="PackedScene" uid="uid://8ao6prab7xy4" path="res://States/npc_target_lost.tscn" id="11_4nw5l"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_2q06j"]
 animations = [{
@@ -38,6 +40,13 @@ wall_min_slide_angle = 0.0174533
 script = ExtResource("1_qcgow")
 metadata/_edit_group_ = true
 
+[node name="HealthBar" parent="." node_paths=PackedStringArray("healthSystem") instance=ExtResource("2_5qc07")]
+offset_left = -32.0
+offset_top = -32.0
+offset_right = 35.0
+offset_bottom = -27.0
+healthSystem = NodePath("../HealthSystem")
+
 [node name="HealthSystem" parent="." node_paths=PackedStringArray("sprite") instance=ExtResource("1_pd1d8")]
 maxHealth = 100
 sprite = NodePath("../AnimatedSprite2D")
@@ -55,7 +64,7 @@ scale = Vector2(16, 16)
 shape = SubResource("CircleShape2D_qcgow")
 
 [node name="ViewCone" type="CollisionPolygon2D" parent="ObservationArea"]
-polygon = PackedVector2Array(1200, 512, 1200, -512, 1024, -1024, 20, -148, 20, 148, 1024, 1024)
+polygon = PackedVector2Array(2045, 0, 1024, -1024, 20, -148, 20, 148, 1024, 1024)
 
 [node name="Targeter" parent="." node_paths=PackedStringArray("parent", "observer") instance=ExtResource("5_smne3")]
 parent = NodePath("..")
@@ -83,5 +92,9 @@ animSprite2D = NodePath("../../AnimatedSprite2D")
 shootRestTime = 1.0
 targeter = NodePath("../../Targeter")
 
+[node name="NpcTargetLost" parent="StateMachine" instance=ExtResource("11_4nw5l")]
+
 [node name="NavigationAgent2D" type="NavigationAgent2D" parent="."]
 debug_enabled = true
+
+[connection signal="healthChanged" from="HealthSystem" to="." method="_on_health_system_health_changed"]

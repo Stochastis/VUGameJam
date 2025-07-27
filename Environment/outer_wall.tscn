@@ -1,0 +1,89 @@
+[gd_scene load_steps=12 format=3 uid="uid://iug3nyrebcte"]
+
+[ext_resource type="Script" uid="uid://hjj6jxgosrx3" path="res://Environment/outer_wall.gd" id="1_38pn6"]
+[ext_resource type="Script" uid="uid://jxurm3smcvu1" path="res://Components/health_system.gd" id="2_22s3a"]
+[ext_resource type="Texture2D" uid="uid://d2jyne7ayxkik" path="res://Assets/Environment/BrokenOuterWall.png" id="4_22s3a"]
+[ext_resource type="Texture2D" uid="uid://sn1fhh3r5jfs" path="res://Assets/Environment/OuterWallEdge.png" id="4_fcp2d"]
+[ext_resource type="PackedScene" uid="uid://kiqu37j3fo0g" path="res://Components/target_point.tscn" id="5_38pn6"]
+[ext_resource type="Texture2D" uid="uid://d1581ndidnr7t" path="res://Assets/Environment/BreakableOuterWallNS.png" id="5_pvxen"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_483ig"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("4_fcp2d")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_pvxen")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_22s3a")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_nlf3o"]
+size = Vector2(16, 16.0145)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_38pn6"]
+size = Vector2(512, 256)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_22s3a"]
+size = Vector2(16, 17)
+
+[sub_resource type="NavigationPolygon" id="NavigationPolygon_22s3a"]
+vertices = PackedVector2Array(4, 8, -4, 8, -4, -8, 4, -8)
+polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3)])
+outlines = Array[PackedVector2Array]([PackedVector2Array(-4, -8, 4, -8, 4, 8, -4, 8)])
+agent_radius = 0.0
+
+[node name="OuterWall" type="StaticBody2D"]
+collision_layer = 4
+collision_mask = 0
+script = ExtResource("1_38pn6")
+metadata/_edit_group_ = true
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_483ig")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, -0.0072732)
+shape = SubResource("RectangleShape2D_nlf3o")
+
+[node name="HealthSystem" type="Node" parent="." node_paths=PackedStringArray("sprite")]
+script = ExtResource("2_22s3a")
+maxHealth = 100
+sprite = NodePath("../AnimatedSprite2D")
+metadata/_custom_type_script = "uid://jxurm3smcvu1"
+
+[node name="Inside" type="Node2D" parent="."]
+position = Vector2(0, 16)
+
+[node name="TargetPoint" parent="." instance=ExtResource("5_38pn6")]
+position = Vector2(0, -9)
+
+[node name="DestroyedFunnelArea" type="Area2D" parent="."]
+visible = false
+collision_layer = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="DestroyedFunnelArea"]
+position = Vector2(0, -136)
+shape = SubResource("RectangleShape2D_38pn6")
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="DestroyedFunnelArea"]
+position = Vector2(0, -0.5)
+shape = SubResource("RectangleShape2D_22s3a")
+
+[node name="NavigationRegion2D" type="NavigationRegion2D" parent="."]
+visible = false
+navigation_polygon = SubResource("NavigationPolygon_22s3a")
+enabled = false
+
+[node name="ZomFunnelTimer" type="Timer" parent="."]
+wait_time = 5.0
+one_shot = true
+
+[connection signal="healthChanged" from="HealthSystem" to="." method="_on_health_system_health_changed"]
+[connection signal="timeout" from="ZomFunnelTimer" to="." method="_on_zom_funnel_timer_timeout"]

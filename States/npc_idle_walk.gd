@@ -1,9 +1,11 @@
 extends State
 class_name NpcIdleWalk
 
+
 #Inheriting from NpcIdle super-state
 var targeter: Targeter
 var parent: CharacterBody2D
+var idleWalkMoveSpeed: float
 
 const MINDISTTOWALK: float = 32
 const MINDISTFROMPOINT: float = 16
@@ -18,7 +20,7 @@ func enter() -> void:
 
 func physics_update(_delta: float) -> void:
 	var toNextPath = (targeter.targetPosition - parent.global_position).normalized()
-	parent.velocity = toNextPath * parent.move_speed
+	parent.velocity = toNextPath * idleWalkMoveSpeed
 	parent.move_and_slide()
 	
 	if parent.global_position.distance_to(targeter.targetPosition) < MINDISTFROMPOINT:
