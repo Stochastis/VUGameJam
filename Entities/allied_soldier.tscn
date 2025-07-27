@@ -39,8 +39,9 @@ wall_min_slide_angle = 0.0174533
 script = ExtResource("1_qcgow")
 metadata/_edit_group_ = true
 
-[node name="HealthSystem" parent="." instance=ExtResource("1_pd1d8")]
+[node name="HealthSystem" parent="." node_paths=PackedStringArray("sprite") instance=ExtResource("1_pd1d8")]
 maxHealth = 100
+sprite = NodePath("../AnimatedSprite2D")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_2q06j")

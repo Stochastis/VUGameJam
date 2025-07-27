@@ -35,8 +35,9 @@ script = ExtResource("1_2votk")
 [node name="Sprite" type="Sprite2D" parent="."]
 texture = ExtResource("1_nj2pk")
 
-[node name="HealthSystem" parent="." instance=ExtResource("2_rjxgx")]
+[node name="HealthSystem" parent="." node_paths=PackedStringArray("sprite") instance=ExtResource("2_rjxgx")]
 maxHealth = 100
+sprite = NodePath("../Pivot_Point/Sprite")
 
 [node name="HealthBar" parent="." node_paths=PackedStringArray("healthSystem") instance=ExtResource("2_r0odx")]
 offset_left = -13.0
@@ -62,6 +63,7 @@ visible = false
 collision_mask = 5
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Focus_Area"]
+visible = false
 shape = SubResource("CircleShape2D_2votk")
 
 [node name="Chase_Area" type="Area2D" parent="."]
@@ -70,6 +72,7 @@ visible = false
 collision_mask = 5
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Chase_Area"]
+visible = false
 shape = SubResource("CircleShape2D_r0odx")
 debug_color = Color(0.90265, 0.294429, 0.243426, 0.42)
 
@@ -77,11 +80,13 @@ debug_color = Color(0.90265, 0.294429, 0.243426, 0.42)
 debug_enabled = true
 
 [node name="Targeter" parent="." node_paths=PackedStringArray("parent", "observer") instance=ExtResource("5_fqedw")]
+position = Vector2(24, 0)
 parent = NodePath("..")
 observer = NodePath("../Observer")
 trackedEntityGroups = Array[String](["Good Guys", "Breakable"])
 
 [node name="Observer" parent="." node_paths=PackedStringArray("lineOfSight", "observationArea") instance=ExtResource("6_8qtrh")]
+position = Vector2(48, 0)
 position = Vector2(48, 0)
 lineOfSight = NodePath("../LineOfSight")
 observationArea = NodePath("../Focus_Area")
