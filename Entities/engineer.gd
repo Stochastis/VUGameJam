@@ -19,7 +19,7 @@ func _physics_process(_delta):
 func _input(event: InputEvent) -> void:
 	if event.is_action_pressed("interact"):
 		interact()
-		
+	
 	if event.is_action_pressed("repair"):
 		beginRepairing()
 	if event.is_action_released("repair"):
@@ -46,7 +46,7 @@ func closestInteractableArea(areas: Array[Area2D]) -> Area2D:
 	var distanceToClosest: float = MAXFLOAT
 
 	for area in areas:
-		if area.name != "InteractionArea":
+		if area.name != "Interactable":
 			continue
 		
 		var distanceToArea: float = self.position.distance_to(area.position)

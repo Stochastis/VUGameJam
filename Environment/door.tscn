@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=3 uid="uid://bg5skfd20wcbw"]
+[gd_scene load_steps=19 format=3 uid="uid://bg5skfd20wcbw"]
 
 [ext_resource type="Script" uid="uid://cpm6twph3auq8" path="res://Environment/door.gd" id="1_v6xrn"]
 [ext_resource type="Texture2D" uid="uid://dwl8rfik3abdj" path="res://Assets/Environment/ClosedDoorUpDown.png" id="2_4xadh"]
@@ -6,9 +6,11 @@
 [ext_resource type="Texture2D" uid="uid://dkdts5jkkrqo6" path="res://Assets/Environment/OpenDoorUpDown.png" id="2_v6xrn"]
 [ext_resource type="Texture2D" uid="uid://h4y2no6dhusb" path="res://Assets/Environment/ClosedDoorLeftRight.png" id="3_6hwww"]
 [ext_resource type="Texture2D" uid="uid://dv6fllihs0ai2" path="res://Assets/Environment/OpenDoorLeftRight.png" id="3_50cdl"]
-[ext_resource type="PackedScene" uid="uid://dw63555i0b121" path="res://Components/interaction_area.tscn" id="5_4xadh"]
+[ext_resource type="PackedScene" uid="uid://dw63555i0b121" path="res://Components/interactable.tscn" id="5_4xadh"]
 [ext_resource type="Texture2D" uid="uid://d4dibwcv2uryn" path="res://Assets/Environment/BrokenDoorUpDown.png" id="7_8jukc"]
 [ext_resource type="Texture2D" uid="uid://dhuv5wmnn8hqc" path="res://Assets/Environment/BrokenDoorLeftRight.png" id="8_svg85"]
+[ext_resource type="PackedScene" uid="uid://bwpofjjuvx0ws" path="res://Components/repairable.tscn" id="9_60si7"]
+[ext_resource type="PackedScene" uid="uid://empvjc8jchgt" path="res://Components/replaceable.tscn" id="10_quvkt"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_hun61"]
 
@@ -50,6 +52,12 @@ polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3)])
 outlines = Array[PackedVector2Array]([PackedVector2Array(-8, -2, 8, -2, 8, 2, -8, 2)])
 agent_radius = 0.0
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_14t7a"]
+size = Vector2(16, 16)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_60si7"]
+size = Vector2(16, 16)
+
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_y5njw"]
 
 [node name="Door" type="StaticBody2D" node_paths=PackedStringArray("northSouthNavRegion", "eastWestNavRegion") groups=["Breakable"]]
@@ -72,17 +80,36 @@ shape = SubResource("RectangleShape2D_hun61")
 sprite_frames = SubResource("SpriteFrames_t4u4y")
 
 [node name="NavigationRegion2DNS" type="NavigationRegion2D" parent="."]
+visible = false
 navigation_polygon = SubResource("NavigationPolygon_4xadh")
 
 [node name="NavigationRegion2DEW" type="NavigationRegion2D" parent="."]
+visible = false
 navigation_polygon = SubResource("NavigationPolygon_6hwww")
 
-[node name="InteractionArea" parent="." node_paths=PackedStringArray("interactableObject") instance=ExtResource("5_4xadh")]
+[node name="Repairable" parent="." node_paths=PackedStringArray("repairableObject") instance=ExtResource("9_60si7")]
+visible = false
+repairableObject = NodePath("..")
+timeToRepair = 2.0
+repairAmount = 15.0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Repairable"]
+shape = SubResource("RectangleShape2D_14t7a")
+
+[node name="Replaceable" parent="." node_paths=PackedStringArray("replaceableObject") instance=ExtResource("10_quvkt")]
+visible = false
+replaceableObject = NodePath("..")
+timeToReplace = 4.0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Replaceable"]
+shape = SubResource("RectangleShape2D_60si7")
+
+[node name="Interactable" parent="." node_paths=PackedStringArray("interactableObject") instance=ExtResource("5_4xadh")]
 visible = false
 scale = Vector2(0.8, 0.8)
 interactableObject = NodePath("..")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="InteractionArea"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Interactable"]
 shape = SubResource("RectangleShape2D_y5njw")
 
 [connection signal="healthChanged" from="HealthSystem" to="." method="_on_health_system_health_changed"]

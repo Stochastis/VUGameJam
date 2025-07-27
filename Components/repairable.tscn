@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://bwpofjjuvx0ws"]
+
+[ext_resource type="Script" uid="uid://ceayxgj0knu80" path="res://Components/repairable.gd" id="1_wby5a"]
+
+[node name="Repairable" type="Area2D"]
+script = ExtResource("1_wby5a")
