@@ -1,6 +1,7 @@
 extends NpcTargeting
 class_name NpcTargetingZombie
 
+
 @export var navAgent: NavigationAgent2D
 @export var parent: CharacterBody2D
 @export var npcTargetingZombieMoveSpeed: float = 20

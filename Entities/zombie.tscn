@@ -49,6 +49,7 @@ healthSystem = NodePath("../HealthSystem")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(2, 0)
 shape = SubResource("RectangleShape2D_2votk")
+metadata/_edit_lock_ = true
 
 [node name="Attack_Proximity" type="Area2D" parent="."]
 position = Vector2(-8, 0)
@@ -80,6 +81,7 @@ debug_color = Color(0.90265, 0.294429, 0.243426, 0.42)
 debug_enabled = true
 
 [node name="Targeter" parent="." node_paths=PackedStringArray("parent", "observer") instance=ExtResource("5_fqedw")]
+position = Vector2(24, 0)
 parent = NodePath("..")
 observer = NodePath("../Observer")
 trackedEntityGroups = Array[String](["Good Guys", "Breakable"])
