@@ -6,10 +6,16 @@ extends CharacterBody2D
 const MAXFLOAT: float = 10000000000000000
 
 var repairing: bool = false
+var repairingObject: Node2D
 var replacing: bool = false
+var replacingObject: Node2D
 
 func _process(_delta: float) -> void:
 	look_at(get_global_mouse_position())
+	if repairing:
+		print("Repairing: " + str(repairingObject.name))
+	elif replacing:
+		print("Replacing: " + str(replacingObject.name))
 
 func _physics_process(_delta):
 	var input_direction =  Input.get_vector("left", "right", "up", "down")
@@ -44,7 +50,7 @@ func interact() -> void:
 func closestInteractableArea(areas: Array[Area2D]) -> Area2D:
 	var closestOverlappingArea: Area2D = null
 	var distanceToClosest: float = MAXFLOAT
-
+	
 	for area in areas:
 		if area.name != "Interactable":
 			continue
@@ -59,14 +65,18 @@ func closestInteractableArea(areas: Array[Area2D]) -> Area2D:
 #Can't do both at the same time. Prioritize repairing over replacing.
 func beginRepairing() -> void:
 	repairing = true
+	repairingObject = self
 	if replacing:
 		stopReplacing()
 func stopRepairing() -> void:
 	repairing = false
+	repairingObject = null
 	if Input.is_action_pressed("replace"):
 		beginReplacing()
 func beginReplacing() -> void:
 	if not repairing:
 		replacing = true
+		replacingObject = self
 func stopReplacing() -> void:
 	replacing = false
+	replacingObject = null
