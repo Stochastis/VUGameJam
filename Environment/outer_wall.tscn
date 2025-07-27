@@ -59,7 +59,7 @@ sprite = NodePath("../AnimatedSprite2D")
 metadata/_custom_type_script = "uid://jxurm3smcvu1"
 
 [node name="Inside" type="Node2D" parent="."]
-position = Vector2(0, 16)
+position = Vector2(0, 32)
 
 [node name="TargetPoint" parent="." instance=ExtResource("5_38pn6")]
 position = Vector2(0, -9)

@@ -8,11 +8,12 @@ var parent: CharacterBody2D
 var idleWalkMoveSpeed: float
 
 const MINDISTTOWALK: float = 32
-const MINDISTFROMPOINT: float = 16
+const MINDISTFROMPOINT: float = 8
 
 func enter() -> void:
 	targeter.resetTarget()
 	var firstIntersectionPoint: Vector2 = first_intersection_point(targeter.targetPosition)
+	targeter.targetPosition = firstIntersectionPoint
 	
 	if firstIntersectionPoint.distance_to(parent.global_position) < MINDISTTOWALK:
 		var nextState: String = ["NpcIdleTurn", "NpcIdleStand"].pick_random()
@@ -23,6 +24,7 @@ func physics_update(_delta: float) -> void:
 	parent.velocity = toNextPath * idleWalkMoveSpeed
 	parent.move_and_slide()
 	
+	parent.global_position.distance_to(targeter.targetPosition)
 	if parent.global_position.distance_to(targeter.targetPosition) < MINDISTFROMPOINT:
 		var nextState: String = ["NpcIdleTurn", "NpcIdleStand"].pick_random()
 		Transitioned.emit(self, nextState)

@@ -22,4 +22,4 @@ func spawn_zombie() -> void:
 		var zombieInstance = zombie.instantiate()
 		zombieInstance.global_position = spawnPoint
 		add_child(zombieInstance)
-		print("Spawned zombie at " + str(zombieInstance.global_position))
+		#print("Spawned zombie at " + str(zombieInstance.global_position))

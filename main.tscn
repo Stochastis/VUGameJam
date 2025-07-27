@@ -116,7 +116,7 @@ tile_map_data = PackedByteArray("AAAIAAMAEwAAAAAAAAAIAAQAEwAAAAAAAAAIAAUAEwAAAAA
 tile_set = SubResource("TileSet_272bh")
 
 [node name="Engineer" parent="World" instance=ExtResource("3_h2yge")]
-position = Vector2(55, 1328)
+position = Vector2(40, 567)
 metadata/_edit_group_ = true
 
 [node name="Camera2D" type="Camera2D" parent="World/Engineer"]
@@ -124,29 +124,6 @@ zoom = Vector2(4, 4)
 script = ExtResource("9_kek77")
 
 [node name="AlliedSoldiers" type="Node" parent="World"]
-
-[node name="AlliedSoldier" parent="World/AlliedSoldiers" instance=ExtResource("10_4c57u")]
-position = Vector2(806, 757)
-rotation = -0.106105
-
-[node name="AlliedSoldier2" parent="World/AlliedSoldiers" instance=ExtResource("10_4c57u")]
-position = Vector2(893, 1582)
-rotation = 1.64519
-
-[node name="AlliedSoldier3" parent="World/AlliedSoldiers" instance=ExtResource("10_4c57u")]
-position = Vector2(1876, 656)
-
-[node name="AlliedSoldier4" parent="World/AlliedSoldiers" instance=ExtResource("10_4c57u")]
-position = Vector2(1516, -47)
-rotation = -1.53137
-
-[node name="AlliedSoldier5" parent="World/AlliedSoldiers" instance=ExtResource("10_4c57u")]
-position = Vector2(-77, -79)
-rotation = -2.45169
-
-[node name="AlliedSoldier6" parent="World/AlliedSoldiers" instance=ExtResource("10_4c57u")]
-position = Vector2(512, -85)
-rotation = -1.52906
 
 [node name="AlliedSoldier7" parent="World/AlliedSoldiers" instance=ExtResource("10_4c57u")]
 position = Vector2(-84, 546)
@@ -157,6 +134,7 @@ script = ExtResource("11_efxa6")
 zombie = ExtResource("12_dg77c")
 
 [node name="Timer" type="Timer" parent="World/WaveManager"]
+wait_time = 5.0
 one_shot = true
 
 [node name="SpawnAreas" type="Node" parent="World/WaveManager"]
@@ -210,12 +188,8 @@ outerWallScene = ExtResource("17_yaehf")
 worldNavigation = NodePath("../WorldNavRegion")
 
 [node name="WallBreakerTimer" type="Timer" parent="World/OuterWallManager"]
-wait_time = 0.1
+wait_time = 60.0
 autostart = true
-
-[node name="TestZom" parent="World" instance=ExtResource("12_dg77c")]
-modulate = Color(0, 1, 1, 1)
-position = Vector2(-177, 1329)
 
 [connection signal="timeout" from="World/WaveManager/Timer" to="World/WaveManager" method="_on_timer_timeout"]
 [connection signal="timeout" from="World/OuterWallManager/WallBreakerTimer" to="World/OuterWallManager" method="_on_wall_breaker_timer_timeout"]

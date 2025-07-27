@@ -86,6 +86,7 @@ initial_state = NodePath("NpcIdle")
 targeter = NodePath("../../Targeter")
 parent = NodePath("../..")
 navAgent = NodePath("../../NavigationAgent2D")
+idleWalkMoveSpeed = 10.0
 
 [node name="NpcTargetingSoldier" parent="StateMachine" node_paths=PackedStringArray("animSprite2D", "targeter") instance=ExtResource("10_smne3")]
 animSprite2D = NodePath("../../AnimatedSprite2D")
