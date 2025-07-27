@@ -1,7 +1,6 @@
 extends State
 class_name NpcIdleWalk
 
-
 #Inheriting from NpcIdle super-state
 var targeter: Targeter
 var parent: CharacterBody2D

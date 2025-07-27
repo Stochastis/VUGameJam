@@ -12,6 +12,7 @@ func has_line_of_sight(target: Node2D) -> bool:
 	
 	var ignored: Array[RID]
 	var pointToLookAt: Vector2
+	#NOTE: If repairs/interactions get buggy with outer walls or other objects with Target Points, consider tweaking this code to ignore them in some cases
 	var targetPoint: TargetPoint = target.get_node_or_null("TargetPoint")
 	if targetPoint != null:
 		pointToLookAt = targetPoint.global_position

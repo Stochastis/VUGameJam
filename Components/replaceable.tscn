@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://empvjc8jchgt"]
+
+[ext_resource type="Script" uid="uid://d15ffl66qfu8l" path="res://Components/replaceable.gd" id="1_4umd8"]
+
+[node name="Replaceable" type="Area2D"]
+script = ExtResource("1_4umd8")

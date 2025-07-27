@@ -1,12 +1,13 @@
-[gd_scene load_steps=6 format=3 uid="uid://ck6sugtlhcpdi"]
+[gd_scene load_steps=7 format=3 uid="uid://ck6sugtlhcpdi"]
 
 [ext_resource type="Script" uid="uid://cjmwhvds667ma" path="res://Entities/engineer.gd" id="1_fau05"]
 [ext_resource type="Texture2D" uid="uid://bwod6ufyfj828" path="res://Assets/engineer.png" id="1_nniac"]
 [ext_resource type="PackedScene" uid="uid://bvhx82eau62u8" path="res://Components/health_system.tscn" id="2_0e7np"]
 [ext_resource type="PackedScene" uid="uid://ceabu7h8g45hl" path="res://Components/health_bar.tscn" id="3_3smwa"]
+[ext_resource type="PackedScene" uid="uid://bivqglsx6xa3m" path="res://Components/line_of_sight.tscn" id="5_v3ltv"]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_fau05"]
-size = Vector2(32, 32)
+[sub_resource type="CircleShape2D" id="CircleShape2D_v3ltv"]
+radius = 18.0
 
 [node name="Engineer" type="CharacterBody2D" node_paths=PackedStringArray("playerInteractionArea") groups=["Good Guys"]]
 top_level = true
@@ -28,7 +29,7 @@ offset_bottom = -23.0
 healthSystem = NodePath("../HealthSystem")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-shape = SubResource("RectangleShape2D_fau05")
+shape = SubResource("CircleShape2D_v3ltv")
 
 [node name="PlayerInteractionArea" type="Area2D" parent="."]
 
@@ -38,4 +39,11 @@ polygon = PackedVector2Array(150, -100, 150, 100, 20, 20, 20, -20)
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture = ExtResource("1_nniac")
 
+[node name="RepairReplaceTimer" type="Timer" parent="."]
+
+[node name="LineOfSight" parent="." node_paths=PackedStringArray("parent") instance=ExtResource("5_v3ltv")]
+parent = NodePath("..")
+blockingLayers = Array[int]([2])
+
 [connection signal="healthChanged" from="HealthSystem" to="." method="_on_health_system_health_changed"]
+[connection signal="timeout" from="RepairReplaceTimer" to="." method="_on_repair_replace_timer_timeout"]

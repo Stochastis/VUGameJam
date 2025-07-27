@@ -18,6 +18,8 @@ func attack() -> void:
 	if targeter.targetNode.has_node("HealthSystem") && attackArea.overlaps_body(targeter.targetNode):
 		var targetHealthSystem: HealthSystem = targeter.targetNode.get_node("HealthSystem")
 		targetHealthSystem.damage(10)
+	elif not targeter.targetNode.has_node("HealthSystem"):
+		print_debug(parent.name + "'s attack unsuccessful. Target node (" + targeter.targetNode.name + ") does not have a HealthSystem component.")
 		
 func physics_update(_delta: float) -> void:
 	nextPathPos = navAgent.get_next_path_position()
@@ -35,7 +37,7 @@ func reNav() -> void:
 
 func enter() -> void:
 	if parent.name == "TestZom":
-		print("Entering Targeting state")
+		print("TestZom Entering Targeting state")
 	reNav()
 	$NavTimer.start()
 	$AttackTimer.start(attack_cooldown)
@@ -43,6 +45,6 @@ func enter() -> void:
 
 func exit() -> void:
 	if parent.name == "TestZom":
-		print("Exiting Targeting state")
+		print("TestZom Exiting Targeting state")
 	$NavTimer.stop()
 	$AttackTimer.stop()
