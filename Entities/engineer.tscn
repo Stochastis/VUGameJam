@@ -38,4 +38,7 @@ polygon = PackedVector2Array(150, -100, 150, 100, 20, 20, 20, -20)
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture = ExtResource("1_nniac")
 
+[node name="RepairTimer" type="Timer" parent="."]
+wait_time = 2.0
+
 [connection signal="healthChanged" from="HealthSystem" to="." method="_on_health_system_health_changed"]
