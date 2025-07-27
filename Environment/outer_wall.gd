@@ -15,16 +15,18 @@ func _on_health_system_health_changed() -> void:
 		$NavigationRegion2D.bake_navigation_polygon()
 		funnelZoms()
 
-func _on_destroyed_funnel_area_body_entered(body: Node2D) -> void:
-	if destroyed and body is Zombie:
-		funnelZom(body)
+func _on_zom_funnel_timer_timeout() -> void:
+	funnelZoms()
 
 func funnelZoms() -> void:
 	var overlappingBodies: Array[Node2D] = $DestroyedFunnelArea.get_overlapping_bodies()
 	for body in overlappingBodies:
-		if not body.is_in_group("Zombies"):
+		if not body.is_in_group("Zombies") or not body is Zombie:
 			continue
-		funnelZom(body)
+		var zom: Zombie = body
+		if zom.stateMachine.current_state.get_script().get_global_name() != "ZombieFunnel":
+			funnelZom(zom)
+	$ZomFunnelTimer.start()
 
 func funnelZom(zom: Zombie) -> void:
 	var currState: State = zom.stateMachine.current_state

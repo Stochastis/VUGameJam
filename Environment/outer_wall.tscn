@@ -80,5 +80,9 @@ visible = false
 navigation_polygon = SubResource("NavigationPolygon_22s3a")
 enabled = false
 
+[node name="ZomFunnelTimer" type="Timer" parent="."]
+wait_time = 5.0
+one_shot = true
+
 [connection signal="healthChanged" from="HealthSystem" to="." method="_on_health_system_health_changed"]
-[connection signal="body_entered" from="DestroyedFunnelArea" to="." method="_on_destroyed_funnel_area_body_entered"]
+[connection signal="timeout" from="ZomFunnelTimer" to="." method="_on_zom_funnel_timer_timeout"]

@@ -28,9 +28,18 @@ func resetTarget() -> void:
 	targetPosition = global_position + (Vector2.from_angle(global_rotation) * 32)
 
 func _process(delta: float) -> void:
+	#Might consider moving this facing logic (plus the actual movement logic) to it's own dedicated component.
+	#That way, we can have the zombies and soldiers face the nodes along their pathfinding path instead of just the end target.
+	#Not necessary, but might be nice.
+	#Face target
+	var to_target = (targetPosition - parent.global_position).normalized()
+	var desired_angle = to_target.angle()
+	parent.rotation = lerp_angle(parent.rotation, desired_angle, ROTATIONSPEED * delta)
+	
+	#Debug Graphics
+	queue_redraw()
+	
 	if manualTargeting:
-		#Debug Graphics
-		queue_redraw()
 		return
 	
 	#Filter out not-targeting entities
@@ -53,14 +62,6 @@ func _process(delta: float) -> void:
 			targetingEntity = false
 			targetNode = null
 			#TargetsLost.emit()
-	
-	#Face target
-	var to_target = (targetPosition - parent.global_position).normalized()
-	var desired_angle = to_target.angle()
-	parent.rotation = lerp_angle(parent.rotation, desired_angle, ROTATIONSPEED * delta)
-	
-	#Debug Graphics
-	queue_redraw()
 
 func closestNode(nodes: Array[Node2D]) -> Node2D:
 	var currClosestNode: Node2D = null
@@ -75,7 +76,7 @@ func closestNode(nodes: Array[Node2D]) -> Node2D:
 	return currClosestNode
 
 func getTargetPos(node: Node2D) -> Vector2:
-	var targetPoint: TargetPoint = node.get_node_or_null("../TargetPoint")
+	var targetPoint: TargetPoint = node.get_node_or_null("TargetPoint")
 	if targetPoint != null:
 		return targetPoint.global_position
 	return node.global_position
