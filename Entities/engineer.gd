@@ -92,6 +92,9 @@ func closestInteractableArea(interactionType: InteractionType) -> Area2D:
 	var distanceToClosest: float = MAXFLOAT
 	
 	for area in overlappingAreas:
+		if not $LineOfSight.has_line_of_sight(area):
+			continue
+		
 		#Make sure the area has the component we need for this type of interaction
 		match interactionType:
 			InteractionType.Use:
