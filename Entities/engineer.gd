@@ -19,9 +19,11 @@ var replacingObject: Node2D
 func _process(_delta: float) -> void:
 	look_at(get_global_mouse_position())
 	if repairing:
-		print("Repairing: " + str(repairingObject.name))
+		var repairObjStr: String = "null" if not repairingObject else str(repairingObject.name)
+		print("Repairing: " + repairObjStr)
 	elif replacing:
-		print("Replacing: " + str(replacingObject.name))
+		var replaceObjStr: String = "null" if not replacingObject else str(replacingObject.name)
+		print("Replacing: " + replaceObjStr)
 
 func _physics_process(_delta):
 	var input_direction =  Input.get_vector("left", "right", "up", "down")
@@ -82,7 +84,6 @@ func closestInteractableArea(interactionType: InteractionType) -> Area2D:
 #Can't do both at the same time. Prioritize repairing over replacing.
 func beginRepairing() -> void:
 	repairing = true
-	repairingObject = self
 	if replacing:
 		stopReplacing()
 func stopRepairing() -> void:
@@ -93,7 +94,6 @@ func stopRepairing() -> void:
 func beginReplacing() -> void:
 	if not repairing:
 		replacing = true
-		replacingObject = self
 func stopReplacing() -> void:
 	replacing = false
 	replacingObject = null
