@@ -14,7 +14,7 @@ func _ready() -> void:
 	else:
 		closeDoor()
 
-func interact() -> void:
+func use() -> void:
 	if open and $HealthSystem.currHealth > 0:
 		closeDoor()
 	elif open:

@@ -6,7 +6,7 @@
 [ext_resource type="Texture2D" uid="uid://dkdts5jkkrqo6" path="res://Assets/Environment/OpenDoorUpDown.png" id="2_v6xrn"]
 [ext_resource type="Texture2D" uid="uid://h4y2no6dhusb" path="res://Assets/Environment/ClosedDoorLeftRight.png" id="3_6hwww"]
 [ext_resource type="Texture2D" uid="uid://dv6fllihs0ai2" path="res://Assets/Environment/OpenDoorLeftRight.png" id="3_50cdl"]
-[ext_resource type="PackedScene" uid="uid://dw63555i0b121" path="res://Components/interactable.tscn" id="5_4xadh"]
+[ext_resource type="PackedScene" uid="uid://dw63555i0b121" path="res://Components/useable.tscn" id="5_4xadh"]
 [ext_resource type="Texture2D" uid="uid://d4dibwcv2uryn" path="res://Assets/Environment/BrokenDoorUpDown.png" id="7_8jukc"]
 [ext_resource type="Texture2D" uid="uid://dhuv5wmnn8hqc" path="res://Assets/Environment/BrokenDoorLeftRight.png" id="8_svg85"]
 [ext_resource type="PackedScene" uid="uid://bwpofjjuvx0ws" path="res://Components/repairable.tscn" id="9_60si7"]
@@ -104,12 +104,12 @@ timeToReplace = 4.0
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Replaceable"]
 shape = SubResource("RectangleShape2D_60si7")
 
-[node name="Interactable" parent="." node_paths=PackedStringArray("interactableObject") instance=ExtResource("5_4xadh")]
+[node name="Useable" parent="." node_paths=PackedStringArray("useableObject") instance=ExtResource("5_4xadh")]
 visible = false
 scale = Vector2(0.8, 0.8)
-interactableObject = NodePath("..")
+useableObject = NodePath("..")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Interactable"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Useable"]
 shape = SubResource("RectangleShape2D_y5njw")
 
 [connection signal="healthChanged" from="HealthSystem" to="." method="_on_health_system_health_changed"]

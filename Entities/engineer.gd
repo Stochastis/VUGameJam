@@ -5,6 +5,12 @@ extends CharacterBody2D
 
 const MAXFLOAT: float = 10000000000000000
 
+enum InteractionType {
+	Use,
+	Repair,
+	Replace
+}
+
 var repairing: bool = false
 var repairingObject: Node2D
 var replacing: bool = false
@@ -23,8 +29,8 @@ func _physics_process(_delta):
 	move_and_slide()
 
 func _input(event: InputEvent) -> void:
-	if event.is_action_pressed("interact"):
-		interact()
+	if event.is_action_pressed("use"):
+		interact(InteractionType.Use)
 	
 	if event.is_action_pressed("repair"):
 		beginRepairing()
@@ -35,32 +41,43 @@ func _input(event: InputEvent) -> void:
 	if event.is_action_released("replace"):
 		stopReplacing()
 
-func interact() -> void:
-	var overlappingAreas = playerInteractionArea.get_overlapping_areas()
-
-	var closestArea: Area2D = closestInteractableArea(overlappingAreas)
-	if closestArea != null:
-		if closestArea.has_method("interact"):
-			closestArea.interact()
-		else:
-			printerr("InteractableArea has no method with the 'interact' name")
+func interact(interactionType: InteractionType) -> void:
+	var interactableArea: Area2D = closestInteractableArea(InteractionType.Use)
+	if interactableArea != null:
+		match interactionType:
+			InteractionType.Use:
+				interactableArea.use()
+			InteractionType.Repair:
+				interactableArea.repair()
+			InteractionType.Replace:
+				interactableArea.replace()
 	else:
-		print("No interactable area found in range")
+		print("No interactable area of type: \"" + str(InteractionType.keys()[interactionType]) + "\" found in range")
 
-func closestInteractableArea(areas: Array[Area2D]) -> Area2D:
-	var closestOverlappingArea: Area2D = null
+func closestInteractableArea(interactionType: InteractionType) -> Area2D:
+	var overlappingAreas = playerInteractionArea.get_overlapping_areas()
+	var currClosestInteractableArea: Area2D = null
 	var distanceToClosest: float = MAXFLOAT
 	
-	for area in areas:
-		if area.name != "Interactable":
-			continue
+	for area in overlappingAreas:
+		#Make sure the area has the component we need for this type of interaction
+		match interactionType:
+			InteractionType.Use:
+				if area.name != "Useable":
+					continue
+			InteractionType.Repair:
+				if area.name != "Repairable":
+					continue
+			InteractionType.Replace:
+				if area.name != "Replaceable":
+					continue
 		
 		var distanceToArea: float = self.position.distance_to(area.position)
 		if distanceToArea < distanceToClosest:
-			closestOverlappingArea = area
+			currClosestInteractableArea = area
 			distanceToClosest = distanceToArea
 	
-	return closestOverlappingArea
+	return currClosestInteractableArea
 
 #Can't do both at the same time. Prioritize repairing over replacing.
 func beginRepairing() -> void:
