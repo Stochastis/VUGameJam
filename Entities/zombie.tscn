@@ -13,8 +13,8 @@
 [ext_resource type="PackedScene" uid="uid://by1kd7gx3dumi" path="res://States/npc_target_lost_zombie.tscn" id="11_ew888"]
 [ext_resource type="PackedScene" uid="uid://pxf8rpvhp3cu" path="res://States/zombie_funnel.tscn" id="12_ksr8e"]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_2votk"]
-size = Vector2(28, 32)
+[sub_resource type="CircleShape2D" id="CircleShape2D_ksr8e"]
+radius = 16.0
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_kq8yi"]
 size = Vector2(20, 40)
@@ -31,6 +31,7 @@ collision_mask = 7
 motion_mode = 1
 wall_min_slide_angle = 0.0
 script = ExtResource("1_2votk")
+metadata/_edit_group_ = true
 
 [node name="Sprite" type="Sprite2D" parent="."]
 texture = ExtResource("1_nj2pk")
@@ -47,9 +48,7 @@ offset_bottom = -24.0
 healthSystem = NodePath("../HealthSystem")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(2, 0)
-shape = SubResource("RectangleShape2D_2votk")
-metadata/_edit_lock_ = true
+shape = SubResource("CircleShape2D_ksr8e")
 
 [node name="Attack_Proximity" type="Area2D" parent="."]
 collision_mask = 5

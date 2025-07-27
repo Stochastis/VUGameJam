@@ -116,7 +116,7 @@ tile_map_data = PackedByteArray("AAAIAAMAEwAAAAAAAAAIAAQAEwAAAAAAAAAIAAUAEwAAAAA
 tile_set = SubResource("TileSet_272bh")
 
 [node name="Engineer" parent="World" instance=ExtResource("3_h2yge")]
-position = Vector2(1078, 505)
+position = Vector2(14, 547)
 metadata/_edit_group_ = true
 
 [node name="Camera2D" type="Camera2D" parent="World/Engineer"]
@@ -134,7 +134,6 @@ script = ExtResource("11_efxa6")
 zombie = ExtResource("12_dg77c")
 
 [node name="Timer" type="Timer" parent="World/WaveManager"]
-wait_time = 0.5
 one_shot = true
 
 [node name="SpawnAreas" type="Node" parent="World/WaveManager"]
