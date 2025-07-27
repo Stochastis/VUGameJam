@@ -41,3 +41,4 @@ texture = ExtResource("1_nniac")
 [node name="RepairReplaceTimer" type="Timer" parent="."]
 
 [connection signal="healthChanged" from="HealthSystem" to="." method="_on_health_system_health_changed"]
+[connection signal="timeout" from="RepairReplaceTimer" to="." method="_on_repair_replace_timer_timeout"]

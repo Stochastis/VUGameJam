@@ -11,22 +11,39 @@ enum InteractionType {
 	Replace
 }
 
-var repairing: bool = false
-var repairingObject: Node2D
-var replacing: bool = false
-var replacingObject: Node2D
+enum RepRepMode {
+	Repair,
+	Replace,
+	None
+}
+
+var repRepMode: RepRepMode = RepRepMode.None
+var oldRepRepMode: RepRepMode = RepRepMode.None
+var repRepObj: Node2D
+var oldRepRepObj: Node2D
 
 func _process(_delta: float) -> void:
 	look_at(get_global_mouse_position())
 	
-	if repairing:
-		repairingObject = closestInteractableArea(InteractionType.Repair)
-		var repairObjStr: String = "null" if not repairingObject else str(repairingObject.get_parent().name)
-		print("Repairing: " + repairObjStr)
-	elif replacing:
-		replacingObject = closestInteractableArea(InteractionType.Replace)
-		var replaceObjStr: String = "null" if not replacingObject else str(replacingObject.get_parent().name)
-		print("Replacing: " + replaceObjStr)
+	#If needed, get closest repRepObj
+	if repRepMode == RepRepMode.Repair:
+		repRepObj = closestInteractableArea(InteractionType.Repair)
+	elif repRepMode == RepRepMode.Replace:
+		repRepObj = closestInteractableArea(InteractionType.Replace)
+	
+	#If repRepMode or repRepObj changed, clear the timer and start again if needed
+	if oldRepRepMode != repRepMode or oldRepRepObj != repRepObj:
+		$RepairReplaceTimer.stop()
+		if repRepMode == RepRepMode.Repair and repRepObj:
+			$RepairReplaceTimer.start(repRepObj.timeToRepair)
+		elif repRepMode == RepRepMode.Replace and repRepObj:
+			$RepairReplaceTimer.start(repRepObj.timeToReplace)
+	oldRepRepMode = repRepMode
+	oldRepRepObj = repRepObj
+	
+	#Debug
+	var objStr: String = "null" if not repRepObj else str(repRepObj.get_parent().name)
+	print(RepRepMode.keys()[repRepMode] + objStr)
 
 func _physics_process(_delta):
 	var input_direction =  Input.get_vector("left", "right", "up", "down")
@@ -35,7 +52,12 @@ func _physics_process(_delta):
 
 func _input(event: InputEvent) -> void:
 	if event.is_action_pressed("use"):
-		interact(InteractionType.Use)
+		var useableArea: Area2D = closestInteractableArea(InteractionType.Use)
+		if useableArea:
+			interact(useableArea, InteractionType.Use)
+		else:
+			print("No useableArea found in range")
+			
 	
 	if event.is_action_pressed("repair"):
 		beginRepairing()
@@ -46,18 +68,23 @@ func _input(event: InputEvent) -> void:
 	if event.is_action_released("replace"):
 		stopReplacing()
 
-func interact(interactionType: InteractionType) -> void:
-	var interactableArea: Area2D = closestInteractableArea(InteractionType.Use)
-	if interactableArea != null:
-		match interactionType:
-			InteractionType.Use:
-				interactableArea.use()
-			InteractionType.Repair:
-				interactableArea.repair()
-			InteractionType.Replace:
-				interactableArea.replace()
-	else:
-		print("No interactable area of type: \"" + str(InteractionType.keys()[interactionType]) + "\" found in range")
+func interact(interactableObj: Node, interactionType: InteractionType) -> void:
+	match interactionType:
+		InteractionType.Use:
+			if interactableObj.has_method("use"):
+				interactableObj.use()
+			else:
+				printerr("Useable Object: " + str(interactableObj.name) + " has no \"use\" method")
+		InteractionType.Repair:
+			if interactableObj.has_method("repair"):
+				interactableObj.repair()
+			else:
+				printerr("Repairable Object: " + str(interactableObj.name) + " has no \"repair\" method")
+		InteractionType.Replace:
+			if interactableObj.has_method("replace"):
+				interactableObj.replace()
+			else:
+				printerr("Replaceable Object: " + str(interactableObj.name) + " has no \"replace\" method")
 
 func closestInteractableArea(interactionType: InteractionType) -> Area2D:
 	var overlappingAreas = playerInteractionArea.get_overlapping_areas()
@@ -86,17 +113,29 @@ func closestInteractableArea(interactionType: InteractionType) -> Area2D:
 
 #Can't do both at the same time. Prioritize repairing over replacing.
 func beginRepairing() -> void:
-	repairing = true
-	if replacing:
-		stopReplacing()
+	repRepMode = RepRepMode.Repair
+	repRepObj = null
 func stopRepairing() -> void:
-	repairing = false
-	repairingObject = null
+	repRepMode = RepRepMode.None
+	repRepObj = null
 	if Input.is_action_pressed("replace"):
 		beginReplacing()
 func beginReplacing() -> void:
-	if not repairing:
-		replacing = true
+	if repRepMode != RepRepMode.Repair:
+		repRepMode = RepRepMode.Replace
+		repRepObj = null
 func stopReplacing() -> void:
-	replacing = false
-	replacingObject = null
+	if repRepMode != RepRepMode.Repair:
+		repRepMode = RepRepMode.None
+		repRepObj = null
+
+func _on_repair_replace_timer_timeout() -> void:
+	if repRepObj:
+		if repRepMode == RepRepMode.Repair:
+			interact(repRepObj, InteractionType.Repair)
+			print("Repaired: " + str(repRepObj.get_parent().name))
+		elif repRepMode == RepRepMode.Replace:
+			interact(repRepObj, InteractionType.Replace)
+			print("Replaced: " + str(repRepObj.get_parent().name))
+	else:
+		printerr("Unexpected timeout of RepRepTimer with a null repRepObj")
