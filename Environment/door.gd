@@ -25,27 +25,43 @@ func use() -> void:
 func openDoor() -> void:
 	open = true
 	if northSouth:
-		#$NavigationRegion2DNS.enabled = true
-		$AnimatedSprite2D.set_frame_and_progress(2, 0)
+		if $HealthSystem.currHealth <= 0:
+			$AnimatedSprite2D.set_frame_and_progress(8, 0)
+		elif $HealthSystem.currHealth < $HealthSystem.maxHealth:
+			$AnimatedSprite2D.set_frame_and_progress(6, 0)
+		else:
+			$AnimatedSprite2D.set_frame_and_progress(4, 0)
 	else:
-		#$NavigationRegion2DEW.enabled = true
-		$AnimatedSprite2D.set_frame_and_progress(3, 0)
+		if $HealthSystem.currHealth <= 0:
+			$AnimatedSprite2D.set_frame_and_progress(9, 0)
+		elif $HealthSystem.currHealth < $HealthSystem.maxHealth:
+			$AnimatedSprite2D.set_frame_and_progress(7, 0)
+		else:
+			$AnimatedSprite2D.set_frame_and_progress(5, 0)
 	$CollisionShape2D.disabled = true
 
 func closeDoor() -> void:
 	open = false
 	if northSouth:
-		#$NavigationRegion2DNS.enabled = false
-		$AnimatedSprite2D.set_frame_and_progress(0, 0)
+		if $HealthSystem.currHealth < $HealthSystem.maxHealth:
+			$AnimatedSprite2D.set_frame_and_progress(2, 0)
+		else:
+			$AnimatedSprite2D.set_frame_and_progress(0, 0)
 	else:
-		#$NavigationRegion2DEW.enabled = false
-		$AnimatedSprite2D.set_frame_and_progress(1, 0)
+		if $HealthSystem.currHealth < $HealthSystem.maxHealth:
+			$AnimatedSprite2D.set_frame_and_progress(3, 0)
+		else:
+			$AnimatedSprite2D.set_frame_and_progress(1, 0)
 	$CollisionShape2D.disabled = false
 
 func _on_health_system_health_changed() -> void:
-	if $HealthSystem.currHealth <= 0:
-		openDoor()
-		if northSouth:
-			$AnimatedSprite2D.set_frame_and_progress(4, 0)
-		else:
-			$AnimatedSprite2D.set_frame_and_progress(5, 0)
+	if $HealthSystem.currHealth <= 0 or open:
+		openDoor() #Change sprite
+	else:
+		closeDoor() #Change sprite
+
+func repair(repairAmount: int) -> void:
+	$HealthSystem.heal(repairAmount)
+
+func replace() -> void:
+	$HealthSystem.fullHeal()
