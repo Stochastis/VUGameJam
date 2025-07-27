@@ -45,3 +45,7 @@ func closeDoor() -> void:
 func _on_health_system_health_changed() -> void:
 	if $HealthSystem.currHealth <= 0:
 		openDoor()
+		if northSouth:
+			$AnimatedSprite2D.set_frame_and_progress(4, 0)
+		else:
+			$AnimatedSprite2D.set_frame_and_progress(5, 0)
