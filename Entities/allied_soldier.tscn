@@ -1,7 +1,8 @@
-[gd_scene load_steps=15 format=3 uid="uid://ce22jwvxoan48"]
+[gd_scene load_steps=16 format=3 uid="uid://ce22jwvxoan48"]
 
 [ext_resource type="PackedScene" uid="uid://bvhx82eau62u8" path="res://Components/health_system.tscn" id="1_pd1d8"]
 [ext_resource type="Script" uid="uid://dbsu2wgaqddwy" path="res://Entities/allied_soldier.gd" id="1_qcgow"]
+[ext_resource type="PackedScene" uid="uid://ceabu7h8g45hl" path="res://Components/health_bar.tscn" id="2_5qc07"]
 [ext_resource type="Texture2D" uid="uid://bckqv8uthcs8n" path="res://Assets/survivor1_reload.png" id="2_lqr21"]
 [ext_resource type="Texture2D" uid="uid://bi4btcg8yjocb" path="res://Assets/survivor1_machine.png" id="3_qcgow"]
 [ext_resource type="PackedScene" uid="uid://bivqglsx6xa3m" path="res://Components/line_of_sight.tscn" id="5_2q06j"]
@@ -38,6 +39,13 @@ motion_mode = 1
 wall_min_slide_angle = 0.0174533
 script = ExtResource("1_qcgow")
 metadata/_edit_group_ = true
+
+[node name="HealthBar" parent="." node_paths=PackedStringArray("healthSystem") instance=ExtResource("2_5qc07")]
+offset_left = -32.0
+offset_top = -32.0
+offset_right = 35.0
+offset_bottom = -27.0
+healthSystem = NodePath("../HealthSystem")
 
 [node name="HealthSystem" parent="." node_paths=PackedStringArray("sprite") instance=ExtResource("1_pd1d8")]
 maxHealth = 100

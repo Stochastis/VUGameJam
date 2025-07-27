@@ -52,9 +52,10 @@ sprite_frames = SubResource("SpriteFrames_483ig")
 position = Vector2(0, -0.0072732)
 shape = SubResource("RectangleShape2D_nlf3o")
 
-[node name="HealthSystem" type="Node" parent="."]
+[node name="HealthSystem" type="Node" parent="." node_paths=PackedStringArray("sprite")]
 script = ExtResource("2_22s3a")
 maxHealth = 100
+sprite = NodePath("../AnimatedSprite2D")
 metadata/_custom_type_script = "uid://jxurm3smcvu1"
 
 [node name="Inside" type="Node2D" parent="."]

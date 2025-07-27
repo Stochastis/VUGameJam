@@ -14,11 +14,11 @@ scale = Vector2(0.25, 0.25)
 collision_mask = 7
 motion_mode = 1
 script = ExtResource("1_fau05")
-playerInteractionArea = NodePath("PivotPoint/PlayerInteractionArea")
+playerInteractionArea = NodePath("PlayerInteractionArea")
 
 [node name="HealthSystem" parent="." node_paths=PackedStringArray("sprite") instance=ExtResource("2_0e7np")]
 maxHealth = 100
-sprite = NodePath("../PivotPoint/Sprite2D")
+sprite = NodePath("../Sprite2D")
 
 [node name="HealthBar" parent="." node_paths=PackedStringArray("healthSystem") instance=ExtResource("3_3smwa")]
 offset_left = -24.0
@@ -26,25 +26,16 @@ offset_top = -28.0
 offset_right = 23.0
 offset_bottom = -23.0
 healthSystem = NodePath("../HealthSystem")
-
-[node name="HealthBar" parent="." node_paths=PackedStringArray("healthSystem") instance=ExtResource("3_3smwa")]
-offset_left = -24.0
-offset_top = -28.0
-offset_right = 23.0
-offset_bottom = -23.0
-healthSystem = NodePath("../HealthSystem")
-
-[node name="PivotPoint" type="Node2D" parent="."]
-
-[node name="PlayerInteractionArea" type="Area2D" parent="PivotPoint"]
-
-[node name="CollisionShape2D" type="CollisionPolygon2D" parent="PivotPoint/PlayerInteractionArea"]
-polygon = PackedVector2Array(150, -100, 150, 100, 20, 20, 20, -20)
-
-[node name="Sprite2D" type="Sprite2D" parent="PivotPoint"]
-texture = ExtResource("1_nniac")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("RectangleShape2D_fau05")
+
+[node name="PlayerInteractionArea" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionPolygon2D" parent="PlayerInteractionArea"]
+polygon = PackedVector2Array(150, -100, 150, 100, 20, 20, 20, -20)
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_nniac")
 
 [connection signal="healthChanged" from="HealthSystem" to="." method="_on_health_system_health_changed"]
