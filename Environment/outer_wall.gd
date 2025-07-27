@@ -10,7 +10,9 @@ func makeBreakable() -> void:
 func _on_health_system_health_changed() -> void:
 	if $HealthSystem.currHealth <= 0:
 		$AnimatedSprite2D.set_frame_and_progress(2, 0)
-		$CollisionShape2D.set_deferred("disabled", true)
+		$CollisionShape2D.disabled = true
+		$NavigationRegion2D.enabled = true
+		$NavigationRegion2D.bake_navigation_polygon()
 		funnelZoms()
 
 func _on_destroyed_funnel_area_body_entered(body: Node2D) -> void:

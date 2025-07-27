@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://iug3nyrebcte"]
+[gd_scene load_steps=12 format=3 uid="uid://iug3nyrebcte"]
 
 [ext_resource type="Script" uid="uid://hjj6jxgosrx3" path="res://Environment/outer_wall.gd" id="1_38pn6"]
 [ext_resource type="Script" uid="uid://jxurm3smcvu1" path="res://Components/health_system.gd" id="2_22s3a"]
@@ -33,6 +33,12 @@ size = Vector2(512, 256)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_22s3a"]
 size = Vector2(16, 17)
 
+[sub_resource type="NavigationPolygon" id="NavigationPolygon_22s3a"]
+vertices = PackedVector2Array(4, 8, -4, 8, -4, -8, 4, -8)
+polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3)])
+outlines = Array[PackedVector2Array]([PackedVector2Array(-4, -8, 4, -8, 4, 8, -4, 8)])
+agent_radius = 0.0
+
 [node name="OuterWall" type="StaticBody2D"]
 collision_layer = 4
 collision_mask = 0
@@ -52,12 +58,14 @@ maxHealth = 100
 metadata/_custom_type_script = "uid://jxurm3smcvu1"
 
 [node name="Inside" type="Node2D" parent="."]
-position = Vector2(0, 32)
+position = Vector2(0, 16)
 
 [node name="TargetPoint" parent="." instance=ExtResource("5_38pn6")]
 position = Vector2(0, -9)
 
 [node name="DestroyedFunnelArea" type="Area2D" parent="."]
+visible = false
+collision_layer = 0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="DestroyedFunnelArea"]
 position = Vector2(0, -136)
@@ -66,6 +74,11 @@ shape = SubResource("RectangleShape2D_38pn6")
 [node name="CollisionShape2D2" type="CollisionShape2D" parent="DestroyedFunnelArea"]
 position = Vector2(0, -0.5)
 shape = SubResource("RectangleShape2D_22s3a")
+
+[node name="NavigationRegion2D" type="NavigationRegion2D" parent="."]
+visible = false
+navigation_polygon = SubResource("NavigationPolygon_22s3a")
+enabled = false
 
 [connection signal="healthChanged" from="HealthSystem" to="." method="_on_health_system_health_changed"]
 [connection signal="body_entered" from="DestroyedFunnelArea" to="." method="_on_destroyed_funnel_area_body_entered"]

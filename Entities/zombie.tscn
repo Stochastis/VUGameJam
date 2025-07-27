@@ -14,7 +14,7 @@
 [ext_resource type="PackedScene" uid="uid://pxf8rpvhp3cu" path="res://States/zombie_funnel.tscn" id="12_ksr8e"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_2votk"]
-size = Vector2(32, 40)
+size = Vector2(28, 32)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_kq8yi"]
 size = Vector2(20, 40)
@@ -46,6 +46,7 @@ offset_bottom = -24.0
 healthSystem = NodePath("../HealthSystem")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(2, 0)
 shape = SubResource("RectangleShape2D_2votk")
 
 [node name="Attack_Proximity" type="Area2D" parent="."]

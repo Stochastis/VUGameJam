@@ -9,11 +9,15 @@ class_name ZombieFunnel
 func enter() -> void:
 	if parent.name == "TestZom":
 		print("Entered funnel state")
-		print(parent.funnelNode.global_position)
 	
 	targeter.manualTargeting = true
 	targeter.targetPosition = parent.funnelNode.global_position
-	navAgent.target_position = parent.funnelNode.global_position
+	
+	#The nav agent needs to wait for the navmesh to be rebaked after the wall is destroyed
+	#Might consider moving this functionality to the wall itself and set the zom's position (or enter this state) whenever the navmesh baking is done
+	await get_tree().create_timer(0.5).timeout
+	navAgent.set_target_position(targeter.targetPosition)
+	
 	if not navAgent.target_reached.is_connected(_on_navigation_agent_2d_target_reached):
 		navAgent.target_reached.connect(_on_navigation_agent_2d_target_reached)
 

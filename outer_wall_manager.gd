@@ -5,8 +5,6 @@ class_name OuterWallManager
 @export var outerWallScene: PackedScene
 @export var worldNavigation: NavigationRegion2D
 
-const FLOORTILESOURCEID = 2
-
 var outerWalls: Array[OuterWall]
 
 func _ready() -> void:
@@ -52,7 +50,7 @@ func spawn_walls():
 		
 		worldNavigation.add_child(outerWallInst)
 		outerWalls.append(outerWallInst)
-		tileMapLayer.set_cell(cell_pos, 2, Vector2i(0, 0))
+		tileMapLayer.set_cell(cell_pos)
 
 func get_outer_wall_edges() -> Array[Vector2i]:
 	var outerWallEdgeCellPositions: Array[Vector2i]
