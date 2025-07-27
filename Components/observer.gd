@@ -10,3 +10,9 @@ func _process(_delta: float) -> void:
 	if observationArea and lineOfSight:
 		var bodiesInArea: Array[Node2D] = observationArea.get_overlapping_bodies()
 		observedEntities = bodiesInArea.filter(func(node): return lineOfSight.has_line_of_sight(node))
+		
+		#Debugging Prints
+		#if lineOfSight.parent.name == "TestZom":
+			#print("Observer Bodies in Area: " + str(bodiesInArea))
+		#if lineOfSight.parent.name == "TestZom":
+			#print("Targeter Observed Entities: " + str(observedEntities))

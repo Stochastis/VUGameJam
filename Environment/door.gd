@@ -15,9 +15,10 @@ func _ready() -> void:
 		closeDoor()
 
 func interact() -> void:
-	if open:
+	if open and $HealthSystem.currHealth > 0:
 		closeDoor()
-		return
+	elif open:
+		print("Can't open door because door's health is 0 or less.")
 	else:
 		openDoor()
 
@@ -40,3 +41,7 @@ func closeDoor() -> void:
 		#$NavigationRegion2DEW.enabled = false
 		$AnimatedSprite2D.set_frame_and_progress(1, 0)
 	$CollisionShape2D.disabled = false
+
+func _on_health_system_health_changed() -> void:
+	if $HealthSystem.currHealth <= 0:
+		openDoor()

@@ -21,6 +21,8 @@ func damage(damageAmount: int) -> void:
 	currHealth -= damageAmount
 	damage_flash()
 	healthChanged.emit()
+	if currHealth <= 0 and not healthChanged.has_connections():
+		print_debug(get_parent().name + "'s HealthSystem component went to 0 health, but no listeners connected to healthChanged signal.")
 
 func heal(healAmount: int) -> void:
 	currHealth += healAmount
