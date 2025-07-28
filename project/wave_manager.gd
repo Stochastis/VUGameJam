@@ -10,7 +10,7 @@ func _ready() -> void:
 
 func _on_timer_timeout() -> void:
 	spawn_zombie()
-	$Timer.start()
+	$SpawnTimer.start()
 
 func spawn_zombie() -> void:
 	var spawnAreas = $SpawnAreas.get_children()

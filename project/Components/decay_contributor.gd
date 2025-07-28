@@ -24,4 +24,3 @@ func _on_decay_delay_timer_timeout() -> void:
 
 func _on_decay_contribute_timer_timeout() -> void:
 	main.currStructIntegrity -= decayAmount
-	print(main.currStructIntegrity)

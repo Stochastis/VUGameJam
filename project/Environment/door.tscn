@@ -131,8 +131,8 @@ shape = SubResource("RectangleShape2D_y5njw")
 
 [node name="DecayContributor" parent="." node_paths=PackedStringArray("healthSystem") instance=ExtResource("16_tlngp")]
 healthSystem = NodePath("../HealthSystem")
-decayDelay = 5.0
-decayInterval = 2.0
-decayAmount = 10
+decayDelay = 10.0
+decayInterval = 10.0
+decayAmount = 1
 
 [connection signal="healthChanged" from="HealthSystem" to="." method="_on_health_system_health_changed"]
