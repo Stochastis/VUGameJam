@@ -1,4 +1,9 @@
-[gd_scene format=3 uid="uid://rcy6qq4eg034"]
+[gd_scene load_steps=3 format=3 uid="uid://rcy6qq4eg034"]
+
+[ext_resource type="Script" uid="uid://bj7lwdvg262ut" path="res://tutorial_menu.gd" id="1_voqx1"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_w2y4n"]
+font_size = 32
 
 [node name="TutorialMenu" type="Control"]
 layout_mode = 3
@@ -7,3 +12,43 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+script = ExtResource("1_voqx1")
+
+[node name="TutorialMenuPanel" type="Panel" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -469.0
+offset_top = -466.0
+offset_right = 469.0
+offset_bottom = 466.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Label" type="Label" parent="TutorialMenuPanel"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -147.0
+offset_top = 14.0
+offset_right = 147.0
+offset_bottom = 75.0
+grow_horizontal = 2
+text = "Tutorial"
+label_settings = SubResource("LabelSettings_w2y4n")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Button" type="Button" parent="TutorialMenuPanel"]
+layout_mode = 0
+offset_left = 33.0
+offset_top = 834.0
+offset_right = 217.0
+offset_bottom = 896.0
+text = "<- Back"
+
+[connection signal="pressed" from="TutorialMenuPanel/Button" to="." method="_on_button_pressed"]
