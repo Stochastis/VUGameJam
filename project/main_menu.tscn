@@ -1,0 +1,85 @@
+[gd_scene load_steps=3 format=3 uid="uid://dys51wmjbihem"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_rhts7"]
+font_size = 64
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_rhts7"]
+
+[node name="MainMenu" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Title" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -367.0
+offset_right = 367.0
+offset_bottom = 288.0
+grow_horizontal = 2
+text = "Tape Cover!"
+label_settings = SubResource("LabelSettings_rhts7")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="ButtonsPanel" type="Panel" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -76.0
+offset_top = -106.0
+offset_right = 76.0
+offset_bottom = 106.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_rhts7")
+
+[node name="StartButton" type="Button" parent="ButtonsPanel"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -42.0
+offset_top = 18.0
+offset_right = 43.0
+offset_bottom = 69.0
+grow_horizontal = 2
+text = "START"
+
+[node name="TutorialButton" type="Button" parent="ButtonsPanel/StartButton"]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -42.5
+offset_top = 12.0
+offset_right = 42.5
+offset_bottom = 63.0
+grow_horizontal = 2
+grow_vertical = 0
+text = "TUTORIAL"
+
+[node name="QuitButton" type="Button" parent="ButtonsPanel/StartButton/TutorialButton"]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -42.5
+offset_top = 12.0
+offset_right = 42.5
+offset_bottom = 63.0
+grow_horizontal = 2
+grow_vertical = 0
+text = "QUIT"
