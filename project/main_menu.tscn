@@ -155,6 +155,7 @@ text = "[font_size=32]Changelog:[/font_size]
 [font_size=24]0.3.0[/font_size]
 [ul]
 Zombies now walk towards the base when spawning in (most of the time)
+Updated wave, zombie spawn, and wall crack timings to be a bit faster
 [/ul]
 [font_size=24]0.2.0[/font_size]
 [ul]
