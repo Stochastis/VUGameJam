@@ -82,6 +82,7 @@ debug_enabled = true
 parent = NodePath("..")
 observer = NodePath("../Observer")
 trackedEntityGroups = Array[String](["Good Guys", "Breakable"])
+displayDebugGraphics = false
 
 [node name="Observer" parent="." node_paths=PackedStringArray("lineOfSight", "observationArea") instance=ExtResource("6_8qtrh")]
 lineOfSight = NodePath("../LineOfSight")

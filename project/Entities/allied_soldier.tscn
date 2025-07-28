@@ -71,6 +71,7 @@ polygon = PackedVector2Array(2045, 0, 1024, -1024, 20, -148, 20, 148, 1024, 1024
 parent = NodePath("..")
 observer = NodePath("../Observer")
 trackedEntityGroups = Array[String](["Zombies"])
+displayDebugGraphics = false
 
 [node name="Observer" parent="." node_paths=PackedStringArray("lineOfSight", "observationArea") instance=ExtResource("5_ilfrq")]
 lineOfSight = NodePath("../LineOfSight")
