@@ -7,7 +7,7 @@ class_name Main
 @onready var tileMapLayer: TileMapLayer = $"World/WorldNavRegion/TileMapLayer-Environment"
 @onready var worldNavigation: NavigationRegion2D = $World/WorldNavRegion
 
-var currStructIntegrity: int
+var currStructIntegrity: int : set = _on_set_curr_struct_integrity
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -42,3 +42,11 @@ func spawn_doors():
 		
 		worldNavigation.add_child(door)
 		tileMapLayer.set_cell(cell_pos, -1)
+
+func _on_set_curr_struct_integrity(integrity: int):
+	currStructIntegrity = integrity
+	var newValue: float = ((float(maxStructIntegrity - currStructIntegrity)) / float(maxStructIntegrity)) * 100.0
+	$World/GUICanvasLayer/MainUI/DecayMeter.value = newValue
+	
+	if currStructIntegrity <= 0:
+		get_tree().change_scene_to_file("res://game_over.tscn")
