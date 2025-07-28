@@ -21,6 +21,14 @@ var repRepMode: RepRepMode = RepRepMode.None
 var oldRepRepMode: RepRepMode = RepRepMode.None
 var repRepObj: Node2D
 var oldRepRepObj: Node2D
+var mainUI: Control
+var repRepProgressBar: ProgressBar
+var repRepLabel: Label
+
+func _ready() -> void:
+	mainUI = $"../GUICanvasLayer/MainUI"
+	repRepProgressBar = mainUI.get_node("RepairReplaceProgressBar")
+	repRepLabel = repRepProgressBar.get_node("RepairReplaceLabel")
 
 func _process(_delta: float) -> void:
 	look_at(get_global_mouse_position())
@@ -34,12 +42,20 @@ func _process(_delta: float) -> void:
 	#If repRepMode or repRepObj changed, clear the timer and start again if needed
 	if oldRepRepMode != repRepMode or oldRepRepObj != repRepObj:
 		$RepairReplaceTimer.stop()
+		repRepProgressBar.visible = false
 		if repRepMode == RepRepMode.Repair and repRepObj:
 			$RepairReplaceTimer.start(repRepObj.timeToRepair)
+			repRepProgressBar.visible = true
+			repRepLabel.text = "Repairing " + repRepObj.friendlyName
 		elif repRepMode == RepRepMode.Replace and repRepObj:
 			$RepairReplaceTimer.start(repRepObj.timeToReplace)
+			repRepProgressBar.visible = true
+			repRepLabel.text = "Replacing " + repRepObj.friendlyName
 	oldRepRepMode = repRepMode
 	oldRepRepObj = repRepObj
+	
+	if not $RepairReplaceTimer.is_stopped():
+		repRepProgressBar.value = 100.0 - (($RepairReplaceTimer.time_left / $RepairReplaceTimer.wait_time) * 100.0)
 	
 	#Debug
 	#var objStr: String = "null" if not repRepObj else str(repRepObj.get_parent().name)

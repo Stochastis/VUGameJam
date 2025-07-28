@@ -2,15 +2,25 @@ extends Node
 
 @export var zombie: PackedScene
 @export var enabled: bool = true
+@export var startingSpawnFrequency: float
+@export var timeBetweenSpeedUps: float
+@export var speedUpAmount: float
+
+var spawnWaitTime: float
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	if enabled:
+		spawnWaitTime = startingSpawnFrequency
 		_on_timer_timeout()
+		$WaveTimer.start(timeBetweenSpeedUps)
 
 func _on_timer_timeout() -> void:
 	spawn_zombie()
-	$Timer.start()
+	$SpawnTimer.start(spawnWaitTime)
+
+func _on_wave_timer_timeout() -> void:
+	spawnWaitTime = max(0.1, spawnWaitTime - speedUpAmount)
 
 func spawn_zombie() -> void:
 	var spawnAreas = $SpawnAreas.get_children()

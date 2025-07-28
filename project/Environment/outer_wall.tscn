@@ -94,6 +94,7 @@ one_shot = true
 
 [node name="Replaceable" parent="." node_paths=PackedStringArray("replaceableObject") instance=ExtResource("7_fcp2d")]
 replaceableObject = NodePath("..")
+friendlyName = "Wall"
 timeToReplace = 4.0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Replaceable"]
@@ -101,6 +102,7 @@ shape = SubResource("RectangleShape2D_axysy")
 
 [node name="Repairable" parent="." node_paths=PackedStringArray("repairableObject") instance=ExtResource("8_pvxen")]
 repairableObject = NodePath("..")
+friendlyName = "Wall"
 timeToRepair = 0.5
 repairAmount = 10.0
 

@@ -107,6 +107,7 @@ navigation_polygon = SubResource("NavigationPolygon_6hwww")
 [node name="Repairable" parent="." node_paths=PackedStringArray("repairableObject") instance=ExtResource("9_60si7")]
 visible = false
 repairableObject = NodePath("..")
+friendlyName = "Door"
 timeToRepair = 2.0
 repairAmount = 15.0
 
@@ -116,6 +117,7 @@ shape = SubResource("RectangleShape2D_14t7a")
 [node name="Replaceable" parent="." node_paths=PackedStringArray("replaceableObject") instance=ExtResource("10_quvkt")]
 visible = false
 replaceableObject = NodePath("..")
+friendlyName = "Door"
 timeToReplace = 4.0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Replaceable"]
@@ -129,10 +131,11 @@ useableObject = NodePath("..")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Useable"]
 shape = SubResource("RectangleShape2D_y5njw")
 
-[node name="DecayContributor" parent="." node_paths=PackedStringArray("healthSystem") instance=ExtResource("16_tlngp")]
+[node name="DecayContributor" parent="." node_paths=PackedStringArray("healthSystem", "sprite") instance=ExtResource("16_tlngp")]
 healthSystem = NodePath("../HealthSystem")
-decayDelay = 5.0
-decayInterval = 2.0
-decayAmount = 10
+sprite = NodePath("../AnimatedSprite2D")
+decayDelay = 10.0
+decayInterval = 10.0
+decayAmount = 1
 
 [connection signal="healthChanged" from="HealthSystem" to="." method="_on_health_system_health_changed"]

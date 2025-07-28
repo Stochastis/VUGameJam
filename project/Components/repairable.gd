@@ -1,6 +1,7 @@
 extends Area2D
 
 @export var repairableObject: Node
+@export var friendlyName: String
 @export var timeToRepair: float
 @export var repairAmount: float
 

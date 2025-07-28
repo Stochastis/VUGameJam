@@ -1,0 +1,96 @@
+[gd_scene load_steps=3 format=3 uid="uid://rcy6qq4eg034"]
+
+[ext_resource type="Script" uid="uid://bj7lwdvg262ut" path="res://tutorial_menu.gd" id="1_voqx1"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_w2y4n"]
+font_size = 32
+
+[node name="TutorialMenu" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_voqx1")
+
+[node name="TutorialMenuPanel" type="Panel" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -469.0
+offset_top = -466.0
+offset_right = 469.0
+offset_bottom = 466.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Label" type="Label" parent="TutorialMenuPanel"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -147.0
+offset_top = 14.0
+offset_right = 147.0
+offset_bottom = 75.0
+grow_horizontal = 2
+text = "Tutorial"
+label_settings = SubResource("LabelSettings_w2y4n")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Button" type="Button" parent="TutorialMenuPanel"]
+layout_mode = 0
+offset_left = 16.0
+offset_top = 857.0
+offset_right = 200.0
+offset_bottom = 919.0
+text = "<- Back"
+
+[node name="RichTextLabel" type="RichTextLabel" parent="TutorialMenuPanel"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -294.0
+offset_top = -406.0
+offset_right = 294.0
+offset_bottom = 389.0
+grow_horizontal = 2
+grow_vertical = 2
+bbcode_enabled = true
+text = "[font_size=24]Welcome to [pulse][shake]Tape Cover![/shake][/pulse][/font_size]
+
+You are an engineer inside a military bunker which is currently under attack by the zombie horde. Your goal is to keep the base from crumbling while your fellow soldiers attempt to fend off the onslaught of undead.
+
+You have 2 primary goals in this game:
+[ol]
+Keep the base from [color=dark_green][shake rate=2]decaying[/shake][/color] (as indicated with the progress bar at the top of the screen) by making sure everything is repaired and...
+DON'T [b][pulse][color=dark_red]DIE[/color][/pulse][/b]
+[/ol]
+
+Structures that keep the bunker in tact (just doors right now) will continuously contribute to the [color=dark_green][shake rate=2]decay[/shake][/color] meter while they remain damaged after zombies attack it. If that meter reaches 100%, the base's structural integrity has failed and the game is over.
+
+When fixing objects, you have two options: \"repair\", which is fast, but only fixes a small amount of damage, or \"replace\", which is slower, but completely restores an object.
+
+Unfortunately (due to a completely normal and understandable accident involving lime juice, a pez dispenser, and a Sig P3.20), your gun privelages have been revoked. If you're being chased down by the zoms and want to get rid of them, make sure to find a nearby ally so they can shoot them for you.
+
+Good luck and remember to [shake]TAPE COVER!!![/shake]
+
+Controls:
+- WASD (or arrow keys): Move
+- Left Click: Interact with objects (just doors right now)
+- F: Repair objects
+- R: Replace objects
+- Mouse Wheel: Zoom In/Out
+
+"
+scroll_active = false
+
+[connection signal="pressed" from="TutorialMenuPanel/Button" to="." method="_on_button_pressed"]
