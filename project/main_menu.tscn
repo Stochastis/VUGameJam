@@ -1,4 +1,4 @@
-[gd_scene load_steps=4 format=3 uid="uid://dys51wmjbihem"]
+[gd_scene load_steps=5 format=3 uid="uid://dys51wmjbihem"]
 
 [ext_resource type="Script" uid="uid://060bbp7cidsw" path="res://main_menu.gd" id="1_06t4h"]
 
@@ -6,6 +6,8 @@
 font_size = 64
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_rhts7"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_06t4h"]
 
 [node name="MainMenu" type="Control"]
 layout_mode = 3
@@ -87,6 +89,87 @@ grow_horizontal = 2
 grow_vertical = 0
 text = "QUIT"
 
+[node name="VersionPanel" type="Panel" parent="."]
+layout_mode = 0
+offset_right = 238.0
+offset_bottom = 63.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_06t4h")
+
+[node name="CurrVersionLabel" type="Label" parent="VersionPanel"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -108.5
+offset_right = 108.5
+offset_bottom = 23.0
+grow_horizontal = 2
+text = "Current Game Version: 0.2.0"
+
+[node name="OpenChangelogButton" type="Button" parent="VersionPanel"]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -61.0
+offset_top = -35.0
+offset_right = 61.0
+offset_bottom = -4.0
+grow_horizontal = 2
+grow_vertical = 0
+text = "Changelog"
+
+[node name="ChangelogPanel" type="Panel" parent="."]
+visible = false
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -725.0
+offset_top = -354.0
+offset_right = 725.0
+offset_bottom = 354.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Changelog" type="RichTextLabel" parent="ChangelogPanel"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -685.0
+offset_top = -303.0
+offset_right = 685.0
+offset_bottom = 303.0
+grow_horizontal = 2
+grow_vertical = 2
+bbcode_enabled = true
+text = "[font_size=32]Changelog:[/font_size]
+[ul bullet=]
+[font_size=24]0.2.0[/font_size]
+[ul]
+Added changelog
+[/ul]
+[/ul]"
+
+[node name="CloseChangelogButton" type="Button" parent="ChangelogPanel"]
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_top = -61.0
+offset_right = 168.0
+grow_vertical = 0
+text = "Close Changelog"
+
 [connection signal="pressed" from="ButtonsPanel/StartButton" to="." method="_on_start_button_pressed"]
 [connection signal="pressed" from="ButtonsPanel/StartButton/TutorialButton" to="." method="_on_tutorial_button_pressed"]
 [connection signal="pressed" from="ButtonsPanel/StartButton/TutorialButton/QuitButton" to="." method="_on_quit_button_pressed"]
+[connection signal="pressed" from="VersionPanel/OpenChangelogButton" to="." method="_on_open_changelog_button_pressed"]
+[connection signal="pressed" from="ChangelogPanel/CloseChangelogButton" to="." method="_on_close_changelog_button_pressed"]
