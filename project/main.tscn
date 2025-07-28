@@ -14,7 +14,7 @@
 [ext_resource type="Texture2D" uid="uid://h4y2no6dhusb" path="res://Assets/Environment/ClosedDoorLeftRight.png" id="6_w48qg"]
 [ext_resource type="Script" uid="uid://b4wmtfqvvrxfa" path="res://camera_2d.gd" id="9_kek77"]
 [ext_resource type="PackedScene" uid="uid://ce22jwvxoan48" path="res://Entities/allied_soldier.tscn" id="10_4c57u"]
-[ext_resource type="Script" uid="uid://c7on6l54cj36u" path="res://wave_manager.gd" id="11_efxa6"]
+[ext_resource type="Script" uid="uid://bsplkvk2nojwr" path="res://wave_manager.gd" id="11_efxa6"]
 [ext_resource type="PackedScene" uid="uid://dl3ob63ckvjq5" path="res://Entities/zombie.tscn" id="12_dg77c"]
 [ext_resource type="Script" uid="uid://bxlac33ocgopy" path="res://outer_wall_manager.gd" id="15_vivmo"]
 [ext_resource type="PackedScene" uid="uid://beac702tw1hji" path="res://spawn_area.tscn" id="17_cegan"]
@@ -116,7 +116,7 @@ tile_map_data = PackedByteArray("AAAIAAMAEwAAAAAAAAAIAAQAEwAAAAAAAAAIAAUAEwAAAAA
 tile_set = SubResource("TileSet_272bh")
 
 [node name="Engineer" parent="World" instance=ExtResource("3_h2yge")]
-position = Vector2(686, 756)
+position = Vector2(708, 759)
 metadata/_edit_group_ = true
 
 [node name="Camera2D" type="Camera2D" parent="World/Engineer"]
