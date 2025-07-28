@@ -1,12 +1,18 @@
 extends Node
+class_name Main
+
+@export var door_scene: PackedScene
+@export var maxStructIntegrity: int
 
 @onready var tileMapLayer: TileMapLayer = $"World/WorldNavRegion/TileMapLayer-Environment"
 @onready var worldNavigation: NavigationRegion2D = $World/WorldNavRegion
-@export var door_scene: PackedScene
+
+var currStructIntegrity: int
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	spawn_doors()
+	currStructIntegrity = maxStructIntegrity
 
 func spawn_doors():
 	for cell_pos in tileMapLayer.get_used_cells():
