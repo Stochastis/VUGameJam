@@ -1,6 +1,7 @@
 extends Node
 
 @export var healthSystem: HealthSystem
+@export var sprite: Node2D
 @export var decayDelay: float
 @export var decayInterval: float
 @export var decayAmount: int
@@ -24,3 +25,10 @@ func _on_decay_delay_timer_timeout() -> void:
 
 func _on_decay_contribute_timer_timeout() -> void:
 	main.currStructIntegrity -= decayAmount
+	decay_flash()
+
+func decay_flash() -> void:
+	if sprite:
+		sprite.modulate = Color.DIM_GRAY
+		await get_tree().create_timer(0.1).timeout
+		sprite.modulate = Color.WHITE

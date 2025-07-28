@@ -129,8 +129,9 @@ useableObject = NodePath("..")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Useable"]
 shape = SubResource("RectangleShape2D_y5njw")
 
-[node name="DecayContributor" parent="." node_paths=PackedStringArray("healthSystem") instance=ExtResource("16_tlngp")]
+[node name="DecayContributor" parent="." node_paths=PackedStringArray("healthSystem", "sprite") instance=ExtResource("16_tlngp")]
 healthSystem = NodePath("../HealthSystem")
+sprite = NodePath("../AnimatedSprite2D")
 decayDelay = 10.0
 decayInterval = 10.0
 decayAmount = 1
