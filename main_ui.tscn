@@ -1,0 +1,58 @@
+[gd_scene load_steps=4 format=3 uid="uid://yvlbxp5mry5u"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_td82l"]
+bg_color = Color(0.79296, 0.84, 0.7056, 1)
+border_width_left = 8
+border_width_top = 8
+border_width_right = 8
+border_width_bottom = 8
+border_color = Color(0.15536, 0.32, 0.1184, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_2ppmm"]
+bg_color = Color(0.129558, 0.129559, 0.129558, 1)
+border_width_left = 8
+border_width_top = 8
+border_width_bottom = 8
+border_color = Color(0.156863, 0.321569, 0.117647, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_td82l"]
+font_color = Color(0, 0, 0, 1)
+
+[node name="MainUI" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="DecayMeter" type="ProgressBar" parent="."]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -282.0
+offset_top = 16.0
+offset_right = 283.0
+offset_bottom = 43.0
+grow_horizontal = 2
+theme_override_colors/font_color = Color(0.68, 0.673427, 0.2856, 1)
+theme_override_colors/font_outline_color = Color(0.0614678, 0.109483, 0.00843721, 1)
+theme_override_styles/background = SubResource("StyleBoxFlat_td82l")
+theme_override_styles/fill = SubResource("StyleBoxFlat_2ppmm")
+
+[node name="Decay" type="Label" parent="DecayMeter"]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -23.5
+offset_top = -1.0
+offset_right = 23.5
+offset_bottom = 22.0
+grow_horizontal = 2
+grow_vertical = 0
+text = "Decay"
+label_settings = SubResource("LabelSettings_td82l")

@@ -1,0 +1,46 @@
+[gd_scene load_steps=2 format=3 uid="uid://dyna2g6xptklc"]
+
+[ext_resource type="Script" uid="uid://cmigoxl8ki4yp" path="res://try_again.gd" id="1_y26ei"]
+
+[node name="GameOver" type="Node"]
+
+[node name="Control" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Label" type="Label" parent="Control"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -11.5
+offset_right = 20.0
+offset_bottom = 11.5
+grow_horizontal = 2
+grow_vertical = 2
+text = "GAME OVER!!!"
+
+[node name="Button" type="Button" parent="Control/Label"]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -44.0
+offset_top = 6.5
+offset_right = 44.0
+offset_bottom = 37.5
+grow_horizontal = 2
+grow_vertical = 0
+text = "Try Again?"
+script = ExtResource("1_y26ei")
+
+[connection signal="pressed" from="Control/Label/Button" to="Control/Label/Button" method="_on_pressed"]

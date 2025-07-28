@@ -41,10 +41,11 @@ script = ExtResource("1_qcgow")
 metadata/_edit_group_ = true
 
 [node name="HealthBar" parent="." node_paths=PackedStringArray("healthSystem") instance=ExtResource("2_5qc07")]
-offset_left = -32.0
-offset_top = -32.0
-offset_right = 35.0
-offset_bottom = -27.0
+offset_left = -4.0
+offset_top = -7.0
+offset_right = 28.0
+offset_bottom = -1.0
+scale = Vector2(0.25, 0.25)
 healthSystem = NodePath("../HealthSystem")
 
 [node name="HealthSystem" parent="." node_paths=PackedStringArray("sprite") instance=ExtResource("1_pd1d8")]

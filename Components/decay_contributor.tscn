@@ -1,0 +1,14 @@
+[gd_scene load_steps=2 format=3 uid="uid://drw1bqon7jqdd"]
+
+[ext_resource type="Script" uid="uid://bcjvegqr5ia8c" path="res://Components/decay_contributor.gd" id="1_a8bos"]
+
+[node name="DecayContributor" type="Node"]
+script = ExtResource("1_a8bos")
+
+[node name="DecayDelayTimer" type="Timer" parent="."]
+one_shot = true
+
+[node name="DecayContributeTimer" type="Timer" parent="."]
+
+[connection signal="timeout" from="DecayDelayTimer" to="." method="_on_decay_delay_timer_timeout"]
+[connection signal="timeout" from="DecayContributeTimer" to="." method="_on_decay_contribute_timer_timeout"]

@@ -14,7 +14,7 @@
 [ext_resource type="PackedScene" uid="uid://pxf8rpvhp3cu" path="res://States/zombie_funnel.tscn" id="12_ksr8e"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_ksr8e"]
-radius = 16.0
+radius = 14.0
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_kq8yi"]
 size = Vector2(20, 40)
@@ -41,10 +41,11 @@ maxHealth = 100
 sprite = NodePath("../Sprite")
 
 [node name="HealthBar" parent="." node_paths=PackedStringArray("healthSystem") instance=ExtResource("2_r0odx")]
-offset_left = -13.0
-offset_top = -29.0
-offset_right = 12.0
-offset_bottom = -24.0
+offset_left = -4.0
+offset_top = -8.0
+offset_right = 28.0
+offset_bottom = -2.0
+scale = Vector2(0.25, 0.25)
 healthSystem = NodePath("../HealthSystem")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]

@@ -1,9 +1,10 @@
-[gd_scene load_steps=30 format=4 uid="uid://bef8rrxlbfg1k"]
+[gd_scene load_steps=31 format=4 uid="uid://bef8rrxlbfg1k"]
 
 [ext_resource type="Texture2D" uid="uid://bvscik1nfrvci" path="res://Assets/Environment/Floor.png" id="1_0xm2m"]
 [ext_resource type="Script" uid="uid://ctwuwe024uqeq" path="res://main.gd" id="1_272bh"]
 [ext_resource type="Texture2D" uid="uid://cog142k52u6mn" path="res://Assets/Environment/Wall.png" id="2_h2yge"]
 [ext_resource type="PackedScene" uid="uid://bg5skfd20wcbw" path="res://Environment/door.tscn" id="3_1bvp3"]
+[ext_resource type="PackedScene" uid="uid://yvlbxp5mry5u" path="res://main_ui.tscn" id="3_074og"]
 [ext_resource type="PackedScene" uid="uid://ck6sugtlhcpdi" path="res://Entities/engineer.tscn" id="3_h2yge"]
 [ext_resource type="Texture2D" uid="uid://sn1fhh3r5jfs" path="res://Assets/Environment/OuterWallEdge.png" id="4_2cqfq"]
 [ext_resource type="Texture2D" uid="uid://dkdts5jkkrqo6" path="res://Assets/Environment/OpenDoorUpDown.png" id="4_7mycd"]
@@ -105,6 +106,7 @@ radius = 18.0
 [node name="Main" type="Node"]
 script = ExtResource("1_272bh")
 door_scene = ExtResource("3_1bvp3")
+maxStructIntegrity = 100
 
 [node name="World" type="Node2D" parent="."]
 
@@ -116,12 +118,16 @@ tile_map_data = PackedByteArray("AAAIAAMAEwAAAAAAAAAIAAQAEwAAAAAAAAAIAAUAEwAAAAA
 tile_set = SubResource("TileSet_272bh")
 
 [node name="Engineer" parent="World" instance=ExtResource("3_h2yge")]
-position = Vector2(14, 547)
+position = Vector2(686, 756)
 metadata/_edit_group_ = true
 
 [node name="Camera2D" type="Camera2D" parent="World/Engineer"]
 zoom = Vector2(4, 4)
 script = ExtResource("9_kek77")
+
+[node name="GUICanvasLayer" type="CanvasLayer" parent="World"]
+
+[node name="MainUI" parent="World/GUICanvasLayer" instance=ExtResource("3_074og")]
 
 [node name="AlliedSoldiers" type="Node" parent="World"]
 
