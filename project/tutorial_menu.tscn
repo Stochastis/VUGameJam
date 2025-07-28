@@ -45,10 +45,10 @@ vertical_alignment = 1
 
 [node name="Button" type="Button" parent="TutorialMenuPanel"]
 layout_mode = 0
-offset_left = 24.0
-offset_top = 842.0
-offset_right = 208.0
-offset_bottom = 904.0
+offset_left = 16.0
+offset_top = 857.0
+offset_right = 200.0
+offset_bottom = 919.0
 text = "<- Back"
 
 [node name="RichTextLabel" type="RichTextLabel" parent="TutorialMenuPanel"]
@@ -59,9 +59,9 @@ anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
 offset_left = -294.0
-offset_top = -395.0
+offset_top = -406.0
 offset_right = 294.0
-offset_bottom = 376.0
+offset_bottom = 389.0
 grow_horizontal = 2
 grow_vertical = 2
 bbcode_enabled = true
@@ -88,6 +88,7 @@ Controls:
 - Left Click: Interact with objects (just doors right now)
 - F: Repair objects
 - R: Replace objects
+- Mouse Wheel: Zoom In/Out
 
 "
 scroll_active = false
