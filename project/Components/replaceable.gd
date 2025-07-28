@@ -1,6 +1,7 @@
 extends Area2D
 
 @export var replaceableObject: Node
+@export var friendlyName: String
 @export var timeToReplace: float
 
 func replace() -> void:
