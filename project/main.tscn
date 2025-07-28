@@ -138,9 +138,14 @@ rotation = -3.15827
 [node name="WaveManager" type="Node" parent="World"]
 script = ExtResource("11_efxa6")
 zombie = ExtResource("12_dg77c")
+startingSpawnFrequency = 5.0
+timeBetweenSpeedUps = 120.0
+speedUpAmount = 0.5
 
 [node name="SpawnTimer" type="Timer" parent="World/WaveManager"]
 one_shot = true
+
+[node name="WaveTimer" type="Timer" parent="World/WaveManager"]
 
 [node name="SpawnAreas" type="Node" parent="World/WaveManager"]
 
@@ -201,4 +206,5 @@ modulate = Color(0.14902, 0.705882, 1, 1)
 position = Vector2(804, 758)
 
 [connection signal="timeout" from="World/WaveManager/SpawnTimer" to="World/WaveManager" method="_on_timer_timeout"]
+[connection signal="timeout" from="World/WaveManager/WaveTimer" to="World/WaveManager" method="_on_wave_timer_timeout"]
 [connection signal="timeout" from="World/OuterWallManager/WallBreakerTimer" to="World/OuterWallManager" method="_on_wall_breaker_timer_timeout"]
