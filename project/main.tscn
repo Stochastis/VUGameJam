@@ -17,6 +17,7 @@
 [ext_resource type="Script" uid="uid://c7on6l54cj36u" path="res://wave_manager.gd" id="11_efxa6"]
 [ext_resource type="PackedScene" uid="uid://dl3ob63ckvjq5" path="res://Entities/zombie.tscn" id="12_dg77c"]
 [ext_resource type="Script" uid="uid://bxlac33ocgopy" path="res://outer_wall_manager.gd" id="15_vivmo"]
+[ext_resource type="PackedScene" uid="uid://beac702tw1hji" path="res://spawn_area.tscn" id="17_cegan"]
 [ext_resource type="PackedScene" uid="uid://iug3nyrebcte" path="res://Environment/outer_wall.tscn" id="17_yaehf"]
 
 [sub_resource type="NavigationPolygon" id="NavigationPolygon_yaehf"]
@@ -100,9 +101,6 @@ sources/19 = SubResource("TileSetAtlasSource_yaehf")
 sources/20 = SubResource("TileSetAtlasSource_2cqfq")
 tile_proxies/coords_level = [[1, Vector2i(0, 0)], [11, Vector2i(0, 0)], [3, Vector2i(0, 0)], [11, Vector2i(1, 0)], [6, Vector2i(0, 0)], [11, Vector2i(2, 0)], [9, Vector2i(0, 0)], [11, Vector2i(3, 0)], [10, Vector2i(0, 0)], [11, Vector2i(4, 0)]]
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_dg77c"]
-radius = 18.0
-
 [node name="Main" type="Node"]
 script = ExtResource("1_272bh")
 door_scene = ExtResource("3_1bvp3")
@@ -184,12 +182,13 @@ rotation = -4.75984
 position = Vector2(720, 652)
 rotation = -4.69977
 
-[node name="WaveManager" type="Node" parent="World"]
+[node name="WaveManager" type="Node" parent="World" node_paths=PackedStringArray("centerNode")]
 script = ExtResource("11_efxa6")
 zombie = ExtResource("12_dg77c")
-startingSpawnFrequency = 5.0
-timeBetweenSpeedUps = 120.0
-speedUpAmount = 0.5
+startingSpawnFrequency = 3.0
+timeBetweenSpeedUps = 60.0
+speedUpAmount = 0.25
+centerNode = NodePath("../Center")
 
 [node name="SpawnTimer" type="Timer" parent="World/WaveManager"]
 one_shot = true
@@ -198,75 +197,41 @@ one_shot = true
 
 [node name="SpawnAreas" type="Node" parent="World/WaveManager"]
 
-[node name="SpawnArea" type="Area2D" parent="World/WaveManager/SpawnAreas"]
+[node name="SpawnArea" parent="World/WaveManager/SpawnAreas" instance=ExtResource("17_cegan")]
 position = Vector2(-406, -301)
-metadata/_edit_group_ = true
 
-[node name="SpawnShape" type="CollisionShape2D" parent="World/WaveManager/SpawnAreas/SpawnArea"]
-shape = SubResource("CircleShape2D_dg77c")
+[node name="SpawnArea2" parent="World/WaveManager/SpawnAreas" instance=ExtResource("17_cegan")]
+position = Vector2(-545, 550)
 
-[node name="SpawnArea2" type="Area2D" parent="World/WaveManager/SpawnAreas"]
-position = Vector2(1528, -210)
-metadata/_edit_group_ = true
+[node name="SpawnArea3" parent="World/WaveManager/SpawnAreas" instance=ExtResource("17_cegan")]
+position = Vector2(530, -373)
 
-[node name="SpawnShape" type="CollisionShape2D" parent="World/WaveManager/SpawnAreas/SpawnArea2"]
-shape = SubResource("CircleShape2D_dg77c")
+[node name="SpawnArea4" parent="World/WaveManager/SpawnAreas" instance=ExtResource("17_cegan")]
+position = Vector2(1572, -346)
 
-[node name="SpawnArea3" type="Area2D" parent="World/WaveManager/SpawnAreas"]
-position = Vector2(515, -250)
-metadata/_edit_group_ = true
+[node name="SpawnArea5" parent="World/WaveManager/SpawnAreas" instance=ExtResource("17_cegan")]
+position = Vector2(2263, -14)
 
-[node name="SpawnShape" type="CollisionShape2D" parent="World/WaveManager/SpawnAreas/SpawnArea3"]
-shape = SubResource("CircleShape2D_dg77c")
+[node name="SpawnArea6" parent="World/WaveManager/SpawnAreas" instance=ExtResource("17_cegan")]
+position = Vector2(2304, 669)
 
-[node name="SpawnArea4" type="Area2D" parent="World/WaveManager/SpawnAreas"]
-position = Vector2(2333, 677)
-metadata/_edit_group_ = true
+[node name="SpawnArea7" parent="World/WaveManager/SpawnAreas" instance=ExtResource("17_cegan")]
+position = Vector2(2242, 1781)
 
-[node name="SpawnShape" type="CollisionShape2D" parent="World/WaveManager/SpawnAreas/SpawnArea4"]
-shape = SubResource("CircleShape2D_dg77c")
+[node name="SpawnArea8" parent="World/WaveManager/SpawnAreas" instance=ExtResource("17_cegan")]
+position = Vector2(1078, 1888)
 
-[node name="SpawnArea5" type="Area2D" parent="World/WaveManager/SpawnAreas"]
-position = Vector2(-501, 536)
-metadata/_edit_group_ = true
+[node name="SpawnArea9" parent="World/WaveManager/SpawnAreas" instance=ExtResource("17_cegan")]
+position = Vector2(-686, 1391)
 
-[node name="SpawnShape" type="CollisionShape2D" parent="World/WaveManager/SpawnAreas/SpawnArea5"]
-shape = SubResource("CircleShape2D_dg77c")
+[node name="SpawnArea10" parent="World/WaveManager/SpawnAreas" instance=ExtResource("17_cegan")]
+position = Vector2(2242, 1183)
 
-[node name="SpawnArea6" type="Area2D" parent="World/WaveManager/SpawnAreas"]
-position = Vector2(-254, 959)
-metadata/_edit_group_ = true
+[node name="SpawnArea11" parent="World/WaveManager/SpawnAreas" instance=ExtResource("17_cegan")]
+position = Vector2(-402, 161)
 
-[node name="SpawnShape" type="CollisionShape2D" parent="World/WaveManager/SpawnAreas/SpawnArea6"]
-shape = SubResource("CircleShape2D_dg77c")
-
-[node name="SpawnArea7" type="Area2D" parent="World/WaveManager/SpawnAreas"]
-position = Vector2(164, 2116)
-metadata/_edit_group_ = true
-
-[node name="SpawnShape" type="CollisionShape2D" parent="World/WaveManager/SpawnAreas/SpawnArea7"]
-shape = SubResource("CircleShape2D_dg77c")
-
-[node name="SpawnArea8" type="Area2D" parent="World/WaveManager/SpawnAreas"]
-position = Vector2(1345, 1992)
-metadata/_edit_group_ = true
-
-[node name="SpawnShape" type="CollisionShape2D" parent="World/WaveManager/SpawnAreas/SpawnArea8"]
-shape = SubResource("CircleShape2D_dg77c")
-
-[node name="SpawnArea9" type="Area2D" parent="World/WaveManager/SpawnAreas"]
-position = Vector2(2270, 1181)
-metadata/_edit_group_ = true
-
-[node name="SpawnShape" type="CollisionShape2D" parent="World/WaveManager/SpawnAreas/SpawnArea9"]
-shape = SubResource("CircleShape2D_dg77c")
-
-[node name="SpawnArea10" type="Area2D" parent="World/WaveManager/SpawnAreas"]
-position = Vector2(918, -492)
-metadata/_edit_group_ = true
-
-[node name="SpawnShape" type="CollisionShape2D" parent="World/WaveManager/SpawnAreas/SpawnArea10"]
-shape = SubResource("CircleShape2D_dg77c")
+[node name="SpawnArea12" parent="World/WaveManager/SpawnAreas" instance=ExtResource("17_cegan")]
+position = Vector2(1023, -353)
 
 [node name="OuterWallManager" type="Node" parent="World" node_paths=PackedStringArray("tileMapLayer", "worldNavigation")]
 script = ExtResource("15_vivmo")
@@ -275,12 +240,15 @@ outerWallScene = ExtResource("17_yaehf")
 worldNavigation = NodePath("../WorldNavRegion")
 
 [node name="WallBreakerTimer" type="Timer" parent="World/OuterWallManager"]
-wait_time = 30.0
+wait_time = 15.0
 autostart = true
 
 [node name="TestZom" parent="World" instance=ExtResource("12_dg77c")]
 modulate = Color(0.14902, 0.705882, 1, 1)
 position = Vector2(804, 758)
+
+[node name="Center" type="Node2D" parent="World"]
+position = Vector2(971, 761)
 
 [connection signal="timeout" from="World/WaveManager/SpawnTimer" to="World/WaveManager" method="_on_timer_timeout"]
 [connection signal="timeout" from="World/WaveManager/WaveTimer" to="World/WaveManager" method="_on_wave_timer_timeout"]
