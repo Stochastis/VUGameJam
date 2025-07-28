@@ -22,9 +22,9 @@ maxHealth = 100
 sprite = NodePath("../Sprite2D")
 
 [node name="HealthBar" parent="." node_paths=PackedStringArray("healthSystem") instance=ExtResource("3_3smwa")]
-offset_left = -24.0
+offset_left = -32.0
 offset_top = -28.0
-offset_right = 23.0
+offset_right = 32.0
 offset_bottom = -23.0
 healthSystem = NodePath("../HealthSystem")
 
