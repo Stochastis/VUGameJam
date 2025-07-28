@@ -1,4 +1,6 @@
-[gd_scene load_steps=3 format=3 uid="uid://dys51wmjbihem"]
+[gd_scene load_steps=4 format=3 uid="uid://dys51wmjbihem"]
+
+[ext_resource type="Script" uid="uid://060bbp7cidsw" path="res://main_menu.gd" id="1_06t4h"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_rhts7"]
 font_size = 64
@@ -12,6 +14,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+script = ExtResource("1_06t4h")
 
 [node name="Title" type="Label" parent="."]
 layout_mode = 1
@@ -83,3 +86,7 @@ offset_bottom = 63.0
 grow_horizontal = 2
 grow_vertical = 0
 text = "QUIT"
+
+[connection signal="pressed" from="ButtonsPanel/StartButton" to="." method="_on_start_button_pressed"]
+[connection signal="pressed" from="ButtonsPanel/StartButton/TutorialButton" to="." method="_on_tutorial_button_pressed"]
+[connection signal="pressed" from="ButtonsPanel/StartButton/TutorialButton/QuitButton" to="." method="_on_quit_button_pressed"]
