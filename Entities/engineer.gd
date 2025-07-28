@@ -142,3 +142,7 @@ func _on_repair_replace_timer_timeout() -> void:
 			print("Replaced: " + str(repRepObj.get_parent().name))
 	else:
 		push_error("Unexpected timeout of RepRepTimer with a null repRepObj")
+
+func _on_health_system_health_changed() -> void:
+	if $HealthSystem.currHealth <= 0:
+		get_tree().change_scene_to_file("res://game_over.tscn")
