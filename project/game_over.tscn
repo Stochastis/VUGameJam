@@ -40,7 +40,7 @@ offset_right = 44.0
 offset_bottom = 37.5
 grow_horizontal = 2
 grow_vertical = 0
-text = "Try Again?"
+text = "Main Menu"
 script = ExtResource("1_y26ei")
 
 [connection signal="pressed" from="Control/Label/Button" to="Control/Label/Button" method="_on_pressed"]
