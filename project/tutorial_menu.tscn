@@ -45,10 +45,51 @@ vertical_alignment = 1
 
 [node name="Button" type="Button" parent="TutorialMenuPanel"]
 layout_mode = 0
-offset_left = 33.0
-offset_top = 834.0
-offset_right = 217.0
-offset_bottom = 896.0
+offset_left = 24.0
+offset_top = 842.0
+offset_right = 208.0
+offset_bottom = 904.0
 text = "<- Back"
+
+[node name="RichTextLabel" type="RichTextLabel" parent="TutorialMenuPanel"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -294.0
+offset_top = -395.0
+offset_right = 294.0
+offset_bottom = 376.0
+grow_horizontal = 2
+grow_vertical = 2
+bbcode_enabled = true
+text = "[font_size=24]Welcome to [pulse][shake]Tape Cover![/shake][/pulse][/font_size]
+
+You are an engineer inside a military bunker which is currently under attack by the zombie horde. Your goal is to keep the base from crumbling while your fellow soldiers attempt to fend off the onslaught of undead.
+
+You have 2 primary goals in this game:
+[ol]
+Keep the base from [color=dark_green][shake rate=2]decaying[/shake][/color] (as indicated with the progress bar at the top of the screen) by making sure everything is repaired and...
+DON'T [b][pulse][color=dark_red]DIE[/color][/pulse][/b]
+[/ol]
+
+Structures that keep the bunker in tact (just doors right now) will continuously contribute to the [color=dark_green][shake rate=2]decay[/shake][/color] meter while they remain damaged after zombies attack it. If that meter reaches 100%, the base's structural integrity has failed and the game is over.
+
+When fixing objects, you have two options: \"repair\", which is fast, but only fixes a small amount of damage, or \"replace\", which is slower, but completely restores an object.
+
+Unfortunately (due to a completely normal and understandable accident involving lime juice, a pez dispenser, and a Sig P3.20), your gun privelages have been revoked. If you're being chased down by the zoms and want to get rid of them, make sure to find a nearby ally so they can shoot them for you.
+
+Good luck and remember to [shake]TAPE COVER!!![/shake]
+
+Controls:
+- WASD (or arrow keys): Move
+- Left Click: Interact with objects (just doors right now)
+- F: Repair objects
+- R: Replace objects
+
+"
+scroll_active = false
 
 [connection signal="pressed" from="TutorialMenuPanel/Button" to="." method="_on_button_pressed"]
