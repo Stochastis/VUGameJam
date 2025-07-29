@@ -15,6 +15,8 @@ func _on_health_system_health_changed() -> void:
 		$AnimatedSprite2D.set_frame_and_progress(2, 0)
 		$CollisionShape2D.disabled = true
 		$NavigationRegion2D.enabled = true
+		if $NavigationRegion2D.is_baking():
+			await $NavigationRegion2D.bake_finished
 		$NavigationRegion2D.bake_navigation_polygon()
 		funnelZoms()
 		remove_from_group("Breakable")

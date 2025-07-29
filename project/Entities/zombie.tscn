@@ -14,7 +14,7 @@
 [ext_resource type="PackedScene" uid="uid://pxf8rpvhp3cu" path="res://States/zombie_funnel.tscn" id="12_ksr8e"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_ksr8e"]
-radius = 14.0
+radius = 12.0
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_kq8yi"]
 size = Vector2(20, 40)
@@ -29,7 +29,6 @@ radius = 729.098
 scale = Vector2(0.25, 0.25)
 collision_mask = 7
 motion_mode = 1
-wall_min_slide_angle = 0.0
 script = ExtResource("1_2votk")
 metadata/_edit_group_ = true
 
@@ -102,8 +101,7 @@ parent = NodePath("../..")
 navAgent = NodePath("../../NavigationAgent2D")
 idleWalkMoveSpeed = 10.0
 
-[node name="NpcTargetingZombie" parent="StateMachine" node_paths=PackedStringArray("navAgent", "parent", "chaseObservationArea", "attackArea", "observer", "targeter") instance=ExtResource("10_kq8yi")]
-navAgent = NodePath("../../NavigationAgent2D")
+[node name="NpcTargetingZombie" parent="StateMachine" node_paths=PackedStringArray("parent", "chaseObservationArea", "attackArea", "observer", "targeter") instance=ExtResource("10_kq8yi")]
 parent = NodePath("../..")
 chaseObservationArea = NodePath("../../Chase_Area")
 attackArea = NodePath("../../Attack_Proximity")
@@ -111,9 +109,8 @@ observer = NodePath("../../Observer")
 attack_cooldown = 1.0
 targeter = NodePath("../../Targeter")
 
-[node name="NpcTargetLostZombie" parent="StateMachine" node_paths=PackedStringArray("parent", "navAgent", "observer", "idleObservationArea", "targeter") instance=ExtResource("11_ew888")]
+[node name="NpcTargetLostZombie" parent="StateMachine" node_paths=PackedStringArray("parent", "observer", "idleObservationArea", "targeter") instance=ExtResource("11_ew888")]
 parent = NodePath("../..")
-navAgent = NodePath("../../NavigationAgent2D")
 observer = NodePath("../../Observer")
 idleObservationArea = NodePath("../../Focus_Area")
 targeter = NodePath("../../Targeter")

@@ -17,6 +17,12 @@ func enter() -> void:
 	if firstIntersectionPoint.distance_to(parent.global_position) < MINDISTTOWALK:
 		var nextState: String = ["NpcIdleTurn", "NpcIdleStand"].pick_random()
 		Transitioned.emit(self, nextState)
+		return
+	
+	$WalkTimer.start()
+
+func exit() -> void:
+	$WalkTimer.stop()
 
 func physics_update(_delta: float) -> void:
 	var toNextPath = (targeter.targetPosition - parent.global_position).normalized()
@@ -34,3 +40,7 @@ func first_intersection_point(target: Vector2) -> Vector2:
 	if result.is_empty():
 		return target
 	return result["position"]
+
+func _on_walk_timer_timeout() -> void:
+	var nextState: String = ["NpcIdleTurn", "NpcIdleStand"].pick_random()
+	Transitioned.emit(self, nextState)
