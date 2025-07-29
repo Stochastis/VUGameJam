@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://d4dibwcv2uryn"
-path="res://.godot/imported/BrokenDoorUpDown.png-c8c2913c35bd3eebf169d77d937de8b6.ctex"
+uid="uid://dwl8rfik3abdj"
+path="res://.godot/imported/ClosedDoorUpDown.png-a0589629013713fab452af114467c95b.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/Environment/BrokenDoorUpDown.png"
-dest_files=["res://.godot/imported/BrokenDoorUpDown.png-c8c2913c35bd3eebf169d77d937de8b6.ctex"]
+source_file="res://Assets/Environment/Doors/ClosedDoorUpDown.png"
+dest_files=["res://.godot/imported/ClosedDoorUpDown.png-a0589629013713fab452af114467c95b.ctex"]
 
 [params]
 

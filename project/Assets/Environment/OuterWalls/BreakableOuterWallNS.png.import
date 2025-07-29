@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://jbppptw2mu8x"
-path="res://.godot/imported/DamagedClosedDoorLeftRight.png-d4798cd9b112fe7eed18ef8d50996e9b.ctex"
+uid="uid://d1581ndidnr7t"
+path="res://.godot/imported/BreakableOuterWallNS.png-8c427122172d1cb3b19f18784511e65c.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/Environment/DamagedClosedDoorLeftRight.png"
-dest_files=["res://.godot/imported/DamagedClosedDoorLeftRight.png-d4798cd9b112fe7eed18ef8d50996e9b.ctex"]
+source_file="res://Assets/Environment/OuterWalls/BreakableOuterWallNS.png"
+dest_files=["res://.godot/imported/BreakableOuterWallNS.png-8c427122172d1cb3b19f18784511e65c.ctex"]
 
 [params]
 

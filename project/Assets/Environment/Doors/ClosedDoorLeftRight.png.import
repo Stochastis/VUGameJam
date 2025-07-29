@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://b7g6wnm2rigfn"
-path="res://.godot/imported/tile_04.png-dca544a4f39bf5dbccec4dad944f06b0.ctex"
+uid="uid://h4y2no6dhusb"
+path="res://.godot/imported/ClosedDoorLeftRight.png-680abc1e6bf12c6c43501feea6334283.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/AssetDump/top down shooter/PNG/Tiles/tile_04.png"
-dest_files=["res://.godot/imported/tile_04.png-dca544a4f39bf5dbccec4dad944f06b0.ctex"]
+source_file="res://Assets/Environment/Doors/ClosedDoorLeftRight.png"
+dest_files=["res://.godot/imported/ClosedDoorLeftRight.png-680abc1e6bf12c6c43501feea6334283.ctex"]
 
 [params]
 
