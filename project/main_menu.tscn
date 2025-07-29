@@ -104,7 +104,7 @@ offset_left = -108.5
 offset_right = 108.5
 offset_bottom = 23.0
 grow_horizontal = 2
-text = "Current Game Version: 0.4.0"
+text = "Current Game Version: 0.4.1"
 
 [node name="OpenChangelogButton" type="Button" parent="VersionPanel"]
 layout_mode = 1
@@ -152,6 +152,10 @@ grow_vertical = 2
 bbcode_enabled = true
 text = "[font_size=32]Changelog:[/font_size]
 [ul bullet=]
+[font_size=24]0.4.1[/font_size]
+[ul]
+Tweaked zombie spawning, wave, and wall breaking timings
+[/ul]
 [font_size=24]0.4.0[/font_size]
 [ul]
 Added basic art for floor tiles
