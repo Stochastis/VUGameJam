@@ -314,9 +314,9 @@ rotation = -4.69977
 [node name="WaveManager" type="Node" parent="World" node_paths=PackedStringArray("centerNode")]
 script = ExtResource("11_efxa6")
 zombie = ExtResource("12_dg77c")
-startingSpawnFrequency = 3.0
-timeBetweenSpeedUps = 60.0
-speedUpAmount = 0.25
+startingSpawnFrequency = 2.0
+timeBetweenSpeedUps = 30.0
+speedUpAmount = 0.2
 centerNode = NodePath("../Center")
 
 [node name="SpawnTimer" type="Timer" parent="World/WaveManager"]
@@ -369,7 +369,7 @@ outerWallScene = ExtResource("17_yaehf")
 worldNavigation = NodePath("../WorldNavRegion")
 
 [node name="WallBreakerTimer" type="Timer" parent="World/OuterWallManager"]
-wait_time = 15.0
+wait_time = 12.0
 autostart = true
 
 [node name="TestZom" parent="World" instance=ExtResource("12_dg77c")]
