@@ -8,6 +8,7 @@ class_name NpcIdle
 @export var parent: CharacterBody2D
 @export var navAgent: NavigationAgent2D
 @export var idleWalkMoveSpeed: float
+@export var collisionShape: CollisionShape2D
 
 func _ready() -> void:
 	#Might change this to a more dynamic system in the future if needed for mini state machines and sub-states.
@@ -18,6 +19,8 @@ func _ready() -> void:
 	$StateMachine/NpcIdleWalk.targeter = targeter
 	$StateMachine/NpcIdleWalk.parent = parent
 	$StateMachine/NpcIdleWalk.idleWalkMoveSpeed = idleWalkMoveSpeed
+	$StateMachine/NpcIdleStand.collisionShape = collisionShape
+	$StateMachine/NpcIdleTurn.collisionShape = collisionShape
 
 func enter() -> void:
 	if parent.name == "TestZom":

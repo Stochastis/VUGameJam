@@ -93,13 +93,14 @@ blockingLayers = Array[int]([2, 3])
 [node name="StateMachine" parent="." node_paths=PackedStringArray("initial_state") instance=ExtResource("8_ksr8e")]
 initial_state = NodePath("NpcIdle")
 
-[node name="NpcIdle" parent="StateMachine" node_paths=PackedStringArray("targeter", "parent", "navAgent") instance=ExtResource("9_kq8yi")]
+[node name="NpcIdle" parent="StateMachine" node_paths=PackedStringArray("targeter", "parent", "navAgent", "collisionShape") instance=ExtResource("9_kq8yi")]
 targeter = NodePath("../../Targeter")
 maxWaitTime = 10.0
 maxTurnDegrees = 50.0
 parent = NodePath("../..")
 navAgent = NodePath("../../NavigationAgent2D")
 idleWalkMoveSpeed = 10.0
+collisionShape = NodePath("../../CollisionShape2D")
 
 [node name="NpcTargetingZombie" parent="StateMachine" node_paths=PackedStringArray("parent", "chaseObservationArea", "attackArea", "observer", "targeter") instance=ExtResource("10_kq8yi")]
 parent = NodePath("../..")

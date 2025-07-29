@@ -10,7 +10,6 @@ const MINDISTTOWALK: float = 32
 const MINDISTFROMPOINT: float = 8
 
 func enter() -> void:
-	#targeter.resetTarget()
 	var firstIntersectionPoint: Vector2 = first_intersection_point(targeter.targetPosition)
 	targeter.targetPosition = firstIntersectionPoint
 	
