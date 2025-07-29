@@ -4,7 +4,7 @@ class_name LineOfSight
 @export var parent: Node2D
 @export var blockingLayers: Array[int]
 
-func has_line_of_sight(target: Node2D) -> bool:
+func has_line_of_sight(target: Node2D, useTargetPoint = true) -> bool:
 	#Create the combined bitmask
 	var mask := 0
 	for layer in blockingLayers:
@@ -13,10 +13,14 @@ func has_line_of_sight(target: Node2D) -> bool:
 	var ignored: Array[RID]
 	var pointToLookAt: Vector2
 	#NOTE: If repairs/interactions get buggy with outer walls or other objects with Target Points, consider tweaking this code to ignore them in some cases
-	var targetPoint: TargetPoint = target.get_node_or_null("TargetPoint")
-	if targetPoint != null:
-		pointToLookAt = targetPoint.global_position
-		ignored = [parent]
+	if useTargetPoint:
+		var targetPoint: TargetPoint = target.get_node_or_null("TargetPoint")
+		if targetPoint != null:
+			pointToLookAt = targetPoint.global_position
+			ignored = [parent]
+		else:
+			pointToLookAt = target.global_position
+			ignored = [parent, target]
 	else:
 		pointToLookAt = target.global_position
 		ignored = [parent, target]

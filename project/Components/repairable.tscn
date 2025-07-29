@@ -3,4 +3,6 @@
 [ext_resource type="Script" uid="uid://ceayxgj0knu80" path="res://Components/repairable.gd" id="1_wby5a"]
 
 [node name="Repairable" type="Area2D"]
+collision_layer = 16
+collision_mask = 0
 script = ExtResource("1_wby5a")

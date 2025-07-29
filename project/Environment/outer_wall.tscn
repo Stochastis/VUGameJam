@@ -61,7 +61,6 @@ sprite = NodePath("../AnimatedSprite2D")
 sprite_frames = SubResource("SpriteFrames_483ig")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-visible = false
 position = Vector2(0, -0.0072732)
 shape = SubResource("RectangleShape2D_nlf3o")
 
@@ -93,6 +92,7 @@ wait_time = 5.0
 one_shot = true
 
 [node name="Replaceable" parent="." node_paths=PackedStringArray("replaceableObject") instance=ExtResource("7_fcp2d")]
+visible = false
 replaceableObject = NodePath("..")
 friendlyName = "Wall"
 timeToReplace = 4.0
@@ -101,6 +101,7 @@ timeToReplace = 4.0
 shape = SubResource("RectangleShape2D_axysy")
 
 [node name="Repairable" parent="." node_paths=PackedStringArray("repairableObject") instance=ExtResource("8_pvxen")]
+visible = false
 repairableObject = NodePath("..")
 friendlyName = "Wall"
 timeToRepair = 0.5

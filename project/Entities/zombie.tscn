@@ -14,7 +14,7 @@
 [ext_resource type="PackedScene" uid="uid://pxf8rpvhp3cu" path="res://States/zombie_funnel.tscn" id="12_ksr8e"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_ksr8e"]
-radius = 14.0
+radius = 12.0
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_kq8yi"]
 size = Vector2(20, 40)
@@ -27,9 +27,9 @@ radius = 729.098
 
 [node name="Zombie" type="CharacterBody2D" groups=["Zombies"]]
 scale = Vector2(0.25, 0.25)
-collision_mask = 7
+collision_layer = 8
+collision_mask = 6
 motion_mode = 1
-wall_min_slide_angle = 0.0
 script = ExtResource("1_2votk")
 metadata/_edit_group_ = true
 
@@ -52,7 +52,8 @@ healthSystem = NodePath("../HealthSystem")
 shape = SubResource("CircleShape2D_ksr8e")
 
 [node name="Attack_Proximity" type="Area2D" parent="."]
-collision_mask = 5
+collision_layer = 0
+collision_mask = 7
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Attack_Proximity"]
 position = Vector2(8, 0)
@@ -60,7 +61,8 @@ shape = SubResource("RectangleShape2D_kq8yi")
 
 [node name="Focus_Area" type="Area2D" parent="."]
 visible = false
-collision_mask = 5
+collision_layer = 0
+collision_mask = 7
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Focus_Area"]
 shape = SubResource("CircleShape2D_2votk")
@@ -68,7 +70,8 @@ shape = SubResource("CircleShape2D_2votk")
 [node name="Chase_Area" type="Area2D" parent="."]
 unique_name_in_owner = true
 visible = false
-collision_mask = 5
+collision_layer = 0
+collision_mask = 7
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Chase_Area"]
 visible = false
@@ -94,16 +97,16 @@ blockingLayers = Array[int]([2, 3])
 [node name="StateMachine" parent="." node_paths=PackedStringArray("initial_state") instance=ExtResource("8_ksr8e")]
 initial_state = NodePath("NpcIdle")
 
-[node name="NpcIdle" parent="StateMachine" node_paths=PackedStringArray("targeter", "parent", "navAgent") instance=ExtResource("9_kq8yi")]
+[node name="NpcIdle" parent="StateMachine" node_paths=PackedStringArray("targeter", "parent", "navAgent", "collisionShape") instance=ExtResource("9_kq8yi")]
 targeter = NodePath("../../Targeter")
 maxWaitTime = 10.0
 maxTurnDegrees = 50.0
 parent = NodePath("../..")
 navAgent = NodePath("../../NavigationAgent2D")
 idleWalkMoveSpeed = 10.0
+collisionShape = NodePath("../../CollisionShape2D")
 
-[node name="NpcTargetingZombie" parent="StateMachine" node_paths=PackedStringArray("navAgent", "parent", "chaseObservationArea", "attackArea", "observer", "targeter") instance=ExtResource("10_kq8yi")]
-navAgent = NodePath("../../NavigationAgent2D")
+[node name="NpcTargetingZombie" parent="StateMachine" node_paths=PackedStringArray("parent", "chaseObservationArea", "attackArea", "observer", "targeter") instance=ExtResource("10_kq8yi")]
 parent = NodePath("../..")
 chaseObservationArea = NodePath("../../Chase_Area")
 attackArea = NodePath("../../Attack_Proximity")
@@ -111,9 +114,8 @@ observer = NodePath("../../Observer")
 attack_cooldown = 1.0
 targeter = NodePath("../../Targeter")
 
-[node name="NpcTargetLostZombie" parent="StateMachine" node_paths=PackedStringArray("parent", "navAgent", "observer", "idleObservationArea", "targeter") instance=ExtResource("11_ew888")]
+[node name="NpcTargetLostZombie" parent="StateMachine" node_paths=PackedStringArray("parent", "observer", "idleObservationArea", "targeter") instance=ExtResource("11_ew888")]
 parent = NodePath("../..")
-navAgent = NodePath("../../NavigationAgent2D")
 observer = NodePath("../../Observer")
 idleObservationArea = NodePath("../../Focus_Area")
 targeter = NodePath("../../Targeter")
