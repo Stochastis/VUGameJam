@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dwl8rfik3abdj"
-path="res://.godot/imported/ClosedDoorUpDown.png-62ba683dc0ac43e45e2c13e2025f3525.ctex"
+uid="uid://sn1fhh3r5jfs"
+path="res://.godot/imported/OuterWallEdge.png-fa672c99ec9e685777c6a12632acffaa.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/Environment/ClosedDoorUpDown.png"
-dest_files=["res://.godot/imported/ClosedDoorUpDown.png-62ba683dc0ac43e45e2c13e2025f3525.ctex"]
+source_file="res://Assets/Environment/OuterWalls/OuterWallEdge.png"
+dest_files=["res://.godot/imported/OuterWallEdge.png-fa672c99ec9e685777c6a12632acffaa.ctex"]
 
 [params]
 

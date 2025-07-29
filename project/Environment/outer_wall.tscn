@@ -2,10 +2,10 @@
 
 [ext_resource type="Script" uid="uid://hjj6jxgosrx3" path="res://Environment/outer_wall.gd" id="1_38pn6"]
 [ext_resource type="PackedScene" uid="uid://bvhx82eau62u8" path="res://Components/health_system.tscn" id="2_fcp2d"]
-[ext_resource type="Texture2D" uid="uid://d2jyne7ayxkik" path="res://Assets/Environment/BrokenOuterWall.png" id="4_22s3a"]
-[ext_resource type="Texture2D" uid="uid://sn1fhh3r5jfs" path="res://Assets/Environment/OuterWallEdge.png" id="4_fcp2d"]
+[ext_resource type="Texture2D" uid="uid://d2jyne7ayxkik" path="res://Assets/Environment/OuterWalls/BrokenOuterWall.png" id="4_22s3a"]
+[ext_resource type="Texture2D" uid="uid://sn1fhh3r5jfs" path="res://Assets/Environment/OuterWalls/OuterWallEdge.png" id="4_fcp2d"]
 [ext_resource type="PackedScene" uid="uid://kiqu37j3fo0g" path="res://Components/target_point.tscn" id="5_38pn6"]
-[ext_resource type="Texture2D" uid="uid://d1581ndidnr7t" path="res://Assets/Environment/BreakableOuterWallNS.png" id="5_pvxen"]
+[ext_resource type="Texture2D" uid="uid://d1581ndidnr7t" path="res://Assets/Environment/OuterWalls/BreakableOuterWallNS.png" id="5_pvxen"]
 [ext_resource type="PackedScene" uid="uid://empvjc8jchgt" path="res://Components/replaceable.tscn" id="7_fcp2d"]
 [ext_resource type="PackedScene" uid="uid://bwpofjjuvx0ws" path="res://Components/repairable.tscn" id="8_pvxen"]
 

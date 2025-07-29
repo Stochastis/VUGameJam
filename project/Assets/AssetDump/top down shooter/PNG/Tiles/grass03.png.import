@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dhuv5wmnn8hqc"
-path="res://.godot/imported/BrokenDoorLeftRight.png-eb15afe2507954169df233beb02e6529.ctex"
+uid="uid://dj5yq5584bfmw"
+path="res://.godot/imported/grass03.png-4e897de3c0ebd760cad5b8aad47a6566.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/Environment/BrokenDoorLeftRight.png"
-dest_files=["res://.godot/imported/BrokenDoorLeftRight.png-eb15afe2507954169df233beb02e6529.ctex"]
+source_file="res://Assets/Environment/Floors/grass03.png"
+dest_files=["res://.godot/imported/grass03.png-4e897de3c0ebd760cad5b8aad47a6566.ctex"]
 
 [params]
 
