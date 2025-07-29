@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://d4mbs0hr4duxv"
+path="res://.godot/imported/Zombie Scream1.wav-ad86f1af8b8ec9a17c623dcc586918ac.sample"
+
+[deps]
+
+source_file="res://Assets/Brett Sounds/Zombies/Zombie Scream1.wav"
+dest_files=["res://.godot/imported/Zombie Scream1.wav-ad86f1af8b8ec9a17c623dcc586918ac.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=2
