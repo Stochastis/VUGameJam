@@ -3,4 +3,6 @@
 [ext_resource type="Script" uid="uid://6uqow5oj1a5o" path="res://Components/useable.gd" id="1_3v8h3"]
 
 [node name="Useable" type="Area2D"]
+collision_layer = 16
+collision_mask = 0
 script = ExtResource("1_3v8h3")

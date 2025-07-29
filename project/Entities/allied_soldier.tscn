@@ -59,6 +59,8 @@ sprite_frames = SubResource("SpriteFrames_2q06j")
 shape = SubResource("CircleShape2D_o50em")
 
 [node name="ObservationArea" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 8
 
 [node name="ListeningBubble" type="CollisionShape2D" parent="ObservationArea"]
 scale = Vector2(16, 16)

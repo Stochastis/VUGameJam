@@ -78,7 +78,7 @@ size = Vector2(16, 16)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_y5njw"]
 
 [node name="Door" type="StaticBody2D" node_paths=PackedStringArray("northSouthNavRegion", "eastWestNavRegion") groups=["Breakable"]]
-collision_layer = 4
+collision_layer = 2
 collision_mask = 0
 script = ExtResource("1_v6xrn")
 northSouthNavRegion = NodePath("NavigationRegion2DNS")
@@ -129,6 +129,7 @@ scale = Vector2(0.8, 0.8)
 useableObject = NodePath("..")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Useable"]
+scale = Vector2(1, 1)
 shape = SubResource("RectangleShape2D_y5njw")
 
 [node name="DecayContributor" parent="." node_paths=PackedStringArray("healthSystem", "sprite") instance=ExtResource("16_tlngp")]

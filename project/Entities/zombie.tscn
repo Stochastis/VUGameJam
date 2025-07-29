@@ -27,7 +27,8 @@ radius = 729.098
 
 [node name="Zombie" type="CharacterBody2D" groups=["Zombies"]]
 scale = Vector2(0.25, 0.25)
-collision_mask = 7
+collision_layer = 8
+collision_mask = 6
 motion_mode = 1
 script = ExtResource("1_2votk")
 metadata/_edit_group_ = true
@@ -51,7 +52,8 @@ healthSystem = NodePath("../HealthSystem")
 shape = SubResource("CircleShape2D_ksr8e")
 
 [node name="Attack_Proximity" type="Area2D" parent="."]
-collision_mask = 5
+collision_layer = 0
+collision_mask = 7
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Attack_Proximity"]
 position = Vector2(8, 0)
@@ -59,7 +61,8 @@ shape = SubResource("RectangleShape2D_kq8yi")
 
 [node name="Focus_Area" type="Area2D" parent="."]
 visible = false
-collision_mask = 5
+collision_layer = 0
+collision_mask = 7
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Focus_Area"]
 shape = SubResource("CircleShape2D_2votk")
@@ -67,7 +70,8 @@ shape = SubResource("CircleShape2D_2votk")
 [node name="Chase_Area" type="Area2D" parent="."]
 unique_name_in_owner = true
 visible = false
-collision_mask = 5
+collision_layer = 0
+collision_mask = 7
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Chase_Area"]
 visible = false

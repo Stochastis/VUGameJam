@@ -85,9 +85,11 @@ camera_zoom_out={
 
 [layer_names]
 
-2d_physics/layer_1="Entities"
+2d_physics/layer_1="Allies"
 2d_physics/layer_2="Walls"
 2d_physics/layer_3="Outer Walls"
+2d_physics/layer_4="Zombies"
+2d_physics/layer_5="Interactables"
 
 [rendering]
 
