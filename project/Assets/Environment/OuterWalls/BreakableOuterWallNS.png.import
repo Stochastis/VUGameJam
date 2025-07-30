@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dj5yq5584bfmw"
-path="res://.godot/imported/tile_03.png-109f9f54a6f8f599f70bdcf18d36ad9a.ctex"
+uid="uid://d1581ndidnr7t"
+path="res://.godot/imported/BreakableOuterWallNS.png-8c427122172d1cb3b19f18784511e65c.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/AssetDump/top down shooter/PNG/Tiles/tile_03.png"
-dest_files=["res://.godot/imported/tile_03.png-109f9f54a6f8f599f70bdcf18d36ad9a.ctex"]
+source_file="res://Assets/Environment/OuterWalls/BreakableOuterWallNS.png"
+dest_files=["res://.godot/imported/BreakableOuterWallNS.png-8c427122172d1cb3b19f18784511e65c.ctex"]
 
 [params]
 

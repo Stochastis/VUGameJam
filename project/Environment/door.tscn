@@ -1,20 +1,20 @@
 [gd_scene load_steps=24 format=3 uid="uid://bg5skfd20wcbw"]
 
 [ext_resource type="Script" uid="uid://cpm6twph3auq8" path="res://Environment/door.gd" id="1_v6xrn"]
-[ext_resource type="Texture2D" uid="uid://dwl8rfik3abdj" path="res://Assets/Environment/ClosedDoorUpDown.png" id="2_4xadh"]
+[ext_resource type="Texture2D" uid="uid://dwl8rfik3abdj" path="res://Assets/Environment/Doors/ClosedDoorUpDown.png" id="2_4xadh"]
 [ext_resource type="PackedScene" uid="uid://bvhx82eau62u8" path="res://Components/health_system.tscn" id="2_6jo5k"]
-[ext_resource type="Texture2D" uid="uid://dkdts5jkkrqo6" path="res://Assets/Environment/OpenDoorUpDown.png" id="2_v6xrn"]
-[ext_resource type="Texture2D" uid="uid://h4y2no6dhusb" path="res://Assets/Environment/ClosedDoorLeftRight.png" id="3_6hwww"]
-[ext_resource type="Texture2D" uid="uid://dv6fllihs0ai2" path="res://Assets/Environment/OpenDoorLeftRight.png" id="3_50cdl"]
+[ext_resource type="Texture2D" uid="uid://dkdts5jkkrqo6" path="res://Assets/Environment/Doors/OpenDoorUpDown.png" id="2_v6xrn"]
+[ext_resource type="Texture2D" uid="uid://h4y2no6dhusb" path="res://Assets/Environment/Doors/ClosedDoorLeftRight.png" id="3_6hwww"]
+[ext_resource type="Texture2D" uid="uid://dv6fllihs0ai2" path="res://Assets/Environment/Doors/OpenDoorLeftRight.png" id="3_50cdl"]
 [ext_resource type="PackedScene" uid="uid://dw63555i0b121" path="res://Components/useable.tscn" id="5_4xadh"]
-[ext_resource type="Texture2D" uid="uid://dei3heiy4woyu" path="res://Assets/Environment/DamagedClosedDoorUpDown.png" id="5_51y2p"]
-[ext_resource type="Texture2D" uid="uid://jbppptw2mu8x" path="res://Assets/Environment/DamagedClosedDoorLeftRight.png" id="6_tlngp"]
-[ext_resource type="Texture2D" uid="uid://d4dibwcv2uryn" path="res://Assets/Environment/BrokenDoorUpDown.png" id="7_8jukc"]
-[ext_resource type="Texture2D" uid="uid://dhuv5wmnn8hqc" path="res://Assets/Environment/BrokenDoorLeftRight.png" id="8_svg85"]
+[ext_resource type="Texture2D" uid="uid://dei3heiy4woyu" path="res://Assets/Environment/Doors/DamagedClosedDoorUpDown.png" id="5_51y2p"]
+[ext_resource type="Texture2D" uid="uid://jbppptw2mu8x" path="res://Assets/Environment/Doors/DamagedClosedDoorLeftRight.png" id="6_tlngp"]
+[ext_resource type="Texture2D" uid="uid://d4dibwcv2uryn" path="res://Assets/Environment/Doors/BrokenDoorUpDown.png" id="7_8jukc"]
+[ext_resource type="Texture2D" uid="uid://dhuv5wmnn8hqc" path="res://Assets/Environment/Doors/BrokenDoorLeftRight.png" id="8_svg85"]
 [ext_resource type="PackedScene" uid="uid://bwpofjjuvx0ws" path="res://Components/repairable.tscn" id="9_60si7"]
 [ext_resource type="PackedScene" uid="uid://empvjc8jchgt" path="res://Components/replaceable.tscn" id="10_quvkt"]
-[ext_resource type="Texture2D" uid="uid://6a1jhtuo1o46" path="res://Assets/Environment/DestroyedOpenDoorUpDown.png" id="11_o8vfa"]
-[ext_resource type="Texture2D" uid="uid://d07w1jq5dsjel" path="res://Assets/Environment/DestroyedOpenDoorLeftRight.png" id="12_roll1"]
+[ext_resource type="Texture2D" uid="uid://6a1jhtuo1o46" path="res://Assets/Environment/Doors/DestroyedOpenDoorUpDown.png" id="11_o8vfa"]
+[ext_resource type="Texture2D" uid="uid://d07w1jq5dsjel" path="res://Assets/Environment/Doors/DestroyedOpenDoorLeftRight.png" id="12_roll1"]
 [ext_resource type="PackedScene" uid="uid://drw1bqon7jqdd" path="res://Components/decay_contributor.tscn" id="16_tlngp"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_hun61"]
@@ -78,7 +78,7 @@ size = Vector2(16, 16)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_y5njw"]
 
 [node name="Door" type="StaticBody2D" node_paths=PackedStringArray("northSouthNavRegion", "eastWestNavRegion") groups=["Breakable"]]
-collision_layer = 4
+collision_layer = 2
 collision_mask = 0
 script = ExtResource("1_v6xrn")
 northSouthNavRegion = NodePath("NavigationRegion2DNS")
@@ -129,6 +129,7 @@ scale = Vector2(0.8, 0.8)
 useableObject = NodePath("..")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Useable"]
+scale = Vector2(1, 1)
 shape = SubResource("RectangleShape2D_y5njw")
 
 [node name="DecayContributor" parent="." node_paths=PackedStringArray("healthSystem", "sprite") instance=ExtResource("16_tlngp")]

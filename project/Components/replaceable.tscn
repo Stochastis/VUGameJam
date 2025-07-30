@@ -3,4 +3,6 @@
 [ext_resource type="Script" uid="uid://d15ffl66qfu8l" path="res://Components/replaceable.gd" id="1_4umd8"]
 
 [node name="Replaceable" type="Area2D"]
+collision_layer = 16
+collision_mask = 0
 script = ExtResource("1_4umd8")

@@ -6,7 +6,7 @@ class_name Observer
 
 var observedEntities: Array[Node2D]
 
-func _process(_delta: float) -> void:
+func _on_timer_timeout() -> void:
 	if observationArea and lineOfSight:
 		var bodiesInArea: Array[Node2D] = observationArea.get_overlapping_bodies()
 		observedEntities = bodiesInArea.filter(func(node): return lineOfSight.has_line_of_sight(node))

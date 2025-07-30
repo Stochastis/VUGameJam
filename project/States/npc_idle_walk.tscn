@@ -4,3 +4,9 @@
 
 [node name="NpcIdleWalk" type="Node"]
 script = ExtResource("1_gu5m7")
+
+[node name="WalkTimer" type="Timer" parent="."]
+wait_time = 10.0
+one_shot = true
+
+[connection signal="timeout" from="WalkTimer" to="." method="_on_walk_timer_timeout"]

@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://egciwp07wys6"
-path="res://.godot/imported/tile_02.png-1915e8e8e0a15f929d3a34c19f5b506e.ctex"
+uid="uid://dhuv5wmnn8hqc"
+path="res://.godot/imported/BrokenDoorLeftRight.png-f91c4d1850c8c318495bd295ae5d4160.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/AssetDump/top down shooter/PNG/Tiles/tile_02.png"
-dest_files=["res://.godot/imported/tile_02.png-1915e8e8e0a15f929d3a34c19f5b506e.ctex"]
+source_file="res://Assets/Environment/Doors/BrokenDoorLeftRight.png"
+dest_files=["res://.godot/imported/BrokenDoorLeftRight.png-f91c4d1850c8c318495bd295ae5d4160.ctex"]
 
 [params]
 

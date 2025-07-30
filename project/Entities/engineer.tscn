@@ -33,6 +33,8 @@ healthSystem = NodePath("../HealthSystem")
 shape = SubResource("CircleShape2D_v3ltv")
 
 [node name="PlayerInteractionArea" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 16
 
 [node name="CollisionShape2D" type="CollisionPolygon2D" parent="PlayerInteractionArea"]
 polygon = PackedVector2Array(150, -100, 150, 100, 20, 20, 20, -20)
@@ -44,7 +46,7 @@ texture = ExtResource("1_nniac")
 
 [node name="LineOfSight" parent="." node_paths=PackedStringArray("parent") instance=ExtResource("5_v3ltv")]
 parent = NodePath("..")
-blockingLayers = Array[int]([2])
+blockingLayers = Array[int]([2, 3])
 
 [connection signal="healthChanged" from="HealthSystem" to="." method="_on_health_system_health_changed"]
 [connection signal="timeout" from="RepairReplaceTimer" to="." method="_on_repair_replace_timer_timeout"]

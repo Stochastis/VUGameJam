@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dei3heiy4woyu"
-path="res://.godot/imported/DamagedClosedDoorUpDown.png-66984ebee5788c85ac96674f4b88b2be.ctex"
+uid="uid://dj5yq5584bfmw"
+path="res://.godot/imported/grass03.png-59286d306c447c6b0f367b428b1ed4f9.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/Environment/DamagedClosedDoorUpDown.png"
-dest_files=["res://.godot/imported/DamagedClosedDoorUpDown.png-66984ebee5788c85ac96674f4b88b2be.ctex"]
+source_file="res://Assets/AssetDump/top down shooter/PNG/Tiles/grass03.png"
+dest_files=["res://.godot/imported/grass03.png-59286d306c447c6b0f367b428b1ed4f9.ctex"]
 
 [params]
 

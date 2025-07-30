@@ -23,12 +23,32 @@ Sup, guys! Here's a quick guide to keep us moving fast **without breaking `main`
 - **Keep commits small, meaningful, and regular** in your own branch. This makes it easier to backtrack/debug and also keeps your progress saved.
 - Conflicts? Try `git pull origin main` on your branch before merging to grab the latest code in case it's been updated since you made your branch.
 
-## Recommended Branch Naming (not really important for a game jam, but might be useful)
+## Recommended Branch Naming and Versioning
+### Versioning
+- X.X.X format.
+- Each time a branch is merged into main, the version number and changelog should be updated.
+- First X is for major changes (new mechanics/systems, overhauls, new levels, etc.)
+- Second X is for minor changes (adding small features or moderate/small changes to existing ones)
+- Third X is for patches (bug fixes, small graphics updates, changed sfx, tweaking values, etc.)
 
-- `feature/player-jump`
-- `fix/audio-loop`
-- `level/jungle-scene`
-- `yourname-whatever`
+### Example Branch Prefix Types
+- feat: A new feature (major or minor)
+- refactor: Non-overhaul code refactoring or style changes (minor or patch)
+- art: Graphical/audio updates (minor or patch)
+- fix: Bug fixes (patch)
+- tweak: Tweaking values (patch)
+- perf: Performance improvements (patch)
+- build: Builds/deploys/updates (patch)
+- docs: Updating docs or comments (patch)
+- chore: Maintenance tasks (patch)
+
+### Example Branches
+- `feature/grid-system` (major)
+- `fix/audio-looping-bug` (patch)
+- `feat/outer-walls` (major)
+- `art-zombie-sprites` (minor)
+- `refactor-state-machines` (minor)
+- `tweak-changing-wave-times` (patch)
 
 ---
 

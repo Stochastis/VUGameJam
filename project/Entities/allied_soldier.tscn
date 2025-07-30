@@ -59,6 +59,8 @@ sprite_frames = SubResource("SpriteFrames_2q06j")
 shape = SubResource("CircleShape2D_o50em")
 
 [node name="ObservationArea" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 8
 
 [node name="ListeningBubble" type="CollisionShape2D" parent="ObservationArea"]
 scale = Vector2(16, 16)
@@ -84,11 +86,12 @@ blockingLayers = Array[int]([2])
 [node name="StateMachine" parent="." node_paths=PackedStringArray("initial_state") instance=ExtResource("6_mx1sb")]
 initial_state = NodePath("NpcIdle")
 
-[node name="NpcIdle" parent="StateMachine" node_paths=PackedStringArray("targeter", "parent", "navAgent") instance=ExtResource("9_smne3")]
+[node name="NpcIdle" parent="StateMachine" node_paths=PackedStringArray("targeter", "parent", "navAgent", "collisionShape") instance=ExtResource("9_smne3")]
 targeter = NodePath("../../Targeter")
 parent = NodePath("../..")
 navAgent = NodePath("../../NavigationAgent2D")
 idleWalkMoveSpeed = 10.0
+collisionShape = NodePath("../../CollisionShape2D")
 
 [node name="NpcTargetingSoldier" parent="StateMachine" node_paths=PackedStringArray("animSprite2D", "targeter") instance=ExtResource("10_smne3")]
 animSprite2D = NodePath("../../AnimatedSprite2D")
