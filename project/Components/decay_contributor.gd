@@ -5,6 +5,7 @@ extends Node
 @export var decayDelay: float
 @export var decayInterval: float
 @export var decayAmount: int
+@export var decayOnDamaged: bool = false
 
 @onready var main: Main = get_node("/root/Main")
 
@@ -15,7 +16,9 @@ func _ready() -> void:
 func _on_health_system_health_changed() -> void:
 	if healthSystem.currHealth <= 0:
 		$DecayDelayTimer.start(decayDelay)
-	else:
+	elif healthSystem.currHealth < healthSystem.maxHealth and decayOnDamaged and $DecayDelayTimer.is_stopped() and $DecayContributeTimer.is_stopped():
+		$DecayDelayTimer.start(decayDelay)
+	elif healthSystem.currHealth >= healthSystem.maxHealth or not decayOnDamaged:
 		$DecayDelayTimer.stop()
 		$DecayContributeTimer.stop()
 
