@@ -1,5 +1,8 @@
 extends CharacterBody2D
 
+@onready var audio_stream_player: AudioStreamPlayer = $WalkingAudioStreamPlayer
+@onready var hurt_audio_stream_player: AudioStreamPlayer = $HurtAudioStreamPlayer
+
 @export var move_speed: float = 150
 @export var playerInteractionArea: Area2D
 
@@ -56,6 +59,11 @@ func _process(_delta: float) -> void:
 	
 	if not $RepairReplaceTimer.is_stopped():
 		repRepProgressBar.value = 100.0 - (($RepairReplaceTimer.time_left / $RepairReplaceTimer.wait_time) * 100.0)
+	
+	if velocity.length() > 0 and not audio_stream_player.playing:
+		audio_stream_player.play()
+	if velocity.length() <= 0 and audio_stream_player.playing:
+		audio_stream_player.stop()
 	
 	#Debug
 	#var objStr: String = "null" if not repRepObj else str(repRepObj.get_parent().name)
@@ -160,5 +168,7 @@ func _on_repair_replace_timer_timeout() -> void:
 		push_error("Unexpected timeout of RepRepTimer with a null repRepObj")
 
 func _on_health_system_health_changed() -> void:
+	hurt_audio_stream_player.pitch_scale = randf_range(0.9, 1.1)
+	hurt_audio_stream_player.play()
 	if $HealthSystem.currHealth <= 0:
 		get_tree().change_scene_to_file("res://game_over.tscn")

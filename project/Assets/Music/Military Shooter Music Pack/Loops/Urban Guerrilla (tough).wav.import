@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://b2hxwljaqa3mc"
+path="res://.godot/imported/Urban Guerrilla (tough).wav-30be07f2a10bd65fd242bf853ee927dd.sample"
+
+[deps]
+
+source_file="res://Assets/Music/Military Shooter Music Pack/Loops/Urban Guerrilla (tough).wav"
+dest_files=["res://.godot/imported/Urban Guerrilla (tough).wav-30be07f2a10bd65fd242bf853ee927dd.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=2

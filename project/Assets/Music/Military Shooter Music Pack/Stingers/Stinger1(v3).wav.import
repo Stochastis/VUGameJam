@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://bbt1pbvwo7n8y"
+path="res://.godot/imported/Stinger1(v3).wav-b912da004bb6567e677515d451cda350.sample"
+
+[deps]
+
+source_file="res://Assets/Music/Military Shooter Music Pack/Stingers/Stinger1(v3).wav"
+dest_files=["res://.godot/imported/Stinger1(v3).wav-b912da004bb6567e677515d451cda350.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=2

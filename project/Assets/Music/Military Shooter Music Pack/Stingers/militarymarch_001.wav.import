@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://dm8v8fxn28bh8"
+path="res://.godot/imported/militarymarch_001.wav-f98b9f28ce660b73bda5f8ada5e30950.sample"
+
+[deps]
+
+source_file="res://Assets/Music/Military Shooter Music Pack/Stingers/militarymarch_001.wav"
+dest_files=["res://.godot/imported/militarymarch_001.wav-f98b9f28ce660b73bda5f8ada5e30950.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=2
