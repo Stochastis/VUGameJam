@@ -1,12 +1,14 @@
-[gd_scene load_steps=42 format=4 uid="uid://bef8rrxlbfg1k"]
+[gd_scene load_steps=44 format=4 uid="uid://bef8rrxlbfg1k"]
 
 [ext_resource type="Script" uid="uid://ctwuwe024uqeq" path="res://main.gd" id="1_272bh"]
 [ext_resource type="Texture2D" uid="uid://cog142k52u6mn" path="res://Assets/Environment/Wall.png" id="2_h2yge"]
 [ext_resource type="PackedScene" uid="uid://bg5skfd20wcbw" path="res://Environment/door.tscn" id="3_1bvp3"]
 [ext_resource type="PackedScene" uid="uid://yvlbxp5mry5u" path="res://main_ui.tscn" id="3_074og"]
 [ext_resource type="PackedScene" uid="uid://ck6sugtlhcpdi" path="res://Entities/engineer.tscn" id="3_h2yge"]
+[ext_resource type="AudioStream" uid="uid://s4t7tampe1ds" path="res://Assets/Brett Sounds/Voices/Random Soldier2wav.wav" id="3_ryguw"]
 [ext_resource type="Texture2D" uid="uid://sn1fhh3r5jfs" path="res://Assets/Environment/OuterWalls/OuterWallEdge.png" id="4_2cqfq"]
 [ext_resource type="Texture2D" uid="uid://dkdts5jkkrqo6" path="res://Assets/Environment/Doors/OpenDoorUpDown.png" id="4_7mycd"]
+[ext_resource type="AudioStream" uid="uid://d0j1aqnomfea6" path="res://Assets/Brett Sounds/Voices/Random soldier3.wav" id="4_d13ii"]
 [ext_resource type="Texture2D" uid="uid://dv6fllihs0ai2" path="res://Assets/Environment/Doors/OpenDoorLeftRight.png" id="5_272bh"]
 [ext_resource type="Texture2D" uid="uid://4ovpn0cwwot4" path="res://Assets/Environment/OuterWalls/OuterWall.png" id="5_w48qg"]
 [ext_resource type="Texture2D" uid="uid://dwl8rfik3abdj" path="res://Assets/Environment/Doors/ClosedDoorUpDown.png" id="5_ycdy4"]
@@ -234,6 +236,9 @@ tile_proxies/coords_level = [[1, Vector2i(0, 0)], [11, Vector2i(0, 0)], [3, Vect
 script = ExtResource("1_272bh")
 door_scene = ExtResource("3_1bvp3")
 maxStructIntegrity = 1000
+soldierTalkingLines = Array[AudioStream]([ExtResource("3_ryguw"), ExtResource("4_d13ii")])
+minSoldierTalkGap = 1.0
+maxSoldierTalkGap = 2.0
 
 [node name="World" type="Node2D" parent="."]
 
@@ -380,6 +385,9 @@ rotation = 3.07613
 [node name="Center" type="Node2D" parent="World"]
 position = Vector2(971, 761)
 
+[node name="SoldierTalkTimer" type="Timer" parent="."]
+
 [connection signal="timeout" from="World/WaveManager/SpawnTimer" to="World/WaveManager" method="_on_timer_timeout"]
 [connection signal="timeout" from="World/WaveManager/WaveTimer" to="World/WaveManager" method="_on_wave_timer_timeout"]
 [connection signal="timeout" from="World/OuterWallManager/WallBreakerTimer" to="World/OuterWallManager" method="_on_wall_breaker_timer_timeout"]
+[connection signal="timeout" from="SoldierTalkTimer" to="." method="_on_soldier_talk_timer_timeout"]

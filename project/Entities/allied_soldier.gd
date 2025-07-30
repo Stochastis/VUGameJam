@@ -1,6 +1,9 @@
 extends CharacterBody2D
+class_name AlliedSoldier
 
 @onready var hurt_audio_stream_player_2d: AudioStreamPlayer2D = $HurtAudioStreamPlayer2D
+@onready var observation_area: Area2D = $ObservationArea
+@onready var talking_audio_stream_player_2d: AudioStreamPlayer2D = $TalkingAudioStreamPlayer2D
 
 @export var move_speed: float = 20
 
