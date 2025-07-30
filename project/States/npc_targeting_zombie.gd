@@ -4,9 +4,12 @@ class_name NpcTargetingZombie
 @export var parent: CharacterBody2D
 @export var npcTargetingZombieMoveSpeed: float = 20
 @export var chaseObservationArea: Area2D
-@export var attackArea: Area2D
 @export var observer: Observer
 @export var attack_cooldown: float
+@export var attackArea: Area2D
+@export var attackCollisionShape: CollisionShape2D
+@export var idleObservingCollisionShape: CollisionShape2D
+@export var chaseObservingCollisionShape: CollisionShape2D
 
 func attack() -> void:
 	if !targeter.targetNode:
@@ -29,10 +32,18 @@ func _on_attack_timer_timeout() -> void:
 func enter() -> void:
 	if parent.name == "TestZom":
 		print("TestZom Entering Targeting state")
+	
+	attackCollisionShape.disabled = false
+	idleObservingCollisionShape.disabled = true
+	chaseObservingCollisionShape.disabled = false
 	$AttackTimer.start(attack_cooldown)
 	observer.observationArea = chaseObservationArea
 
 func exit() -> void:
 	if parent.name == "TestZom":
 		print("TestZom Exiting Targeting state")
+	
+	attackCollisionShape.disabled = true
+	idleObservingCollisionShape.disabled = false
+	chaseObservingCollisionShape.disabled = true
 	$AttackTimer.stop()
