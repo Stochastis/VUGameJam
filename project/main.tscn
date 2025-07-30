@@ -432,40 +432,40 @@ one_shot = true
 [node name="SpawnAreas" type="Node" parent="World/WaveManager"]
 
 [node name="SpawnArea" parent="World/WaveManager/SpawnAreas" instance=ExtResource("17_cegan")]
-position = Vector2(-406, -301)
+position = Vector2(-277, -212)
 
 [node name="SpawnArea2" parent="World/WaveManager/SpawnAreas" instance=ExtResource("17_cegan")]
-position = Vector2(-545, 550)
+position = Vector2(-336, 552)
 
 [node name="SpawnArea3" parent="World/WaveManager/SpawnAreas" instance=ExtResource("17_cegan")]
-position = Vector2(530, -373)
+position = Vector2(522, -250)
 
 [node name="SpawnArea4" parent="World/WaveManager/SpawnAreas" instance=ExtResource("17_cegan")]
-position = Vector2(1572, -346)
+position = Vector2(1512, -240)
 
 [node name="SpawnArea5" parent="World/WaveManager/SpawnAreas" instance=ExtResource("17_cegan")]
-position = Vector2(2263, -14)
+position = Vector2(2131, -54)
 
 [node name="SpawnArea6" parent="World/WaveManager/SpawnAreas" instance=ExtResource("17_cegan")]
-position = Vector2(2304, 669)
+position = Vector2(2115, 662)
 
 [node name="SpawnArea7" parent="World/WaveManager/SpawnAreas" instance=ExtResource("17_cegan")]
-position = Vector2(2242, 1781)
+position = Vector2(2087, 1710)
 
 [node name="SpawnArea8" parent="World/WaveManager/SpawnAreas" instance=ExtResource("17_cegan")]
-position = Vector2(1078, 1888)
+position = Vector2(1076, 1768)
 
 [node name="SpawnArea9" parent="World/WaveManager/SpawnAreas" instance=ExtResource("17_cegan")]
-position = Vector2(-686, 1391)
+position = Vector2(-411, 1249)
 
 [node name="SpawnArea10" parent="World/WaveManager/SpawnAreas" instance=ExtResource("17_cegan")]
-position = Vector2(2242, 1183)
+position = Vector2(2094, 1196)
 
 [node name="SpawnArea11" parent="World/WaveManager/SpawnAreas" instance=ExtResource("17_cegan")]
-position = Vector2(-402, 161)
+position = Vector2(-301, 161)
 
 [node name="SpawnArea12" parent="World/WaveManager/SpawnAreas" instance=ExtResource("17_cegan")]
-position = Vector2(1023, -353)
+position = Vector2(1034, -247)
 
 [node name="OuterWallManager" type="Node" parent="World" node_paths=PackedStringArray("tileMapLayer", "worldNavigation")]
 script = ExtResource("15_vivmo")
