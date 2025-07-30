@@ -5,6 +5,7 @@ class_name Zombie
 @onready var target = null
 @onready var stateMachine: StateMachine = $StateMachine
 @onready var hurt_audio_stream_player_2d: AudioStreamPlayer2D = $HurtAudioStreamPlayer2D
+@onready var reactor_nav_agent: NavigationAgent2D = $ReactorNavAgent
 
 @export var cooldown: = 1.0
 @export var zombieSounds: Array[AudioStream]

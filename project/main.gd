@@ -8,6 +8,9 @@ class_name Main
 @onready var engineer: CharacterBody2D = $World/Engineer
 @onready var music_audio_stream_player: AudioStreamPlayer = $MusicAudioStreamPlayer
 @onready var main_ui: MainUI = $World/GUICanvasLayer/MainUI
+@onready var zombie_to_reactor_timer: Timer = $ZombieToReactorTimer
+@onready var zombies: Node = $World/Zombies
+@onready var reactor: StaticBody2D = $World/Reactor
 
 @export var door_scene: PackedScene
 @export var maxStructIntegrity: int
@@ -86,4 +89,10 @@ func _on_music_audio_stream_player_finished() -> void:
 func _on_score_timer_timeout() -> void:
 	ScoreKeeper.score += 1
 	main_ui.score_amount.text = str(ScoreKeeper.score)
-	
+
+func _on_zombie_to_reactor_timer_timeout() -> void:
+	var zombie: Zombie = zombies.get_children().pick_random()
+	zombie.targeter.targetPosition = reactor.global_position
+	zombie.reactor_nav_agent.target_position = reactor.global_position
+	if zombie.reactor_nav_agent.is_target_reachable():
+		zombie.stateMachine.current_state.Transitioned.emit(zombie.stateMachine.current_state, "ZombieToReactor")

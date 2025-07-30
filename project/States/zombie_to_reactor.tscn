@@ -1,0 +1,12 @@
+[gd_scene load_steps=2 format=3 uid="uid://dbn2dcvux8qy5"]
+
+[ext_resource type="Script" uid="uid://bjeuhd22dwlhe" path="res://States/zombie_to_reactor.gd" id="1_afkp5"]
+
+[node name="ZombieToReactor" type="Node"]
+script = ExtResource("1_afkp5")
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 10.0
+one_shot = true
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

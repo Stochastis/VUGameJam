@@ -1,5 +1,7 @@
 extends Node
 
+@onready var zombies: Node = $"../Zombies"
+
 @export var zombie: PackedScene
 @export var enabled: bool = true
 @export var startingSpawnFrequency: float
@@ -32,7 +34,7 @@ func spawn_zombie() -> void:
 		var spawnPoint: Vector2 = selectedSpawnArea.global_position
 		var zombieInstance: Zombie = zombie.instantiate()
 		zombieInstance.global_position = spawnPoint
-		add_child(zombieInstance)
+		zombies.add_child(zombieInstance)
 		var targeter: Targeter = zombieInstance.get_node("Targeter")
 		targeter.targetPosition = centerNode.global_position
 		if zombieInstance.stateMachine.current_state is NpcIdle:

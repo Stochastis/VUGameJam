@@ -1,4 +1,4 @@
-[gd_scene load_steps=24 format=3 uid="uid://bg5skfd20wcbw"]
+[gd_scene load_steps=25 format=3 uid="uid://bg5skfd20wcbw"]
 
 [ext_resource type="Script" uid="uid://cpm6twph3auq8" path="res://Environment/door.gd" id="1_v6xrn"]
 [ext_resource type="Texture2D" uid="uid://dwl8rfik3abdj" path="res://Assets/Environment/Doors/ClosedDoorUpDown.png" id="2_4xadh"]
@@ -69,6 +69,12 @@ polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3)])
 outlines = Array[PackedVector2Array]([PackedVector2Array(-8, -2, 8, -2, 8, 2, -8, 2)])
 agent_radius = 0.0
 
+[sub_resource type="NavigationPolygon" id="NavigationPolygon_tlngp"]
+vertices = PackedVector2Array(4, -4, 8, -4, 8, 4, 4, 4, 4, 8, -4, 8, -4, 4, -4, -4, -8, 4, -8, -4, 4, -8, -4, -8)
+polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3), PackedInt32Array(3, 4, 5, 6), PackedInt32Array(0, 3, 6, 7), PackedInt32Array(6, 8, 9, 7), PackedInt32Array(10, 0, 7, 11)])
+outlines = Array[PackedVector2Array]([PackedVector2Array(-4, -8, 4, -8, 4, -4, 8, -4, 8, 4, 4, 4, 4, 8, -4, 8, -4, 4, -8, 4, -8, -4, -4, -4)])
+agent_radius = 0.0
+
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_14t7a"]
 size = Vector2(16, 16)
 
@@ -103,6 +109,10 @@ navigation_polygon = SubResource("NavigationPolygon_4xadh")
 [node name="NavigationRegion2DEW" type="NavigationRegion2D" parent="."]
 visible = false
 navigation_polygon = SubResource("NavigationPolygon_6hwww")
+
+[node name="ToReactorNavRegion" type="NavigationRegion2D" parent="."]
+navigation_polygon = SubResource("NavigationPolygon_tlngp")
+navigation_layers = 2
 
 [node name="Repairable" parent="." node_paths=PackedStringArray("repairableObject") instance=ExtResource("9_60si7")]
 visible = false
