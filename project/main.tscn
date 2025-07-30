@@ -241,6 +241,7 @@ door_scene = ExtResource("3_1bvp3")
 maxStructIntegrity = 1000
 soldierTalkingLines = Array[AudioStream]([ExtResource("3_ryguw"), ExtResource("4_d13ii")])
 musicFiles = Array[AudioStream]([ExtResource("5_0odxb"), ExtResource("6_lswn8"), ExtResource("7_a6jrf")])
+musicVolume = -22.0
 
 [node name="World" type="Node2D" parent="."]
 

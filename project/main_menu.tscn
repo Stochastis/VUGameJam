@@ -104,7 +104,7 @@ offset_left = -108.5
 offset_right = 108.5
 offset_bottom = 23.0
 grow_horizontal = 2
-text = "Current Game Version: 0.5.0"
+text = "Current Game Version: 0.6.0"
 
 [node name="OpenChangelogButton" type="Button" parent="VersionPanel"]
 layout_mode = 1
@@ -146,12 +146,21 @@ anchor_bottom = 0.5
 offset_left = -685.0
 offset_top = -303.0
 offset_right = 685.0
-offset_bottom = 303.0
+offset_bottom = 281.0
 grow_horizontal = 2
 grow_vertical = 2
 bbcode_enabled = true
 text = "[font_size=32]Changelog:[/font_size]
 [ul bullet=]
+[font_size=24]0.6.0[/font_size]
+[ul]
+Added scoring system
+Added more zombies in at the beginning of the game
+Added some soldiers inside the bunker
+Moved zombie spawn areas closer to the bunker
+Changed outer walls so a couple more are broken at the start of the game
+Fixed zombies not being able to target things after funneling into the bunker
+[/ul]
 [font_size=24]0.5.0[/font_size]
 [ul]
 Added music and sound effects

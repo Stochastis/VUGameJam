@@ -11,6 +11,9 @@ func _ready() -> void:
 	get_outer_wall_edges()
 	spawn_walls()
 	makeRandomWallBreakable()
+	makeRandomWallBreakable()
+	makeRandomWallBreakable()
+	makeRandomWallBreakable()
 
 func makeRandomWallBreakable() -> void:
 	if outerWalls.is_empty():
