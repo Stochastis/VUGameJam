@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://ck6sugtlhcpdi"]
+[gd_scene load_steps=9 format=3 uid="uid://ck6sugtlhcpdi"]
 
 [ext_resource type="Script" uid="uid://cjmwhvds667ma" path="res://Entities/engineer.gd" id="1_fau05"]
 [ext_resource type="Texture2D" uid="uid://bwod6ufyfj828" path="res://Assets/engineer.png" id="1_nniac"]
@@ -6,6 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://ceabu7h8g45hl" path="res://Components/health_bar.tscn" id="3_3smwa"]
 [ext_resource type="PackedScene" uid="uid://bivqglsx6xa3m" path="res://Components/line_of_sight.tscn" id="5_v3ltv"]
 [ext_resource type="AudioStream" uid="uid://dc42qsqkmps82" path="res://Assets/Brett Sounds/Player/Player Walking.wav" id="6_27cgq"]
+[ext_resource type="AudioStream" uid="uid://bv0syymdo6agi" path="res://Assets/Brett Sounds/Player/Soldier Hurt1.wav" id="7_6hqca"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_v3ltv"]
 radius = 18.0
@@ -49,9 +50,12 @@ texture = ExtResource("1_nniac")
 parent = NodePath("..")
 blockingLayers = Array[int]([2, 3])
 
-[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+[node name="WalkingAudioStreamPlayer" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("6_27cgq")
 volume_db = 6.0
+
+[node name="HurtAudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("7_6hqca")
 
 [connection signal="healthChanged" from="HealthSystem" to="." method="_on_health_system_health_changed"]
 [connection signal="timeout" from="RepairReplaceTimer" to="." method="_on_repair_replace_timer_timeout"]
