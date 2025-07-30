@@ -17,6 +17,12 @@ var funnelNode: Node2D
 func _ready() -> void:
 	$ZombieSoundTimer.start(randi_range(zombieSoundMinGap, zombieSoundMaxGap))
 
+func _process(_delta: float) -> void:
+	#TODO: Fix this temporary code
+	if stateMachine.current_state is NpcIdle and ($Observer.observationArea != $Focus_Area or $Focus_Area/CollisionShape2D.disabled):
+		$Focus_Area/CollisionShape2D.disabled = false
+		$Observer.observationArea = $Focus_Area
+
 func _on_health_system_health_changed() -> void:
 	hurt_audio_stream_player_2d.pitch_scale = randf_range(0.9, 1.1)
 	hurt_audio_stream_player_2d.play()

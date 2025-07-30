@@ -1,6 +1,8 @@
 extends NpcTargetLost
 class_name NpcTargetLostZombie
 
+@onready var focus_area: Area2D = $"../../Focus_Area"
+
 @export var parent: CharacterBody2D
 @export var observer: Observer
 @export var idleObservationArea: Area2D
@@ -25,7 +27,7 @@ func exit() -> void:
 	idleObservingCollisionShape.disabled = false
 	chaseObservingCollisionShape.disabled = true
 	$ChaseAfterLOSLostTimer.stop()
-	observer.observationArea = idleObservationArea
+	observer.observationArea = focus_area
 
 func physics_update(_delta: float) -> void:
 	var toTarget = (targeter.targetPosition - parent.global_position).normalized()
