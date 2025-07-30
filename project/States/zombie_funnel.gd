@@ -27,6 +27,8 @@ func enter() -> void:
 	
 	if not navAgent.target_reached.is_connected(_on_navigation_agent_2d_target_reached):
 		navAgent.target_reached.connect(_on_navigation_agent_2d_target_reached)
+	
+	$Timer.start()
 
 func physics_update(_delta: float) -> void:
 	var nextPathPos: Vector2 = navAgent.get_next_path_position()
@@ -48,3 +50,8 @@ func exit() -> void:
 	targeter.manualTargeting = false
 	if navAgent.target_reached.is_connected(_on_navigation_agent_2d_target_reached):
 		navAgent.target_reached.disconnect(_on_navigation_agent_2d_target_reached)
+	
+	$Timer.stop()
+
+func _on_timer_timeout() -> void:
+	Transitioned.emit(self, "NpcIdle")
