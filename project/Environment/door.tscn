@@ -129,14 +129,13 @@ scale = Vector2(0.8, 0.8)
 useableObject = NodePath("..")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Useable"]
-scale = Vector2(1, 1)
 shape = SubResource("RectangleShape2D_y5njw")
 
 [node name="DecayContributor" parent="." node_paths=PackedStringArray("healthSystem", "sprite") instance=ExtResource("16_tlngp")]
 healthSystem = NodePath("../HealthSystem")
 sprite = NodePath("../AnimatedSprite2D")
-decayDelay = 10.0
-decayInterval = 10.0
-decayAmount = 1
+decayDelay = 5.0
+decayInterval = 1.0
+decayAmount = 2
 
 [connection signal="healthChanged" from="HealthSystem" to="." method="_on_health_system_health_changed"]
