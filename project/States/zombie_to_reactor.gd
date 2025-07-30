@@ -1,4 +1,5 @@
 extends State
+class_name ZombieToReactor
 
 @onready var attackCollisionShape: CollisionShape2D = $"../../Attack_Proximity/CollisionShape2D"
 @onready var idleObservingCollisionShape: CollisionShape2D = $"../../Focus_Area/CollisionShape2D"
