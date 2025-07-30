@@ -4,6 +4,7 @@ class_name Zombie
 @onready var audio_stream_player_2d: AudioStreamPlayer2D = $AudioStreamPlayer2D
 @onready var target = null
 @onready var stateMachine: StateMachine = $StateMachine
+@onready var hurt_audio_stream_player_2d: AudioStreamPlayer2D = $HurtAudioStreamPlayer2D
 
 @export var cooldown: = 1.0
 @export var zombieSounds: Array[AudioStream]
@@ -17,6 +18,8 @@ func _ready() -> void:
 	$ZombieSoundTimer.start(randi_range(zombieSoundMinGap, zombieSoundMaxGap))
 
 func _on_health_system_health_changed() -> void:
+	hurt_audio_stream_player_2d.pitch_scale = randf_range(0.9, 1.1)
+	hurt_audio_stream_player_2d.play()
 	if $HealthSystem.currHealth <= 0:
 		queue_free()
 
