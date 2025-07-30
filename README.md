@@ -1,3 +1,5 @@
+Link to Game: https://stochastis.github.io/VUGameJam/
+
 # Game Jam Github Guidelines
 
 Sup, guys! Here's a quick guide to keep us moving fast **without breaking `main`**.
