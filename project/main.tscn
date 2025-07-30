@@ -391,8 +391,12 @@ position = Vector2(971, 761)
 
 [node name="MusicAudioStreamPlayer" type="AudioStreamPlayer" parent="."]
 
+[node name="ScoreTimer" type="Timer" parent="."]
+autostart = true
+
 [connection signal="timeout" from="World/WaveManager/SpawnTimer" to="World/WaveManager" method="_on_timer_timeout"]
 [connection signal="timeout" from="World/WaveManager/WaveTimer" to="World/WaveManager" method="_on_wave_timer_timeout"]
 [connection signal="timeout" from="World/OuterWallManager/WallBreakerTimer" to="World/OuterWallManager" method="_on_wall_breaker_timer_timeout"]
 [connection signal="timeout" from="SoldierTalkTimer" to="." method="_on_soldier_talk_timer_timeout"]
 [connection signal="finished" from="MusicAudioStreamPlayer" to="." method="_on_music_audio_stream_player_finished"]
+[connection signal="timeout" from="ScoreTimer" to="." method="_on_score_timer_timeout"]
