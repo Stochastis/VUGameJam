@@ -1,4 +1,4 @@
-[gd_scene load_steps=44 format=4 uid="uid://bef8rrxlbfg1k"]
+[gd_scene load_steps=47 format=4 uid="uid://bef8rrxlbfg1k"]
 
 [ext_resource type="Script" uid="uid://ctwuwe024uqeq" path="res://main.gd" id="1_272bh"]
 [ext_resource type="Texture2D" uid="uid://cog142k52u6mn" path="res://Assets/Environment/Wall.png" id="2_h2yge"]
@@ -9,11 +9,14 @@
 [ext_resource type="Texture2D" uid="uid://sn1fhh3r5jfs" path="res://Assets/Environment/OuterWalls/OuterWallEdge.png" id="4_2cqfq"]
 [ext_resource type="Texture2D" uid="uid://dkdts5jkkrqo6" path="res://Assets/Environment/Doors/OpenDoorUpDown.png" id="4_7mycd"]
 [ext_resource type="AudioStream" uid="uid://d0j1aqnomfea6" path="res://Assets/Brett Sounds/Voices/Random soldier3.wav" id="4_d13ii"]
+[ext_resource type="AudioStream" uid="uid://cgsvq4hte673p" path="res://Assets/Music/Used Music/Boot Camp (v2).wav" id="5_0odxb"]
 [ext_resource type="Texture2D" uid="uid://dv6fllihs0ai2" path="res://Assets/Environment/Doors/OpenDoorLeftRight.png" id="5_272bh"]
 [ext_resource type="Texture2D" uid="uid://4ovpn0cwwot4" path="res://Assets/Environment/OuterWalls/OuterWall.png" id="5_w48qg"]
 [ext_resource type="Texture2D" uid="uid://dwl8rfik3abdj" path="res://Assets/Environment/Doors/ClosedDoorUpDown.png" id="5_ycdy4"]
+[ext_resource type="AudioStream" uid="uid://dctnbso84rmg2" path="res://Assets/Music/Used Music/Ultimate Assault (smooth).wav" id="6_lswn8"]
 [ext_resource type="Texture2D" uid="uid://h4y2no6dhusb" path="res://Assets/Environment/Doors/ClosedDoorLeftRight.png" id="6_w48qg"]
 [ext_resource type="Texture2D" uid="uid://bhfdbqsm0vbo7" path="res://Assets/Environment/Floors/FloorTiles0.png" id="7_82xsv"]
+[ext_resource type="AudioStream" uid="uid://ckqhpffxi1cps" path="res://Assets/Music/Used Music/Urban Guerrilla (smooth).wav" id="7_a6jrf"]
 [ext_resource type="Texture2D" uid="uid://cwiysuh8pajfs" path="res://Assets/Environment/Floors/FloorTiles1.png" id="7_getpj"]
 [ext_resource type="Script" uid="uid://b4wmtfqvvrxfa" path="res://camera_2d.gd" id="9_kek77"]
 [ext_resource type="PackedScene" uid="uid://ce22jwvxoan48" path="res://Entities/allied_soldier.tscn" id="10_4c57u"]
@@ -237,6 +240,7 @@ script = ExtResource("1_272bh")
 door_scene = ExtResource("3_1bvp3")
 maxStructIntegrity = 1000
 soldierTalkingLines = Array[AudioStream]([ExtResource("3_ryguw"), ExtResource("4_d13ii")])
+musicFiles = Array[AudioStream]([ExtResource("5_0odxb"), ExtResource("6_lswn8"), ExtResource("7_a6jrf")])
 
 [node name="World" type="Node2D" parent="."]
 
@@ -385,7 +389,10 @@ position = Vector2(971, 761)
 
 [node name="SoldierTalkTimer" type="Timer" parent="."]
 
+[node name="MusicAudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+
 [connection signal="timeout" from="World/WaveManager/SpawnTimer" to="World/WaveManager" method="_on_timer_timeout"]
 [connection signal="timeout" from="World/WaveManager/WaveTimer" to="World/WaveManager" method="_on_wave_timer_timeout"]
 [connection signal="timeout" from="World/OuterWallManager/WallBreakerTimer" to="World/OuterWallManager" method="_on_wall_breaker_timer_timeout"]
 [connection signal="timeout" from="SoldierTalkTimer" to="." method="_on_soldier_talk_timer_timeout"]
+[connection signal="finished" from="MusicAudioStreamPlayer" to="." method="_on_music_audio_stream_player_finished"]

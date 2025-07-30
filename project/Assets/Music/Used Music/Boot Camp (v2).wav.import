@@ -3,12 +3,12 @@
 importer="wav"
 type="AudioStreamWAV"
 uid="uid://cgsvq4hte673p"
-path="res://.godot/imported/Boot Camp (v2).wav-46bee1f7a38a46ae662aa19f211a8164.sample"
+path="res://.godot/imported/Boot Camp (v2).wav-3207d6516f21cd5c81f6343458cf9dc9.sample"
 
 [deps]
 
-source_file="res://Assets/Music/Military Shooter Music Pack/Loops/Boot Camp (v2).wav"
-dest_files=["res://.godot/imported/Boot Camp (v2).wav-46bee1f7a38a46ae662aa19f211a8164.sample"]
+source_file="res://Assets/Music/Used Music/Boot Camp (v2).wav"
+dest_files=["res://.godot/imported/Boot Camp (v2).wav-3207d6516f21cd5c81f6343458cf9dc9.sample"]
 
 [params]
 

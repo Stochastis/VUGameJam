@@ -6,6 +6,7 @@ class_name Main
 @onready var tileMapLayer: TileMapLayer = $"World/WorldNavRegion/TileMapLayer-Environment"
 @onready var worldNavigation: NavigationRegion2D = $World/WorldNavRegion
 @onready var engineer: CharacterBody2D = $World/Engineer
+@onready var music_audio_stream_player: AudioStreamPlayer = $MusicAudioStreamPlayer
 
 @export var door_scene: PackedScene
 @export var maxStructIntegrity: int
@@ -13,6 +14,10 @@ class_name Main
 @export var minSoldierTalkGap: int
 @export var maxSoldierTalkGap: int
 @export var distanceToTalk: float = 32
+@export var musicFiles: Array[AudioStream]
+@export var minMusicGap: int = 5
+@export var maxMusicGap: int = 60
+@export var musicVolume: float = -18
 
 var alliedSoldiers: Array[Node]
 var currStructIntegrity: int : set = _on_set_curr_struct_integrity
@@ -23,6 +28,10 @@ func _ready() -> void:
 	currStructIntegrity = maxStructIntegrity
 	soldier_talk_timer.start(randi_range(minSoldierTalkGap, maxSoldierTalkGap))
 	alliedSoldiers = allied_soldiers.get_children()
+	
+	music_audio_stream_player.volume_db = musicVolume
+	music_audio_stream_player.stream = musicFiles.pick_random()
+	music_audio_stream_player.play()
 
 func spawn_doors():
 	for cell_pos in tileMapLayer.get_used_cells():
@@ -67,3 +76,8 @@ func _on_soldier_talk_timer_timeout() -> void:
 		soldier.talking_audio_stream_player_2d.pitch_scale = randf_range(0.9, 1.1)
 		soldier.talking_audio_stream_player_2d.stream = soldierTalkingLines.pick_random()
 		soldier.talking_audio_stream_player_2d.play()
+
+func _on_music_audio_stream_player_finished() -> void:
+	await get_tree().create_timer(randi_range(minMusicGap, maxMusicGap)).timeout
+	music_audio_stream_player.stream = musicFiles.pick_random()
+	music_audio_stream_player.play()
