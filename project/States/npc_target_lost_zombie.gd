@@ -4,15 +4,26 @@ class_name NpcTargetLostZombie
 @export var parent: CharacterBody2D
 @export var observer: Observer
 @export var idleObservationArea: Area2D
+@export var attackCollisionShape: CollisionShape2D
+@export var idleObservingCollisionShape: CollisionShape2D
+@export var chaseObservingCollisionShape: CollisionShape2D
 
 func enter() -> void:
 	if parent.name == "TestZom":
 		print("Entering Lost state")
+	
+	attackCollisionShape.disabled = true
+	idleObservingCollisionShape.disabled = true
+	chaseObservingCollisionShape.disabled = false
 	$ChaseAfterLOSLostTimer.start()
 
 func exit() -> void:
 	if parent.name == "TestZom":
 		print("Exiting Lost state")
+	
+	attackCollisionShape.disabled = true
+	idleObservingCollisionShape.disabled = false
+	chaseObservingCollisionShape.disabled = true
 	$ChaseAfterLOSLostTimer.stop()
 	observer.observationArea = idleObservationArea
 

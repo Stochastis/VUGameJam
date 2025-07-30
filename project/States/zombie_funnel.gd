@@ -5,10 +5,17 @@ class_name ZombieFunnel
 @export var navAgent: NavigationAgent2D
 @export var zombieFunnelMoveSpeed: float = 20
 @export var targeter: Targeter
+@export var attackCollisionShape: CollisionShape2D
+@export var idleObservingCollisionShape: CollisionShape2D
+@export var chaseObservingCollisionShape: CollisionShape2D
 
 func enter() -> void:
 	if parent.name == "TestZom":
 		print("Entered funnel state")
+	
+	attackCollisionShape.disabled = true
+	idleObservingCollisionShape.disabled = true
+	chaseObservingCollisionShape.disabled = true
 	
 	targeter.manualTargeting = true
 	targeter.targetPosition = parent.funnelNode.global_position
@@ -33,6 +40,10 @@ func _on_navigation_agent_2d_target_reached() -> void:
 func exit() -> void:
 	if parent.name == "TestZom":
 		print("Exiting funnel state")
+	
+	attackCollisionShape.disabled = true
+	idleObservingCollisionShape.disabled = false
+	chaseObservingCollisionShape.disabled = true
 	
 	targeter.manualTargeting = false
 	if navAgent.target_reached.is_connected(_on_navigation_agent_2d_target_reached):
