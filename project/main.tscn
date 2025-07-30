@@ -237,8 +237,6 @@ script = ExtResource("1_272bh")
 door_scene = ExtResource("3_1bvp3")
 maxStructIntegrity = 1000
 soldierTalkingLines = Array[AudioStream]([ExtResource("3_ryguw"), ExtResource("4_d13ii")])
-minSoldierTalkGap = 1.0
-maxSoldierTalkGap = 2.0
 
 [node name="World" type="Node2D" parent="."]
 

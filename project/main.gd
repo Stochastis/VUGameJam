@@ -10,8 +10,8 @@ class_name Main
 @export var door_scene: PackedScene
 @export var maxStructIntegrity: int
 @export var soldierTalkingLines: Array[AudioStream]
-@export var minSoldierTalkGap: float
-@export var maxSoldierTalkGap: float
+@export var minSoldierTalkGap: int
+@export var maxSoldierTalkGap: int
 @export var distanceToTalk: float = 32
 
 var alliedSoldiers: Array[Node]
