@@ -1,7 +1,7 @@
 extends NpcTargeting
 class_name npc_targeting_soldier
 
-@onready var audio_stream_player_2d: AudioStreamPlayer2D = $"../../AudioStreamPlayer2D"
+@onready var audio_stream_player_2d: AudioStreamPlayer2D = $"../../GunshotAudioStreamPlayer2D"
 
 @export var animSprite2D: AnimatedSprite2D
 @export var shootRestTime: float

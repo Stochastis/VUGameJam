@@ -1,4 +1,4 @@
-[gd_scene load_steps=19 format=3 uid="uid://ce22jwvxoan48"]
+[gd_scene load_steps=20 format=3 uid="uid://ce22jwvxoan48"]
 
 [ext_resource type="PackedScene" uid="uid://bvhx82eau62u8" path="res://Components/health_system.tscn" id="1_pd1d8"]
 [ext_resource type="Script" uid="uid://dbsu2wgaqddwy" path="res://Entities/allied_soldier.gd" id="1_qcgow"]
@@ -15,6 +15,7 @@
 [ext_resource type="AudioStream" uid="uid://53n4mwqva2v7" path="res://Assets/Brett Sounds/Gun Shots/Bang.wav" id="13_o50em"]
 [ext_resource type="AudioStream" uid="uid://b4tihoqq1h5jr" path="res://Assets/Brett Sounds/Gun Shots/Pew.wav" id="14_25aiq"]
 [ext_resource type="AudioStream" uid="uid://dsm1cpg4bppq4" path="res://Assets/Brett Sounds/Gun Shots/Pow.wav" id="15_ja2yp"]
+[ext_resource type="AudioStream" uid="uid://bv0syymdo6agi" path="res://Assets/Brett Sounds/Player/Soldier Hurt1.wav" id="16_bg8u5"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_2q06j"]
 animations = [{
@@ -106,7 +107,10 @@ targeter = NodePath("../../Targeter")
 
 [node name="NavigationAgent2D" type="NavigationAgent2D" parent="."]
 
-[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
+[node name="GunshotAudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
 max_distance = 500.0
+
+[node name="HurtAudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("16_bg8u5")
 
 [connection signal="healthChanged" from="HealthSystem" to="." method="_on_health_system_health_changed"]
