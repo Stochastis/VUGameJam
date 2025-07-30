@@ -1,5 +1,7 @@
 extends CharacterBody2D
 
+@onready var audio_stream_player: AudioStreamPlayer = $AudioStreamPlayer
+
 @export var move_speed: float = 150
 @export var playerInteractionArea: Area2D
 
@@ -56,6 +58,11 @@ func _process(_delta: float) -> void:
 	
 	if not $RepairReplaceTimer.is_stopped():
 		repRepProgressBar.value = 100.0 - (($RepairReplaceTimer.time_left / $RepairReplaceTimer.wait_time) * 100.0)
+	
+	if velocity.length() > 0 and not audio_stream_player.playing:
+		audio_stream_player.play()
+	if velocity.length() <= 0 and audio_stream_player.playing:
+		audio_stream_player.stop()
 	
 	#Debug
 	#var objStr: String = "null" if not repRepObj else str(repRepObj.get_parent().name)
