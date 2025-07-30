@@ -104,7 +104,7 @@ offset_left = -108.5
 offset_right = 108.5
 offset_bottom = 23.0
 grow_horizontal = 2
-text = "Current Game Version: 0.4.2"
+text = "Current Game Version: 0.4.3"
 
 [node name="OpenChangelogButton" type="Button" parent="VersionPanel"]
 layout_mode = 1
@@ -152,6 +152,12 @@ grow_vertical = 2
 bbcode_enabled = true
 text = "[font_size=32]Changelog:[/font_size]
 [ul bullet=]
+[font_size=24]0.4.3[/font_size]
+[ul]
+Improved performance of zombies by removing even more unecessary collision checks
+Optimized outer walls to not need to re-bake the navmesh as often
+Added a timeout to the Zombies' \"Funnel\" state so they don't get stuck if the player fixes the wall while they're funneling in
+[/ul]
 [font_size=24]0.4.2[/font_size]
 [ul]
 Improved performance of zombies by removing unecessary collision checks, reducing observation frequencies, and removing unecessary navigation agent usage
