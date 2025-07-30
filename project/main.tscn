@@ -318,6 +318,104 @@ rotation = -4.75984
 position = Vector2(720, 652)
 rotation = -4.69977
 
+[node name="AlliedSoldier14" parent="World/AlliedSoldiers" instance=ExtResource("10_4c57u")]
+position = Vector2(735, 239)
+rotation = -4.68233
+
+[node name="AlliedSoldier15" parent="World/AlliedSoldiers" instance=ExtResource("10_4c57u")]
+position = Vector2(182, 640)
+rotation = -6.76576
+
+[node name="AlliedSoldier16" parent="World/AlliedSoldiers" instance=ExtResource("10_4c57u")]
+position = Vector2(256, 1084)
+rotation = -6.23059
+
+[node name="AlliedSoldier17" parent="World/AlliedSoldiers" instance=ExtResource("10_4c57u")]
+position = Vector2(1041, 1007)
+rotation = -3.65866
+
+[node name="AlliedSoldier18" parent="World/AlliedSoldiers" instance=ExtResource("10_4c57u")]
+position = Vector2(1536, 144)
+rotation = -3.32134
+
+[node name="AlliedSoldier19" parent="World/AlliedSoldiers" instance=ExtResource("10_4c57u")]
+position = Vector2(1561, 1261)
+rotation = -3.62235
+
+[node name="Zombies" type="Node" parent="World"]
+
+[node name="TestZom" parent="World/Zombies" instance=ExtResource("12_dg77c")]
+modulate = Color(0.14902, 0.705882, 1, 1)
+position = Vector2(795, 763)
+rotation = 3.07613
+
+[node name="Zombie" parent="World/Zombies" instance=ExtResource("12_dg77c")]
+position = Vector2(-174, 732)
+
+[node name="Zombie2" parent="World/Zombies" instance=ExtResource("12_dg77c")]
+position = Vector2(-183, 717)
+
+[node name="Zombie3" parent="World/Zombies" instance=ExtResource("12_dg77c")]
+position = Vector2(-182, 753)
+
+[node name="Zombie4" parent="World/Zombies" instance=ExtResource("12_dg77c")]
+position = Vector2(-176, 177)
+
+[node name="Zombie5" parent="World/Zombies" instance=ExtResource("12_dg77c")]
+position = Vector2(-184, 208)
+
+[node name="Zombie6" parent="World/Zombies" instance=ExtResource("12_dg77c")]
+position = Vector2(130, -185)
+rotation = 1.49831
+
+[node name="Zombie7" parent="World/Zombies" instance=ExtResource("12_dg77c")]
+position = Vector2(1820, -172)
+rotation = 1.49831
+
+[node name="Zombie8" parent="World/Zombies" instance=ExtResource("12_dg77c")]
+position = Vector2(1753, -170)
+rotation = 1.49831
+
+[node name="Zombie9" parent="World/Zombies" instance=ExtResource("12_dg77c")]
+position = Vector2(1797, -165)
+rotation = 1.49831
+
+[node name="Zombie10" parent="World/Zombies" instance=ExtResource("12_dg77c")]
+position = Vector2(2041, 304)
+rotation = 3.1306
+
+[node name="Zombie11" parent="World/Zombies" instance=ExtResource("12_dg77c")]
+position = Vector2(2023, 280)
+rotation = 3.1306
+
+[node name="Zombie12" parent="World/Zombies" instance=ExtResource("12_dg77c")]
+position = Vector2(2029, 831)
+rotation = 3.1306
+
+[node name="Zombie13" parent="World/Zombies" instance=ExtResource("12_dg77c")]
+position = Vector2(1345, 1716)
+rotation = 4.40579
+
+[node name="Zombie14" parent="World/Zombies" instance=ExtResource("12_dg77c")]
+position = Vector2(1365, 1706)
+rotation = 5.1036
+
+[node name="Zombie15" parent="World/Zombies" instance=ExtResource("12_dg77c")]
+position = Vector2(1321, 1698)
+rotation = 5.1036
+
+[node name="Zombie16" parent="World/Zombies" instance=ExtResource("12_dg77c")]
+position = Vector2(700, 1700)
+rotation = 5.1036
+
+[node name="Zombie17" parent="World/Zombies" instance=ExtResource("12_dg77c")]
+position = Vector2(774, 1700)
+rotation = 4.55165
+
+[node name="Zombie18" parent="World/Zombies" instance=ExtResource("12_dg77c")]
+position = Vector2(144, 1688)
+rotation = 4.64034
+
 [node name="WaveManager" type="Node" parent="World" node_paths=PackedStringArray("centerNode")]
 script = ExtResource("11_efxa6")
 zombie = ExtResource("12_dg77c")
@@ -378,11 +476,6 @@ worldNavigation = NodePath("../WorldNavRegion")
 [node name="WallBreakerTimer" type="Timer" parent="World/OuterWallManager"]
 wait_time = 12.0
 autostart = true
-
-[node name="TestZom" parent="World" instance=ExtResource("12_dg77c")]
-modulate = Color(0.14902, 0.705882, 1, 1)
-position = Vector2(795, 763)
-rotation = 3.07613
 
 [node name="Center" type="Node2D" parent="World"]
 position = Vector2(971, 761)
