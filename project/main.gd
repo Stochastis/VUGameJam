@@ -7,6 +7,7 @@ class_name Main
 @onready var worldNavigation: NavigationRegion2D = $World/WorldNavRegion
 @onready var engineer: CharacterBody2D = $World/Engineer
 @onready var music_audio_stream_player: AudioStreamPlayer = $MusicAudioStreamPlayer
+@onready var main_ui: MainUI = $World/GUICanvasLayer/MainUI
 
 @export var door_scene: PackedScene
 @export var maxStructIntegrity: int
@@ -65,7 +66,7 @@ func spawn_doors():
 func _on_set_curr_struct_integrity(integrity: int):
 	currStructIntegrity = integrity
 	var newValue: float = ((float(maxStructIntegrity - currStructIntegrity)) / float(maxStructIntegrity)) * 100.0
-	$World/GUICanvasLayer/MainUI/DecayMeter.value = newValue
+	main_ui.decay_meter.value = newValue
 	
 	if currStructIntegrity <= 0:
 		get_tree().change_scene_to_file("res://game_over.tscn")
@@ -81,3 +82,8 @@ func _on_music_audio_stream_player_finished() -> void:
 	await get_tree().create_timer(randi_range(minMusicGap, maxMusicGap)).timeout
 	music_audio_stream_player.stream = musicFiles.pick_random()
 	music_audio_stream_player.play()
+
+func _on_score_timer_timeout() -> void:
+	ScoreKeeper.score += 1
+	main_ui.score_amount.text = str(ScoreKeeper.score)
+	

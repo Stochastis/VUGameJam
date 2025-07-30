@@ -1,6 +1,9 @@
 extends State
 class_name ZombieFunnel
 
+@onready var observer: Observer = $"../../Observer"
+@onready var focus_area: Area2D = $"../../Focus_Area"
+
 @export var parent: Zombie
 @export var navAgent: NavigationAgent2D
 @export var zombieFunnelMoveSpeed: float = 20
@@ -22,7 +25,7 @@ func enter() -> void:
 	
 	#The nav agent needs to wait for the navmesh to be rebaked after the wall is destroyed
 	#Might consider moving this functionality to the wall itself and set the zom's position (or enter this state) whenever the navmesh baking is done
-	await get_tree().create_timer(0.5).timeout
+	await get_tree().create_timer(1).timeout
 	navAgent.set_target_position(targeter.targetPosition)
 	
 	if not navAgent.target_reached.is_connected(_on_navigation_agent_2d_target_reached):
@@ -52,6 +55,7 @@ func exit() -> void:
 		navAgent.target_reached.disconnect(_on_navigation_agent_2d_target_reached)
 	
 	$Timer.stop()
+	observer.observationArea = focus_area
 
 func _on_timer_timeout() -> void:
 	Transitioned.emit(self, "NpcIdle")

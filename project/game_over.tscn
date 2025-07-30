@@ -15,7 +15,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="Label" type="Label" parent="Control"]
+[node name="GameOver" type="Label" parent="Control"]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -30,17 +30,50 @@ grow_horizontal = 2
 grow_vertical = 2
 text = "GAME OVER!!!"
 
-[node name="Button" type="Button" parent="Control/Label"]
+[node name="YourFinalScore" type="Label" parent="Control/GameOver"]
 layout_mode = 1
 anchors_preset = 7
 anchor_left = 0.5
 anchor_top = 1.0
 anchor_right = 0.5
 anchor_bottom = 1.0
-offset_left = -44.0
-offset_top = 6.5
-offset_right = 44.0
-offset_bottom = 37.5
+offset_left = -64.0
+offset_top = 0.5
+offset_right = 65.0
+offset_bottom = 23.5
+grow_horizontal = 2
+grow_vertical = 0
+text = "Your Final Score:"
+horizontal_alignment = 1
+
+[node name="ScoreAmount" type="Label" parent="Control/GameOver/YourFinalScore"]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -19.5
+offset_top = 6.0
+offset_right = 20.5
+offset_bottom = 29.0
+grow_horizontal = 2
+grow_vertical = 0
+text = "0"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Button" type="Button" parent="Control/GameOver/YourFinalScore/ScoreAmount"]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -48.0
+offset_top = 9.0
+offset_right = 48.0
+offset_bottom = 40.0
 grow_horizontal = 2
 grow_vertical = 0
 text = "Main Menu"
@@ -49,4 +82,4 @@ script = ExtResource("1_y26ei")
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("3_ccer4")
 
-[connection signal="pressed" from="Control/Label/Button" to="Control/Label/Button" method="_on_pressed"]
+[connection signal="pressed" from="Control/GameOver/YourFinalScore/ScoreAmount/Button" to="Control/GameOver/YourFinalScore/ScoreAmount/Button" method="_on_pressed"]
