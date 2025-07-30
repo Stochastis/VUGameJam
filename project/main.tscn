@@ -375,6 +375,7 @@ autostart = true
 [node name="TestZom" parent="World" instance=ExtResource("12_dg77c")]
 modulate = Color(0.14902, 0.705882, 1, 1)
 position = Vector2(804, 758)
+rotation = 3.07613
 
 [node name="Center" type="Node2D" parent="World"]
 position = Vector2(971, 761)
