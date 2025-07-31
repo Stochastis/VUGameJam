@@ -11,3 +11,7 @@ func _ready() -> void:
 
 func repair(repairAmount: int) -> void:
 	health_system.heal(repairAmount)
+
+func _on_health_system_health_changed() -> void:
+	if health_system.currHealth <= 0:
+		get_tree().change_scene_to_file("res://game_over.tscn")
