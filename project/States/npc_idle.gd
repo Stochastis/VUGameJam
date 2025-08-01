@@ -9,6 +9,7 @@ class_name NpcIdle
 @export var navAgent: NavigationAgent2D
 @export var idleWalkMoveSpeed: float
 @export var collisionShape: CollisionShape2D
+@export var targetingState: NpcTargeting
 
 func _ready() -> void:
 	#Might change this to a more dynamic system in the future if needed for mini state machines and sub-states.
@@ -35,5 +36,5 @@ func exit() -> void:
 func update(_delta: float) -> void:
 	#Keep a watch out for targets
 	if targeter.targetingEntity:
-		Transitioned.emit(self, "NpcTargeting")
+		Transitioned.emit(self, targetingState)
 		return

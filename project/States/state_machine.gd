@@ -48,23 +48,19 @@ func _physics_process(delta):
 	if current_state:
 		current_state.physics_update(delta)
 
-func child_transition(state: State, newState: String):
+func child_transition(state: State, newState: State):
+	#Ignore requests from states that aren't the active one
 	if state != current_state:
 		return
 	
 	var next_state: State
 	for s: State in states:
-		var script: Script = s.get_script()
-		while script:
-			if script.get_global_name() ==  newState:
-				next_state = s
-				break
-			script = script.get_base_script()
-		if next_state:
+		if s == newState:
+			next_state = newState
 			break
 	
 	if !next_state:
-		push_warning("Unable to transition states. State not found: " + newState)
+		push_warning("Unable to transition states. State not found: " + newState.name)
 		return
 	
 	current_state.exit()

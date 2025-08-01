@@ -10,6 +10,7 @@ class_name ZombieToReactor
 @export var navAgent: NavigationAgent2D
 @export var parent: CharacterBody2D
 @export var toReactorMoveSpeed: float = 15
+@export var idleState: NpcIdle
 
 func enter() -> void:
 	$Timer.start()
@@ -33,4 +34,4 @@ func exit() -> void:
 	observer.observationArea = focus_area
 
 func _on_timer_timeout() -> void:
-	Transitioned.emit(self, "NpcIdle")
+	Transitioned.emit(self, idleState)

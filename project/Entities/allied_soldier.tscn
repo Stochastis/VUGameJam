@@ -90,20 +90,25 @@ blockingLayers = Array[int]([2])
 [node name="StateMachine" parent="." node_paths=PackedStringArray("initial_state") instance=ExtResource("6_mx1sb")]
 initial_state = NodePath("NpcIdle")
 
-[node name="NpcIdle" parent="StateMachine" node_paths=PackedStringArray("targeter", "parent", "navAgent", "collisionShape") instance=ExtResource("9_smne3")]
+[node name="NpcIdle" parent="StateMachine" node_paths=PackedStringArray("targeter", "parent", "navAgent", "collisionShape", "targetingState") instance=ExtResource("9_smne3")]
 targeter = NodePath("../../Targeter")
 parent = NodePath("../..")
 navAgent = NodePath("../../NavigationAgent2D")
 idleWalkMoveSpeed = 10.0
 collisionShape = NodePath("../../CollisionShape2D")
+targetingState = NodePath("../NpcTargetingSoldier")
 
-[node name="NpcTargetingSoldier" parent="StateMachine" node_paths=PackedStringArray("animSprite2D", "targeter") instance=ExtResource("10_smne3")]
+[node name="NpcTargetingSoldier" parent="StateMachine" node_paths=PackedStringArray("animSprite2D", "targeter", "targetLostState") instance=ExtResource("10_smne3")]
 animSprite2D = NodePath("../../AnimatedSprite2D")
 shootRestTime = 1.0
 gunSounds = Array[AudioStream]([ExtResource("13_o50em"), ExtResource("14_25aiq"), ExtResource("15_ja2yp")])
 targeter = NodePath("../../Targeter")
+targetLostState = NodePath("../NpcTargetLost")
 
-[node name="NpcTargetLost" parent="StateMachine" instance=ExtResource("11_4nw5l")]
+[node name="NpcTargetLost" parent="StateMachine" node_paths=PackedStringArray("targeter", "idleState", "targetingState") instance=ExtResource("11_4nw5l")]
+targeter = NodePath("../../Targeter")
+idleState = NodePath("../NpcIdle")
+targetingState = NodePath("../NpcTargetingSoldier")
 
 [node name="NavigationAgent2D" type="NavigationAgent2D" parent="."]
 

@@ -33,7 +33,7 @@ size = Vector2(16, 16.0145)
 size = Vector2(1024, 512)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_22s3a"]
-size = Vector2(16, 17)
+size = Vector2(16, 16)
 
 [sub_resource type="NavigationPolygon" id="NavigationPolygon_22s3a"]
 vertices = PackedVector2Array(4, 8, -4, 8, -4, -8, 4, -8)
@@ -61,6 +61,7 @@ sprite = NodePath("../AnimatedSprite2D")
 sprite_frames = SubResource("SpriteFrames_483ig")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+visible = false
 position = Vector2(0, -0.0072732)
 shape = SubResource("RectangleShape2D_nlf3o")
 
@@ -80,13 +81,10 @@ position = Vector2(0, -264)
 shape = SubResource("RectangleShape2D_38pn6")
 
 [node name="CollisionShape2D2" type="CollisionShape2D" parent="DestroyedFunnelArea"]
-position = Vector2(0, -0.5)
 shape = SubResource("RectangleShape2D_22s3a")
 
 [node name="NavigationRegion2D" type="NavigationRegion2D" parent="."]
-visible = false
 navigation_polygon = SubResource("NavigationPolygon_22s3a")
-enabled = false
 
 [node name="ZomFunnelTimer" type="Timer" parent="."]
 wait_time = 5.0

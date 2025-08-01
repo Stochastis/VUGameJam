@@ -1,14 +1,13 @@
 extends NpcTargeting
 class_name NpcTargetingZombie
 
-@onready var focus_area: Area2D = $"../../Focus_Area"
-
 @export var parent: CharacterBody2D
 @export var npcTargetingZombieMoveSpeed: float = 20
 @export var chaseObservationArea: Area2D
 @export var observer: Observer
 @export var attack_cooldown: float
 @export var attackArea: Area2D
+@export var idleObservationArea: Area2D
 @export var attackCollisionShape: CollisionShape2D
 @export var idleObservingCollisionShape: CollisionShape2D
 @export var chaseObservingCollisionShape: CollisionShape2D
@@ -49,4 +48,4 @@ func exit() -> void:
 	idleObservingCollisionShape.disabled = false
 	chaseObservingCollisionShape.disabled = true
 	$AttackTimer.stop()
-	observer.observationArea = focus_area
+	observer.observationArea = idleObservationArea

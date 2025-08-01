@@ -1,6 +1,9 @@
 extends State
 class_name NpcIdleWalk
 
+@export var idleTurnState: NpcIdleTurn
+@export var idleStandState: NpcIdleStand
+
 #Inheriting from NpcIdle super-state
 var targeter: Targeter
 var parent: CharacterBody2D
@@ -14,7 +17,7 @@ func enter() -> void:
 	targeter.targetPosition = firstIntersectionPoint
 	
 	if firstIntersectionPoint.distance_to(parent.global_position) < MINDISTTOWALK:
-		var nextState: String = ["NpcIdleTurn", "NpcIdleStand"].pick_random()
+		var nextState: State = [idleTurnState, idleStandState].pick_random()
 		Transitioned.emit(self, nextState)
 		return
 	
@@ -41,5 +44,5 @@ func first_intersection_point(target: Vector2) -> Vector2:
 	return result["position"]
 
 func _on_walk_timer_timeout() -> void:
-	var nextState: String = ["NpcIdleTurn", "NpcIdleStand"].pick_random()
+	var nextState: State = [idleTurnState, idleStandState].pick_random()
 	Transitioned.emit(self, nextState)

@@ -1,16 +1,16 @@
 extends State
 class_name ZombieFunnel
 
-@onready var observer: Observer = $"../../Observer"
-@onready var focus_area: Area2D = $"../../Focus_Area"
-
 @export var parent: Zombie
-@export var navAgent: NavigationAgent2D
-@export var zombieFunnelMoveSpeed: float = 20
-@export var targeter: Targeter
+@export var observer: Observer
+@export var idleObservationArea: Area2D
 @export var attackCollisionShape: CollisionShape2D
 @export var idleObservingCollisionShape: CollisionShape2D
 @export var chaseObservingCollisionShape: CollisionShape2D
+@export var navAgent: NavigationAgent2D
+@export var targeter: Targeter
+@export var zombieFunnelMoveSpeed: float = 20
+@export var idleState: NpcIdle
 
 func enter() -> void:
 	if parent.name == "TestZom":
@@ -40,7 +40,7 @@ func physics_update(_delta: float) -> void:
 	parent.move_and_slide()
 
 func _on_navigation_agent_2d_target_reached() -> void:
-	Transitioned.emit(self, "NpcIdle")
+	Transitioned.emit(self, idleState)
 
 func exit() -> void:
 	if parent.name == "TestZom":
@@ -55,7 +55,7 @@ func exit() -> void:
 		navAgent.target_reached.disconnect(_on_navigation_agent_2d_target_reached)
 	
 	$Timer.stop()
-	observer.observationArea = focus_area
+	observer.observationArea = idleObservationArea
 
 func _on_timer_timeout() -> void:
-	Transitioned.emit(self, "NpcIdle")
+	Transitioned.emit(self, idleState)

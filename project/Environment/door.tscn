@@ -1,4 +1,4 @@
-[gd_scene load_steps=25 format=3 uid="uid://bg5skfd20wcbw"]
+[gd_scene load_steps=23 format=3 uid="uid://bg5skfd20wcbw"]
 
 [ext_resource type="Script" uid="uid://cpm6twph3auq8" path="res://Environment/door.gd" id="1_v6xrn"]
 [ext_resource type="Texture2D" uid="uid://dwl8rfik3abdj" path="res://Assets/Environment/Doors/ClosedDoorUpDown.png" id="2_4xadh"]
@@ -16,8 +16,6 @@
 [ext_resource type="Texture2D" uid="uid://6a1jhtuo1o46" path="res://Assets/Environment/Doors/DestroyedOpenDoorUpDown.png" id="11_o8vfa"]
 [ext_resource type="Texture2D" uid="uid://d07w1jq5dsjel" path="res://Assets/Environment/Doors/DestroyedOpenDoorLeftRight.png" id="12_roll1"]
 [ext_resource type="PackedScene" uid="uid://drw1bqon7jqdd" path="res://Components/decay_contributor.tscn" id="16_tlngp"]
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_hun61"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_t4u4y"]
 animations = [{
@@ -58,22 +56,12 @@ animations = [{
 }]
 
 [sub_resource type="NavigationPolygon" id="NavigationPolygon_4xadh"]
-vertices = PackedVector2Array(2, 8, -2, 8, -2, -8, 2, -8)
-polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3)])
-outlines = Array[PackedVector2Array]([PackedVector2Array(-2, -8, 2, -8, 2, 8, -2, 8)])
-agent_radius = 0.0
-
-[sub_resource type="NavigationPolygon" id="NavigationPolygon_6hwww"]
-vertices = PackedVector2Array(8, 2, -8, 2, -8, -2, 8, -2)
-polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3)])
-outlines = Array[PackedVector2Array]([PackedVector2Array(-8, -2, 8, -2, 8, 2, -8, 2)])
-agent_radius = 0.0
-
-[sub_resource type="NavigationPolygon" id="NavigationPolygon_tlngp"]
 vertices = PackedVector2Array(4, -4, 8, -4, 8, 4, 4, 4, 4, 8, -4, 8, -4, 4, -4, -4, -8, 4, -8, -4, 4, -8, -4, -8)
 polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3), PackedInt32Array(3, 4, 5, 6), PackedInt32Array(0, 3, 6, 7), PackedInt32Array(6, 8, 9, 7), PackedInt32Array(10, 0, 7, 11)])
 outlines = Array[PackedVector2Array]([PackedVector2Array(-4, -8, 4, -8, 4, -4, 8, -4, 8, 4, 4, 4, 4, 8, -4, 8, -4, 4, -8, 4, -8, -4, -4, -4)])
 agent_radius = 0.0
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_hun61"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_14t7a"]
 size = Vector2(16, 16)
@@ -83,36 +71,28 @@ size = Vector2(16, 16)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_y5njw"]
 
-[node name="Door" type="StaticBody2D" node_paths=PackedStringArray("northSouthNavRegion", "eastWestNavRegion") groups=["Breakable"]]
+[node name="Door" type="StaticBody2D" groups=["Breakable"]]
 collision_layer = 2
 collision_mask = 0
 script = ExtResource("1_v6xrn")
-northSouthNavRegion = NodePath("NavigationRegion2DNS")
-eastWestNavRegion = NodePath("NavigationRegion2DEW")
 metadata/_edit_group_ = true
 
 [node name="HealthSystem" parent="." node_paths=PackedStringArray("sprite") instance=ExtResource("2_6jo5k")]
 maxHealth = 50
 sprite = NodePath("../AnimatedSprite2D")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-scale = Vector2(0.8, 0.8)
-shape = SubResource("RectangleShape2D_hun61")
-
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_t4u4y")
 
-[node name="NavigationRegion2DNS" type="NavigationRegion2D" parent="."]
-visible = false
+[node name="NavigationRegion2D" type="NavigationRegion2D" parent="."]
+scale = Vector2(1, 1)
 navigation_polygon = SubResource("NavigationPolygon_4xadh")
+navigation_layers = 5
 
-[node name="NavigationRegion2DEW" type="NavigationRegion2D" parent="."]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 visible = false
-navigation_polygon = SubResource("NavigationPolygon_6hwww")
-
-[node name="ToReactorNavRegion" type="NavigationRegion2D" parent="."]
-navigation_polygon = SubResource("NavigationPolygon_tlngp")
-navigation_layers = 2
+scale = Vector2(0.8, 0.8)
+shape = SubResource("RectangleShape2D_hun61")
 
 [node name="Repairable" parent="." node_paths=PackedStringArray("repairableObject") instance=ExtResource("9_60si7")]
 visible = false

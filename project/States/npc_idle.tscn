@@ -12,8 +12,12 @@ script = ExtResource("1_a41yc")
 [node name="StateMachine" parent="." node_paths=PackedStringArray("initial_state") instance=ExtResource("2_rch0r")]
 initial_state = NodePath("NpcIdleStand")
 
-[node name="NpcIdleStand" parent="StateMachine" instance=ExtResource("3_xmuhr")]
+[node name="NpcIdleStand" parent="StateMachine" node_paths=PackedStringArray("idleTurnState", "idleWalkState") instance=ExtResource("3_xmuhr")]
+idleTurnState = NodePath("../NpcIdleTurn")
+idleWalkState = NodePath("../NpcIdleWalk")
 
-[node name="NpcIdleTurn" parent="StateMachine" instance=ExtResource("4_ijuat")]
+[node name="NpcIdleTurn" parent="StateMachine" node_paths=PackedStringArray("idleWalkState", "idleStandState") instance=ExtResource("4_ijuat")]
+idleWalkState = NodePath("../NpcIdleWalk")
+idleStandState = NodePath("../NpcIdleStand")
 
 [node name="NpcIdleWalk" parent="StateMachine" instance=ExtResource("5_b0r58")]

@@ -36,4 +36,4 @@ func physics_update(_delta: float) -> void:
 
 func _on_chase_after_los_lost_timer_timeout() -> void:
 	#If we continued chasing for a bit after losing sight and didn't find anything, go back to idle
-	Transitioned.emit(self, "NpcIdle")
+	Transitioned.emit(self, idleState)

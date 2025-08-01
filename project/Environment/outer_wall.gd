@@ -3,6 +3,8 @@ class_name OuterWall
 
 @onready var outerWallManager: OuterWallManager = get_node("/root/Main/OuterWallManager")
 
+const ACCESSIBLENAVLAYER: int = 2
+
 var destroyed: bool = false
 
 func makeBreakable() -> void:
@@ -13,14 +15,10 @@ func _on_health_system_health_changed() -> void:
 	#Destroyed
 	if $HealthSystem.currHealth <= 0:
 		$AnimatedSprite2D.set_frame_and_progress(2, 0)
-		$CollisionShape2D.disabled = true
 		
-		if not $NavigationRegion2D.enabled:
-			if $NavigationRegion2D.is_baking():
-				await $NavigationRegion2D.bake_finished
-			$NavigationRegion2D.enabled = true
-			$NavigationRegion2D.bake_navigation_polygon()
-			
+		$CollisionShape2D.disabled = true
+		$NavigationRegion2D.set_navigation_layer_value(ACCESSIBLENAVLAYER, true)
+		
 		funnelZoms()
 		remove_from_group("Breakable")
 		
@@ -29,13 +27,9 @@ func _on_health_system_health_changed() -> void:
 	#Damaged
 	elif $HealthSystem.currHealth < $HealthSystem.maxHealth:
 		$AnimatedSprite2D.set_frame_and_progress(1, 0)
-		$CollisionShape2D.disabled = false
 		
-		if $NavigationRegion2D.enabled:
-			if $NavigationRegion2D.is_baking():
-				await $NavigationRegion2D.bake_finished
-			$NavigationRegion2D.enabled = false
-			$NavigationRegion2D.bake_navigation_polygon()
+		$CollisionShape2D.disabled = false
+		$NavigationRegion2D.set_navigation_layer_value(ACCESSIBLENAVLAYER, false)
 		
 		$ZomFunnelTimer.stop()
 		add_to_group("Breakable")
@@ -45,13 +39,9 @@ func _on_health_system_health_changed() -> void:
 	#Full Health
 	else:
 		$AnimatedSprite2D.set_frame_and_progress(0, 0)
-		$CollisionShape2D.disabled = false
 		
-		if $NavigationRegion2D.enabled:
-			if $NavigationRegion2D.is_baking():
-				await $NavigationRegion2D.bake_finished
-			$NavigationRegion2D.enabled = false
-			$NavigationRegion2D.bake_navigation_polygon()
+		$CollisionShape2D.disabled = false
+		$NavigationRegion2D.set_navigation_layer_value(ACCESSIBLENAVLAYER, false)
 		
 		$ZomFunnelTimer.stop()
 		remove_from_group("Breakable")
@@ -74,7 +64,7 @@ func funnelZoms() -> void:
 		if not body.is_in_group("Zombies") or not body is Zombie:
 			continue
 		var zom: Zombie = body
-		if zom.stateMachine.current_state.get_script().get_global_name() != "ZombieFunnel":
+		if not zom.stateMachine.current_state is ZombieFunnel:
 			funnelZom(zom)
 	$ZomFunnelTimer.start()
 
