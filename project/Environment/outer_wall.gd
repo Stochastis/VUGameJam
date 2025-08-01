@@ -1,7 +1,7 @@
 extends Node2D
 class_name OuterWall
 
-@onready var outerWallManager: OuterWallManager = get_node("/root/Main/World/OuterWallManager")
+@onready var outerWallManager: OuterWallManager = get_node("/root/Main/OuterWallManager")
 
 var destroyed: bool = false
 

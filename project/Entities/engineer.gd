@@ -1,7 +1,9 @@
 extends CharacterBody2D
+class_name Engineer
 
 @onready var audio_stream_player: AudioStreamPlayer = $WalkingAudioStreamPlayer
 @onready var hurt_audio_stream_player: AudioStreamPlayer = $HurtAudioStreamPlayer
+@onready var main_ui: MainUI = $"../../GUICanvasLayer/MainUI"
 
 @export var move_speed: float = 150
 @export var playerInteractionArea: Area2D
@@ -24,13 +26,11 @@ var repRepMode: RepRepMode = RepRepMode.None
 var oldRepRepMode: RepRepMode = RepRepMode.None
 var repRepObj: Node2D
 var oldRepRepObj: Node2D
-var mainUI: Control
 var repRepProgressBar: ProgressBar
 var repRepLabel: Label
 
 func _ready() -> void:
-	mainUI = $"../GUICanvasLayer/MainUI"
-	repRepProgressBar = mainUI.get_node("RepairReplaceProgressBar")
+	repRepProgressBar = main_ui.repRepProgressBar
 	repRepLabel = repRepProgressBar.get_node("RepairReplaceLabel")
 
 func _process(_delta: float) -> void:

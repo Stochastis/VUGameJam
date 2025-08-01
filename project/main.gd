@@ -2,26 +2,26 @@ extends Node
 class_name Main
 
 @onready var soldier_talk_timer: Timer = $SoldierTalkTimer
-@onready var allied_soldiers: Node = $World/AlliedSoldiers
+@onready var allied_soldiers: Node = $World/WorldNavRegion/AlliedSoldiers
 @onready var tileMapLayer: TileMapLayer = $"World/WorldNavRegion/TileMapLayer-Environment"
 @onready var worldNavigation: NavigationRegion2D = $World/WorldNavRegion
-@onready var engineer: CharacterBody2D = $World/Engineer
 @onready var music_audio_stream_player: AudioStreamPlayer = $MusicAudioStreamPlayer
 @onready var main_ui: MainUI = $World/GUICanvasLayer/MainUI
 @onready var zombie_to_reactor_timer: Timer = $ZombieToReactorTimer
-@onready var zombies: Node = $World/Zombies
-@onready var reactor: StaticBody2D = $World/Reactor
 
+@export var engineer: Engineer
+@export var zombies: Node
 @export var door_scene: PackedScene
-@export var maxStructIntegrity: int
-@export var soldierTalkingLines: Array[AudioStream]
-@export var minSoldierTalkGap: int
-@export var maxSoldierTalkGap: int
-@export var distanceToTalk: float = 32
+@export var reactor: Reactor
 @export var musicFiles: Array[AudioStream]
 @export var minMusicGap: int = 5
 @export var maxMusicGap: int = 60
 @export var musicVolume: float = -18
+@export var maxStructIntegrity: int
+@export var minSoldierTalkGap: int
+@export var maxSoldierTalkGap: int
+@export var distanceToTalk: float = 32
+@export var soldierTalkingLines: Array[AudioStream]
 
 var alliedSoldiers: Array[Node]
 var currStructIntegrity: int : set = _on_set_curr_struct_integrity

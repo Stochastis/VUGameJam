@@ -1,7 +1,6 @@
 extends Node
 
-@onready var zombies: Node = $"../Zombies"
-
+@export var zombies: Node
 @export var zombie: PackedScene
 @export var enabled: bool = true
 @export var startingSpawnFrequency: float

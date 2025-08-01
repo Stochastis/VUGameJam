@@ -1,4 +1,5 @@
 extends StaticBody2D
+class_name Reactor
 
 @onready var reactor_animation: AnimatedSprite2D = $ReactorAnimation
 @onready var emission_animation: AnimatedSprite2D = $EmissionAnimation
